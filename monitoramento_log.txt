@@ -10,3 +10,4 @@
 [2025-05-22 23:20:33] Iniciando monitoramento de produtos
 [2025-05-22 23:20:53] Todos os produtos estão ON e nenhum desapareceu
 [2025-05-23 11:18:19] Iniciando monitoramento de produtos
+[2025-05-23 11:18:31] ALERTA: 12 produtos desapareceram
