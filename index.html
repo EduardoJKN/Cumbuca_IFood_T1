@@ -61,6 +61,10 @@
                 background-color: #ffebee;
                 border-left: 5px solid #f44336;
             }
+            .stat-card.desaparecidos {
+                background-color: #fff3e0;
+                border-left: 5px solid #ff9800;
+            }
             .stat-value {
                 font-size: 2em;
                 font-weight: bold;
@@ -98,6 +102,10 @@
             .status-off {
                 background-color: #ffebee;
                 color: #c62828;
+            }
+            .status-desapareceu {
+                background-color: #fff3e0;
+                color: #e65100;
             }
             .timestamp {
                 color: #666;
@@ -237,6 +245,9 @@
             .history-status.off {
                 color: #c62828;
             }
+            .history-status.desapareceu {
+                color: #e65100;
+            }
             .history-date {
                 color: #666;
                 font-size: 0.9em;
@@ -299,6 +310,36 @@
                 background-color: #ff6000;
                 color: white;
             }
+            .legenda {
+                margin: 15px 0;
+                padding: 10px;
+                background-color: #f9f9f9;
+                border-radius: 4px;
+                border: 1px solid #eee;
+            }
+            .legenda-item {
+                display: flex;
+                align-items: center;
+                margin-bottom: 5px;
+            }
+            .legenda-cor {
+                width: 20px;
+                height: 20px;
+                border-radius: 4px;
+                margin-right: 10px;
+            }
+            .legenda-cor.on {
+                background-color: #e8f5e9;
+                border: 1px solid #2e7d32;
+            }
+            .legenda-cor.off {
+                background-color: #ffebee;
+                border: 1px solid #c62828;
+            }
+            .legenda-cor.desapareceu {
+                background-color: #fff3e0;
+                border: 1px solid #e65100;
+            }
             @media (max-width: 768px) {
                 .stats {
                     flex-direction: column;
@@ -313,7 +354,7 @@
         <div class="container">
             <div class="header">
                 <h1>Dashboard de Produtos iFood</h1>
-                <p class="timestamp">Última atualização: 23/05/2025 08:54:13</p>
+                <p class="timestamp">Última atualização: 23/05/2025 09:04:38</p>
             </div>
             
             <div class="stats">
@@ -328,6 +369,23 @@
                 <div class="stat-card off">
                     <h3>Produtos OFF</h3>
                     <div class="stat-value">12</div>
+                    <div style="font-size: 0.9em; color: #666;">Inclui 12 desaparecidos</div>
+                </div>
+            </div>
+            
+            <div class="legenda">
+                <h3>Legenda de Status:</h3>
+                <div class="legenda-item">
+                    <div class="legenda-cor on"></div>
+                    <div><strong>ON</strong> - Produto disponível no cardápio</div>
+                </div>
+                <div class="legenda-item">
+                    <div class="legenda-cor off"></div>
+                    <div><strong>OFF</strong> - Produto indisponível (marcado como indisponível no iFood)</div>
+                </div>
+                <div class="legenda-item">
+                    <div class="legenda-cor desapareceu"></div>
+                    <div><strong>OFF (Desapareceu)</strong> - Produto que estava disponível anteriormente mas não aparece mais no cardápio</div>
                 </div>
             </div>
             
@@ -339,13 +397,14 @@
                 <button class="filter-btn active" data-filter="all">Todos</button>
                 <button class="filter-btn" data-filter="on">Apenas ON</button>
                 <button class="filter-btn" data-filter="off">Apenas OFF</button>
+                <button class="filter-btn" data-filter="desapareceu">Apenas Desaparecidos</button>
                 <button class="filter-btn" data-filter="changed">Mudaram Recentemente</button>
             </div>
     
             <div class="section">
                 <button class="accordion">
                     <span>Descontinhos pra você ;)</span>
-                    <span class="section-count">1 produtos (0 OFF)</span>
+                    <span class="section-count">1 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -369,7 +428,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -417,7 +476,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>Destaques</span>
-                    <span class="section-count">4 produtos (0 OFF)</span>
+                    <span class="section-count">4 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -441,7 +500,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -490,7 +549,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -539,7 +598,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -588,7 +647,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -636,7 +695,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>Mimo por R$2,99</span>
-                    <span class="section-count">1 produtos (0 OFF)</span>
+                    <span class="section-count">1 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -660,7 +719,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -708,7 +767,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>Novos Wraps - Novo formato e tamanho</span>
-                    <span class="section-count">10 produtos (10 OFF)</span>
+                    <span class="section-count">10 produtos (10 OFF, 10 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -723,10 +782,10 @@
                         </thead>
                         <tbody>
         
-                            <tr class="produto-row filter-off filter-changed">
+                            <tr class="produto-row filter-off filter-desapareceu filter-changed">
                                 <td>U.S.Wrap (N-O-V-I-D-A-D-E)</td>
                                 <td>R$49,90</td>
-                                <td><span class="status status-off">OFF (Desapareceu)</span></td>
+                                <td><span class="status status-desapareceu">OFF (Desapareceu)</span></td>
                                 <td>
                                     <div class="availability-bar">
                                         <div class="availability-fill" style="width: 100.0%"></div>
@@ -734,7 +793,7 @@
                                 </td>
                                 <td>2025-05-23 11:18:32</td>
                             </tr>
-                            <tr class="history-row produto-row filter-off filter-changed" style="display: none;">
+                            <tr class="history-row produto-row filter-off filter-desapareceu filter-changed" style="display: none;">
                                 <td colspan="5">
                                     <div class="history-container">
                                         <div class="history-title">
@@ -774,10 +833,10 @@
                                 </td>
                             </tr>
             
-                            <tr class="produto-row filter-off filter-changed">
+                            <tr class="produto-row filter-off filter-desapareceu filter-changed">
                                 <td>Wrap Ahazô!</td>
                                 <td>R$49,90</td>
-                                <td><span class="status status-off">OFF (Desapareceu)</span></td>
+                                <td><span class="status status-desapareceu">OFF (Desapareceu)</span></td>
                                 <td>
                                     <div class="availability-bar">
                                         <div class="availability-fill" style="width: 100.0%"></div>
@@ -785,7 +844,7 @@
                                 </td>
                                 <td>2025-05-23 11:18:32</td>
                             </tr>
-                            <tr class="history-row produto-row filter-off filter-changed" style="display: none;">
+                            <tr class="history-row produto-row filter-off filter-desapareceu filter-changed" style="display: none;">
                                 <td colspan="5">
                                     <div class="history-container">
                                         <div class="history-title">
@@ -825,10 +884,10 @@
                                 </td>
                             </tr>
             
-                            <tr class="produto-row filter-off filter-changed">
+                            <tr class="produto-row filter-off filter-desapareceu filter-changed">
                                 <td>Wrap Classiquinha (N-O-V-I-D-A-D-E)</td>
                                 <td>R$49,90</td>
-                                <td><span class="status status-off">OFF (Desapareceu)</span></td>
+                                <td><span class="status status-desapareceu">OFF (Desapareceu)</span></td>
                                 <td>
                                     <div class="availability-bar">
                                         <div class="availability-fill" style="width: 100.0%"></div>
@@ -836,7 +895,7 @@
                                 </td>
                                 <td>2025-05-23 11:18:32</td>
                             </tr>
-                            <tr class="history-row produto-row filter-off filter-changed" style="display: none;">
+                            <tr class="history-row produto-row filter-off filter-desapareceu filter-changed" style="display: none;">
                                 <td colspan="5">
                                     <div class="history-container">
                                         <div class="history-title">
@@ -876,10 +935,10 @@
                                 </td>
                             </tr>
             
-                            <tr class="produto-row filter-off filter-changed">
+                            <tr class="produto-row filter-off filter-desapareceu filter-changed">
                                 <td>Wrap Croc (N-O-V-I-D-A-D-E)</td>
                                 <td>R$49,90</td>
-                                <td><span class="status status-off">OFF (Desapareceu)</span></td>
+                                <td><span class="status status-desapareceu">OFF (Desapareceu)</span></td>
                                 <td>
                                     <div class="availability-bar">
                                         <div class="availability-fill" style="width: 100.0%"></div>
@@ -887,7 +946,7 @@
                                 </td>
                                 <td>2025-05-23 11:18:32</td>
                             </tr>
-                            <tr class="history-row produto-row filter-off filter-changed" style="display: none;">
+                            <tr class="history-row produto-row filter-off filter-desapareceu filter-changed" style="display: none;">
                                 <td colspan="5">
                                     <div class="history-container">
                                         <div class="history-title">
@@ -927,10 +986,10 @@
                                 </td>
                             </tr>
             
-                            <tr class="produto-row filter-off filter-changed">
+                            <tr class="produto-row filter-off filter-desapareceu filter-changed">
                                 <td>Wrap Divino</td>
                                 <td>R$49,90</td>
-                                <td><span class="status status-off">OFF (Desapareceu)</span></td>
+                                <td><span class="status status-desapareceu">OFF (Desapareceu)</span></td>
                                 <td>
                                     <div class="availability-bar">
                                         <div class="availability-fill" style="width: 100.0%"></div>
@@ -938,7 +997,7 @@
                                 </td>
                                 <td>2025-05-23 11:18:32</td>
                             </tr>
-                            <tr class="history-row produto-row filter-off filter-changed" style="display: none;">
+                            <tr class="history-row produto-row filter-off filter-desapareceu filter-changed" style="display: none;">
                                 <td colspan="5">
                                     <div class="history-container">
                                         <div class="history-title">
@@ -978,10 +1037,10 @@
                                 </td>
                             </tr>
             
-                            <tr class="produto-row filter-off filter-changed">
+                            <tr class="produto-row filter-off filter-desapareceu filter-changed">
                                 <td>Wrap Méxicomigo</td>
                                 <td>R$44,90</td>
-                                <td><span class="status status-off">OFF (Desapareceu)</span></td>
+                                <td><span class="status status-desapareceu">OFF (Desapareceu)</span></td>
                                 <td>
                                     <div class="availability-bar">
                                         <div class="availability-fill" style="width: 100.0%"></div>
@@ -989,7 +1048,7 @@
                                 </td>
                                 <td>2025-05-23 11:18:32</td>
                             </tr>
-                            <tr class="history-row produto-row filter-off filter-changed" style="display: none;">
+                            <tr class="history-row produto-row filter-off filter-desapareceu filter-changed" style="display: none;">
                                 <td colspan="5">
                                     <div class="history-container">
                                         <div class="history-title">
@@ -1029,10 +1088,10 @@
                                 </td>
                             </tr>
             
-                            <tr class="produto-row filter-off filter-changed">
+                            <tr class="produto-row filter-off filter-desapareceu filter-changed">
                                 <td>Wrap Perfeitinho</td>
                                 <td>R$44,90</td>
-                                <td><span class="status status-off">OFF (Desapareceu)</span></td>
+                                <td><span class="status status-desapareceu">OFF (Desapareceu)</span></td>
                                 <td>
                                     <div class="availability-bar">
                                         <div class="availability-fill" style="width: 100.0%"></div>
@@ -1040,7 +1099,7 @@
                                 </td>
                                 <td>2025-05-23 11:18:32</td>
                             </tr>
-                            <tr class="history-row produto-row filter-off filter-changed" style="display: none;">
+                            <tr class="history-row produto-row filter-off filter-desapareceu filter-changed" style="display: none;">
                                 <td colspan="5">
                                     <div class="history-container">
                                         <div class="history-title">
@@ -1080,10 +1139,10 @@
                                 </td>
                             </tr>
             
-                            <tr class="produto-row filter-off filter-changed">
+                            <tr class="produto-row filter-off filter-desapareceu filter-changed">
                                 <td>Wrap S-U-R-R-E-A-L 2.0 (Lançamento)</td>
                                 <td>R$49,90</td>
-                                <td><span class="status status-off">OFF (Desapareceu)</span></td>
+                                <td><span class="status status-desapareceu">OFF (Desapareceu)</span></td>
                                 <td>
                                     <div class="availability-bar">
                                         <div class="availability-fill" style="width: 100.0%"></div>
@@ -1091,7 +1150,7 @@
                                 </td>
                                 <td>2025-05-23 11:18:32</td>
                             </tr>
-                            <tr class="history-row produto-row filter-off filter-changed" style="display: none;">
+                            <tr class="history-row produto-row filter-off filter-desapareceu filter-changed" style="display: none;">
                                 <td colspan="5">
                                     <div class="history-container">
                                         <div class="history-title">
@@ -1131,10 +1190,10 @@
                                 </td>
                             </tr>
             
-                            <tr class="produto-row filter-off filter-changed">
+                            <tr class="produto-row filter-off filter-desapareceu filter-changed">
                                 <td>Wrap Supremo! (Lançamento)</td>
                                 <td>R$49,90</td>
-                                <td><span class="status status-off">OFF (Desapareceu)</span></td>
+                                <td><span class="status status-desapareceu">OFF (Desapareceu)</span></td>
                                 <td>
                                     <div class="availability-bar">
                                         <div class="availability-fill" style="width: 100.0%"></div>
@@ -1142,7 +1201,7 @@
                                 </td>
                                 <td>2025-05-23 11:18:32</td>
                             </tr>
-                            <tr class="history-row produto-row filter-off filter-changed" style="display: none;">
+                            <tr class="history-row produto-row filter-off filter-desapareceu filter-changed" style="display: none;">
                                 <td colspan="5">
                                     <div class="history-container">
                                         <div class="history-title">
@@ -1182,10 +1241,10 @@
                                 </td>
                             </tr>
             
-                            <tr class="produto-row filter-off filter-changed">
+                            <tr class="produto-row filter-off filter-desapareceu filter-changed">
                                 <td>Wrap Só O Filé (N-O-V-I-D-A-D-E)</td>
                                 <td>R$49,90</td>
-                                <td><span class="status status-off">OFF (Desapareceu)</span></td>
+                                <td><span class="status status-desapareceu">OFF (Desapareceu)</span></td>
                                 <td>
                                     <div class="availability-bar">
                                         <div class="availability-fill" style="width: 100.0%"></div>
@@ -1193,7 +1252,7 @@
                                 </td>
                                 <td>2025-05-23 11:18:32</td>
                             </tr>
-                            <tr class="history-row produto-row filter-off filter-changed" style="display: none;">
+                            <tr class="history-row produto-row filter-off filter-desapareceu filter-changed" style="display: none;">
                                 <td colspan="5">
                                     <div class="history-container">
                                         <div class="history-title">
@@ -1241,7 +1300,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>Novos Wraps - Novo tamanho e formato</span>
-                    <span class="section-count">10 produtos (0 OFF)</span>
+                    <span class="section-count">10 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -1265,7 +1324,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -1314,7 +1373,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -1363,7 +1422,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -1412,7 +1471,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -1461,7 +1520,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -1510,7 +1569,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -1559,7 +1618,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -1608,7 +1667,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -1657,7 +1716,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -1706,7 +1765,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -1754,7 +1813,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>Oferta do mês</span>
-                    <span class="section-count">2 produtos (0 OFF)</span>
+                    <span class="section-count">2 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -1778,7 +1837,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -1827,7 +1886,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -1875,7 +1934,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>Para começar (Entradas)</span>
-                    <span class="section-count">7 produtos (0 OFF)</span>
+                    <span class="section-count">7 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -1899,7 +1958,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -1948,7 +2007,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -1997,7 +2056,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2046,7 +2105,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2095,7 +2154,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2144,7 +2203,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2193,7 +2252,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2241,7 +2300,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>Promoções</span>
-                    <span class="section-count">7 produtos (0 OFF)</span>
+                    <span class="section-count">7 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -2265,7 +2324,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2314,7 +2373,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2363,7 +2422,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2412,7 +2471,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2461,7 +2520,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2510,7 +2569,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2559,7 +2618,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2607,7 +2666,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>Wrap Combos</span>
-                    <span class="section-count">2 produtos (0 OFF)</span>
+                    <span class="section-count">2 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -2631,7 +2690,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2680,7 +2739,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2728,7 +2787,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>Wrap Naighty!</span>
-                    <span class="section-count">2 produtos (2 OFF)</span>
+                    <span class="section-count">2 produtos (2 OFF, 2 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -2743,10 +2802,10 @@
                         </thead>
                         <tbody>
         
-                            <tr class="produto-row filter-off filter-changed">
+                            <tr class="produto-row filter-off filter-desapareceu filter-changed">
                                 <td>Wrap Dupla</td>
                                 <td>De R$115,60 por R$87,90</td>
-                                <td><span class="status status-off">OFF (Desapareceu)</span></td>
+                                <td><span class="status status-desapareceu">OFF (Desapareceu)</span></td>
                                 <td>
                                     <div class="availability-bar">
                                         <div class="availability-fill" style="width: 100.0%"></div>
@@ -2754,7 +2813,7 @@
                                 </td>
                                 <td>2025-05-23 11:18:32</td>
                             </tr>
-                            <tr class="history-row produto-row filter-off filter-changed" style="display: none;">
+                            <tr class="history-row produto-row filter-off filter-desapareceu filter-changed" style="display: none;">
                                 <td colspan="5">
                                     <div class="history-container">
                                         <div class="history-title">
@@ -2794,10 +2853,10 @@
                                 </td>
                             </tr>
             
-                            <tr class="produto-row filter-off filter-changed">
+                            <tr class="produto-row filter-off filter-desapareceu filter-changed">
                                 <td>Wrap Lanche Feliz</td>
                                 <td>De R$66,70 por R$52,90</td>
-                                <td><span class="status status-off">OFF (Desapareceu)</span></td>
+                                <td><span class="status status-desapareceu">OFF (Desapareceu)</span></td>
                                 <td>
                                     <div class="availability-bar">
                                         <div class="availability-fill" style="width: 100.0%"></div>
@@ -2805,7 +2864,7 @@
                                 </td>
                                 <td>2025-05-23 11:18:32</td>
                             </tr>
-                            <tr class="history-row produto-row filter-off filter-changed" style="display: none;">
+                            <tr class="history-row produto-row filter-off filter-desapareceu filter-changed" style="display: none;">
                                 <td colspan="5">
                                     <div class="history-container">
                                         <div class="history-title">
@@ -2853,7 +2912,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>[Novidade] Personalize sua Cumbuca!</span>
-                    <span class="section-count">3 produtos (0 OFF)</span>
+                    <span class="section-count">3 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -2877,7 +2936,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2926,7 +2985,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -2975,7 +3034,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3023,7 +3082,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>• Açaís •</span>
-                    <span class="section-count">4 produtos (0 OFF)</span>
+                    <span class="section-count">4 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -3047,7 +3106,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3096,7 +3155,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3145,7 +3204,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3194,7 +3253,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3242,7 +3301,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>• Bebidas •</span>
-                    <span class="section-count">12 produtos (0 OFF)</span>
+                    <span class="section-count">12 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -3266,7 +3325,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3315,7 +3374,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3364,7 +3423,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3413,7 +3472,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3462,7 +3521,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3511,7 +3570,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3560,7 +3619,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3609,7 +3668,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3658,7 +3717,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3707,7 +3766,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3756,7 +3815,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3805,7 +3864,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3853,7 +3912,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>• Destaque •</span>
-                    <span class="section-count">5 produtos (0 OFF)</span>
+                    <span class="section-count">5 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -3877,7 +3936,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3926,7 +3985,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -3975,7 +4034,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4024,7 +4083,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4073,7 +4132,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4121,7 +4180,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>• Força, foco e fé •</span>
-                    <span class="section-count">7 produtos (0 OFF)</span>
+                    <span class="section-count">7 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -4145,7 +4204,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4194,7 +4253,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4243,7 +4302,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4292,7 +4351,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4341,7 +4400,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4390,7 +4449,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4439,7 +4498,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4487,7 +4546,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>• Não julgue minha cumbuca •</span>
-                    <span class="section-count">9 produtos (0 OFF)</span>
+                    <span class="section-count">9 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -4511,7 +4570,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4560,7 +4619,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4609,7 +4668,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4658,7 +4717,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4707,7 +4766,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4756,7 +4815,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4805,7 +4864,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4854,7 +4913,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4903,7 +4962,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -4951,7 +5010,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>• Sobremesas •</span>
-                    <span class="section-count">3 produtos (0 OFF)</span>
+                    <span class="section-count">3 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -4975,7 +5034,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -5024,7 +5083,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -5073,7 +5132,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -5121,7 +5180,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>• Suchás •</span>
-                    <span class="section-count">2 produtos (0 OFF)</span>
+                    <span class="section-count">2 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -5145,7 +5204,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -5194,7 +5253,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -5242,7 +5301,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>• Tô diferente •</span>
-                    <span class="section-count">3 produtos (0 OFF)</span>
+                    <span class="section-count">3 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -5266,7 +5325,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -5315,7 +5374,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -5364,7 +5423,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -5412,7 +5471,7 @@
             <div class="section">
                 <button class="accordion">
                     <span>• Tô veggie •</span>
-                    <span class="section-count">2 produtos (0 OFF)</span>
+                    <span class="section-count">2 produtos (0 OFF, 0 desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -5436,7 +5495,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
@@ -5485,7 +5544,7 @@
                                         <div class="availability-fill" style="width: 100%"></div>
                                     </div>
                                 </td>
-                                <td>2025-05-23 08:54:12</td>
+                                <td>2025-05-23 09:04:38</td>
                             </tr>
                             <tr class="history-row produto-row filter-on" style="display: none;">
                                 <td colspan="5">
