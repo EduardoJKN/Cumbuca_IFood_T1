@@ -306,6 +306,9 @@ def gerar_dashboard_html(historico):
     produtos_off = sum(1 for info in historico.values() if info['status_atual'] != 'ON')
     produtos_on = total_produtos - produtos_off
     
+    # Contar produtos desaparecidos
+    produtos_desaparecidos = sum(1 for info in historico.values() if 'Desapareceu' in info['status_atual'])
+    
     # Gerar HTML
     html = f"""
     <!DOCTYPE html>
@@ -370,6 +373,10 @@ def gerar_dashboard_html(historico):
                 background-color: #ffebee;
                 border-left: 5px solid #f44336;
             }}
+            .stat-card.desaparecidos {{
+                background-color: #fff3e0;
+                border-left: 5px solid #ff9800;
+            }}
             .stat-value {{
                 font-size: 2em;
                 font-weight: bold;
@@ -407,6 +414,10 @@ def gerar_dashboard_html(historico):
             .status-off {{
                 background-color: #ffebee;
                 color: #c62828;
+            }}
+            .status-desapareceu {{
+                background-color: #fff3e0;
+                color: #e65100;
             }}
             .timestamp {{
                 color: #666;
@@ -546,6 +557,9 @@ def gerar_dashboard_html(historico):
             .history-status.off {{
                 color: #c62828;
             }}
+            .history-status.desapareceu {{
+                color: #e65100;
+            }}
             .history-date {{
                 color: #666;
                 font-size: 0.9em;
@@ -608,6 +622,36 @@ def gerar_dashboard_html(historico):
                 background-color: #ff6000;
                 color: white;
             }}
+            .legenda {{
+                margin: 15px 0;
+                padding: 10px;
+                background-color: #f9f9f9;
+                border-radius: 4px;
+                border: 1px solid #eee;
+            }}
+            .legenda-item {{
+                display: flex;
+                align-items: center;
+                margin-bottom: 5px;
+            }}
+            .legenda-cor {{
+                width: 20px;
+                height: 20px;
+                border-radius: 4px;
+                margin-right: 10px;
+            }}
+            .legenda-cor.on {{
+                background-color: #e8f5e9;
+                border: 1px solid #2e7d32;
+            }}
+            .legenda-cor.off {{
+                background-color: #ffebee;
+                border: 1px solid #c62828;
+            }}
+            .legenda-cor.desapareceu {{
+                background-color: #fff3e0;
+                border: 1px solid #e65100;
+            }}
             @media (max-width: 768px) {{
                 .stats {{
                     flex-direction: column;
@@ -637,6 +681,23 @@ def gerar_dashboard_html(historico):
                 <div class="stat-card off">
                     <h3>Produtos OFF</h3>
                     <div class="stat-value">{produtos_off}</div>
+                    <div style="font-size: 0.9em; color: #666;">Inclui {produtos_desaparecidos} desaparecidos</div>
+                </div>
+            </div>
+            
+            <div class="legenda">
+                <h3>Legenda de Status:</h3>
+                <div class="legenda-item">
+                    <div class="legenda-cor on"></div>
+                    <div><strong>ON</strong> - Produto disponível no cardápio</div>
+                </div>
+                <div class="legenda-item">
+                    <div class="legenda-cor off"></div>
+                    <div><strong>OFF</strong> - Produto indisponível (marcado como indisponível no iFood)</div>
+                </div>
+                <div class="legenda-item">
+                    <div class="legenda-cor desapareceu"></div>
+                    <div><strong>OFF (Desapareceu)</strong> - Produto que estava disponível anteriormente mas não aparece mais no cardápio</div>
                 </div>
             </div>
             
@@ -648,6 +709,7 @@ def gerar_dashboard_html(historico):
                 <button class="filter-btn active" data-filter="all">Todos</button>
                 <button class="filter-btn" data-filter="on">Apenas ON</button>
                 <button class="filter-btn" data-filter="off">Apenas OFF</button>
+                <button class="filter-btn" data-filter="desapareceu">Apenas Desaparecidos</button>
                 <button class="filter-btn" data-filter="changed">Mudaram Recentemente</button>
             </div>
     """
@@ -655,12 +717,13 @@ def gerar_dashboard_html(historico):
     # Adicionar seções com produtos
     for secao, produtos in sorted(produtos_por_secao.items()):
         produtos_off_secao = sum(1 for p in produtos if p['status_atual'] != 'ON')
+        produtos_desaparecidos_secao = sum(1 for p in produtos if 'Desapareceu' in p['status_atual'])
         
         html += f"""
             <div class="section">
                 <button class="accordion">
                     <span>{secao}</span>
-                    <span class="section-count">{len(produtos)} produtos ({produtos_off_secao} OFF)</span>
+                    <span class="section-count">{len(produtos)} produtos ({produtos_off_secao} OFF, {produtos_desaparecidos_secao} desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -677,7 +740,16 @@ def gerar_dashboard_html(historico):
         """
         
         for produto in sorted(produtos, key=lambda x: x['nome']):
-            status_class = "status-on" if produto['status_atual'] == 'ON' else "status-off"
+            # Determinar classe de status
+            if 'Desapareceu' in produto['status_atual']:
+                status_class = "status-desapareceu"
+                filtro_class = "produto-row filter-off filter-desapareceu"
+            elif produto['status_atual'] == 'ON':
+                status_class = "status-on"
+                filtro_class = "produto-row filter-on"
+            else:
+                status_class = "status-off"
+                filtro_class = "produto-row filter-off"
             
             # Determinar se o produto mudou recentemente (nas últimas 24 horas)
             mudou_recentemente = False
@@ -686,15 +758,7 @@ def gerar_dashboard_html(historico):
                 agora = horario_brasil()
                 if (agora - ultima_mudanca).total_seconds() < 24 * 3600:  # 24 horas em segundos
                     mudou_recentemente = True
-            
-            # Classe para filtros
-            filtro_class = "produto-row"
-            if produto['status_atual'] == 'ON':
-                filtro_class += " filter-on"
-            else:
-                filtro_class += " filter-off"
-            if mudou_recentemente:
-                filtro_class += " filter-changed"
+                    filtro_class += " filter-changed"
             
             # Barra de disponibilidade
             porcentagem_on = produto['estatisticas']['porcentagem_on']
@@ -744,7 +808,13 @@ def gerar_dashboard_html(historico):
             # Adicionar itens do histórico
             if produto['historico']:
                 for item in reversed(produto['historico']):
-                    status_class_hist = "on" if item['status'] == 'ON' else "off"
+                    if 'Desapareceu' in item['status']:
+                        status_class_hist = "desapareceu"
+                    elif item['status'] == 'ON':
+                        status_class_hist = "on"
+                    else:
+                        status_class_hist = "off"
+                    
                     html += f"""
                                             <div class="history-item">
                                                 <div class="history-status {status_class_hist}">{item['status']}</div>
@@ -1039,16 +1109,18 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
         # Adicionar contagem de produtos ativos
         texto += f"✅ Produtos ativos no site: {total_produtos_ativos}\n\n"
         
+        # Produtos desaparecidos (são considerados OFF)
         if produtos_desaparecidos:
-            texto += f"⚠️ {len(produtos_desaparecidos)} produtos DESAPARECERAM:\n"
+            texto += f"⚠️ {len(produtos_desaparecidos)} produtos DESAPARECERAM (OFF):\n"
             for p in produtos_desaparecidos[:10]:
                 texto += f"- {p['Seção']} - {p['Produto']} - Preço: {p['Preço']}\n"
             if len(produtos_desaparecidos) > 10:
                 texto += f"... e mais {len(produtos_desaparecidos) - 10} produtos\n"
             texto += "\n"
             
+        # Produtos marcados como OFF no site
         if produtos_off:
-            texto += f"⚠️ {len(produtos_off)} produtos marcados como OFF:\n"
+            texto += f"⚠️ {len(produtos_off)} produtos marcados como OFF no site:\n"
             for p in produtos_off[:5]:
                 texto += f"- {p['Seção']} - {p['Produto']} - Preço: {p['Preço']}\n"
             if len(produtos_off) > 5:
@@ -1062,20 +1134,29 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
             for produto in todos_produtos:
                 secao = produto['Seção']
                 if secao not in produtos_por_secao:
-                    produtos_por_secao[secao] = {'total': 0, 'off': 0}
+                    produtos_por_secao[secao] = {'total': 0, 'off': 0, 'desaparecidos': 0}
                 
                 produtos_por_secao[secao]['total'] += 1
-                if produto['Status'] != 'ON':
+                
+                # Contar produtos OFF e desaparecidos separadamente
+                if 'Status' in produto and 'Desapareceu' in produto.get('Status', ''):
+                    produtos_por_secao[secao]['desaparecidos'] += 1
+                    produtos_por_secao[secao]['off'] += 1  # Desaparecidos também são OFF
+                elif 'Status' in produto and produto['Status'] != 'ON':
                     produtos_por_secao[secao]['off'] += 1
             
             texto += "📊 Status por Seção:\n"
             for secao, contagem in sorted(produtos_por_secao.items()):
                 on_count = contagem['total'] - contagem['off']
                 off_count = contagem['off']
+                desaparecidos = contagem['desaparecidos']
                 
                 # Usar emojis para representar status
-                status_icons = f"🟢 {on_count} ON | 🔴 {off_count} OFF"
-                texto += f"- {secao}: {status_icons}\n"
+                status_texto = f"🟢 {on_count} ON | 🔴 {off_count} OFF"
+                if desaparecidos > 0:
+                    status_texto += f" (inclui {desaparecidos} desaparecidos)"
+                
+                texto += f"- {secao}: {status_texto}\n"
             
             texto += "\n"
         
@@ -1338,7 +1419,7 @@ def monitorar_produtos():
         # Definir preenchimentos para status
         fill_off = PatternFill(start_color="FFCCCC", end_color="FFCCCC", fill_type="solid")  # Vermelho claro
         fill_on = PatternFill(start_color="CCFFCC", end_color="CCFFCC", fill_type="solid")   # Verde claro
-        fill_desaparecido = PatternFill(start_color="FF9999", end_color="FF9999", fill_type="solid")  # Vermelho mais forte
+        fill_desaparecido = PatternFill(start_color="FFEECC", end_color="FFEECC", fill_type="solid")  # Laranja claro
         
         # Formatar cabeçalhos
         for cell in ws[1]:
