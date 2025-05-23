@@ -27,6 +27,11 @@ GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN', '')
 GITHUB_REPOSITORY = os.environ.get('GITHUB_REPOSITORY', '')
 GITHUB_ACTOR = os.environ.get('GITHUB_ACTOR', '')
 
+# Função para obter o horário atual no fuso horário de Brasília (UTC-3)
+def horario_brasil():
+    """Retorna o horário atual no fuso horário de Brasília (UTC-3)"""
+    return datetime.datetime.now() - datetime.timedelta(hours=3)
+
 def limpar_preco(texto):
     """Limpa e formata o texto do preço, removendo repetições"""
     if not texto:
@@ -91,7 +96,7 @@ def salvar_estado_produtos(dados_produtos):
             'Preço': produto['Preço'],
             'Descrição': produto.get('Descrição', ''),
             'Status': produto.get('Status', 'ON'),
-            'Última verificação': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            'Última verificação': horario_brasil().strftime('%Y-%m-%d %H:%M:%S')
         }
     
     # Salvar no arquivo
@@ -150,7 +155,7 @@ def atualizar_historico_status(dados_produtos, produtos_desaparecidos):
     arquivo_historico = 'historico_status.json'
     historico = carregar_historico_status()
     
-    timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    timestamp = horario_brasil().strftime('%Y-%m-%d %H:%M:%S')
     
     # Atualizar produtos atuais
     for produto in dados_produtos:
@@ -617,7 +622,7 @@ def gerar_dashboard_html(historico):
         <div class="container">
             <div class="header">
                 <h1>Dashboard de Produtos iFood</h1>
-                <p class="timestamp">Última atualização: {datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')}</p>
+                <p class="timestamp">Última atualização: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}</p>
             </div>
             
             <div class="stats">
@@ -678,7 +683,7 @@ def gerar_dashboard_html(historico):
             mudou_recentemente = False
             if produto['historico']:
                 ultima_mudanca = datetime.datetime.strptime(produto['historico'][-1]['timestamp'], '%Y-%m-%d %H:%M:%S')
-                agora = datetime.datetime.now()
+                agora = horario_brasil()
                 if (agora - ultima_mudanca).total_seconds() < 24 * 3600:  # 24 horas em segundos
                     mudou_recentemente = True
             
@@ -989,14 +994,14 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
             sha = response.json()["sha"]
             
             payload = {
-                "message": f"Atualizar {nome_arquivo_github} - {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+                "message": f"Atualizar {nome_arquivo_github} - {horario_brasil().strftime('%Y-%m-%d %H:%M:%S')}",
                 "content": conteudo_base64,
                 "sha": sha
             }
         else:
             # Arquivo não existe, criar
             payload = {
-                "message": f"Adicionar {nome_arquivo_github} - {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+                "message": f"Adicionar {nome_arquivo_github} - {horario_brasil().strftime('%Y-%m-%d %H:%M:%S')}",
                 "content": conteudo_base64
             }
         
@@ -1029,7 +1034,7 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
         
         # Criar mensagem formatada
         texto = f"🚨 ALERTA: Monitoramento de Produtos iFood 🚨\n\n"
-        texto += f"Data/Hora: {datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')}\n\n"
+        texto += f"Data/Hora: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}\n\n"
         
         # Adicionar contagem de produtos ativos
         texto += f"✅ Produtos ativos no site: {total_produtos_ativos}\n\n"
@@ -1108,7 +1113,7 @@ def salvar_log(mensagem):
     # Tentar baixar o arquivo de log existente
     baixar_arquivo_github(arquivo_log)
     
-    timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    timestamp = horario_brasil().strftime('%Y-%m-%d %H:%M:%S')
     
     # Abrir em modo append para adicionar nova linha
     with open(arquivo_log, 'a', encoding='utf-8') as f:
@@ -1155,7 +1160,7 @@ def verificar_status_produto(product):
 
 def monitorar_produtos():
     """Função principal para monitorar produtos"""
-    timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    timestamp = horario_brasil().strftime('%Y-%m-%d %H:%M:%S')
     print(f"\n🔍 Iniciando monitoramento de produtos em {timestamp}")
     salvar_log(f"Iniciando monitoramento de produtos")
     
