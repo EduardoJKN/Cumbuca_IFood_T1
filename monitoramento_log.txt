@@ -208,3 +208,4 @@
 [2025-05-27 15:29:55] Monitoramento concluído. Total: 95, OFF: 0, Desaparecidos: 0
 [2025-05-27 15:29:55] Todos os produtos estão ON e nenhum desapareceu
 [2025-05-27 16:17:18] Iniciando monitoramento de produtos
+[2025-05-27 16:17:37] Monitoramento concluído. Total: 95, OFF: 0, Desaparecidos: 0
