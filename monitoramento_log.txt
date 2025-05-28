@@ -1,0 +1,249 @@
+[2025-05-22 21:46:49] Iniciando monitoramento de produtos
+[2025-05-22 21:47:04] Monitoramento concluído. Total: 96, OFF: 0, Desaparecidos: 0
+[2025-05-22 21:47:05] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-22 21:53:10] Iniciando monitoramento de produtos
+[2025-05-22 21:53:26] Monitoramento concluído. Total: 96, OFF: 0, Desaparecidos: 0
+[2025-05-22 21:53:27] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-22 22:27:25] Iniciando monitoramento de produtos
+[2025-05-22 22:27:41] Monitoramento concluído. Total: 96, OFF: 0, Desaparecidos: 0
+[2025-05-22 22:27:42] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-22 23:20:33] Iniciando monitoramento de produtos
+[2025-05-22 23:20:53] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-23 11:18:19] Iniciando monitoramento de produtos
+[2025-05-23 11:18:31] ALERTA: 12 produtos desapareceram
+[2025-05-23 11:18:33] Monitoramento concluído. Total: 84, OFF: 12, Desaparecidos: 12
+[2025-05-23 11:18:34] ALERTA: 12 produtos com problemas
+[2025-05-23 08:53:58] Iniciando monitoramento de produtos
+[2025-05-23 08:54:14] Monitoramento concluído. Total: 84, OFF: 0, Desaparecidos: 0
+[2025-05-23 08:54:15] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-23 09:04:23] Iniciando monitoramento de produtos
+[2025-05-23 09:04:39] Monitoramento concluído. Total: 84, OFF: 0, Desaparecidos: 0
+[2025-05-23 09:04:40] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-23 09:42:53] Iniciando monitoramento de produtos
+[2025-05-23 09:43:11] Monitoramento concluído. Total: 84, OFF: 0, Desaparecidos: 0
+[2025-05-23 09:43:12] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-23 10:31:50] Iniciando monitoramento de produtos
+[2025-05-23 10:32:08] Monitoramento concluído. Total: 84, OFF: 0, Desaparecidos: 0
+[2025-05-23 10:32:09] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-23 11:22:07] Iniciando monitoramento de produtos
+[2025-05-23 11:22:23] Monitoramento concluído. Total: 86, OFF: 0, Desaparecidos: 0
+[2025-05-23 11:22:23] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-23 12:23:08] Iniciando monitoramento de produtos
+[2025-05-23 12:23:22] Monitoramento concluído. Total: 86, OFF: 0, Desaparecidos: 0
+[2025-05-23 12:23:23] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-23 13:27:10] Iniciando monitoramento de produtos
+[2025-05-23 13:27:27] Monitoramento concluído. Total: 86, OFF: 0, Desaparecidos: 0
+[2025-05-23 13:27:28] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-23 14:19:32] Iniciando monitoramento de produtos
+[2025-05-23 14:19:51] Monitoramento concluído. Total: 86, OFF: 0, Desaparecidos: 0
+[2025-05-23 14:19:52] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-23 15:29:12] Iniciando monitoramento de produtos
+[2025-05-23 15:29:27] Monitoramento concluído. Total: 86, OFF: 0, Desaparecidos: 0
+[2025-05-23 15:29:28] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-23 16:17:25] Iniciando monitoramento de produtos
+[2025-05-23 16:17:43] Monitoramento concluído. Total: 86, OFF: 0, Desaparecidos: 0
+[2025-05-23 16:17:44] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-23 17:24:08] Iniciando monitoramento de produtos
+[2025-05-23 17:24:24] ALERTA: 2 produtos desapareceram
+[2025-05-23 17:24:28] Monitoramento concluído. Total: 96, OFF: 2, Desaparecidos: 2
+[2025-05-23 17:24:29] ALERTA: 2 produtos com problemas
+[2025-05-23 18:18:24] Iniciando monitoramento de produtos
+[2025-05-23 18:18:42] Monitoramento concluído. Total: 96, OFF: 0, Desaparecidos: 0
+[2025-05-23 18:18:42] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-23 19:20:34] Iniciando monitoramento de produtos
+[2025-05-23 19:20:52] Monitoramento concluído. Total: 96, OFF: 0, Desaparecidos: 0
+[2025-05-23 19:20:53] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-23 20:20:28] Iniciando monitoramento de produtos
+[2025-05-23 20:20:43] ALERTA: 1 produtos desapareceram
+[2025-05-23 20:20:45] Monitoramento concluído. Total: 95, OFF: 1, Desaparecidos: 1
+[2025-05-23 20:20:46] ALERTA: 1 produtos com problemas
+[2025-05-24 08:17:26] Iniciando monitoramento de produtos
+[2025-05-24 08:17:41] ALERTA: 14 produtos desapareceram
+[2025-05-24 08:17:43] Monitoramento concluído. Total: 88, OFF: 14, Desaparecidos: 14
+[2025-05-24 08:17:44] ALERTA: 14 produtos com problemas
+[2025-05-24 09:39:23] Iniciando monitoramento de produtos
+[2025-05-24 09:39:38] Monitoramento concluído. Total: 88, OFF: 0, Desaparecidos: 0
+[2025-05-24 09:39:39] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-24 10:28:13] Iniciando monitoramento de produtos
+[2025-05-24 10:28:31] Monitoramento concluído. Total: 92, OFF: 0, Desaparecidos: 0
+[2025-05-24 10:28:32] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-24 11:17:55] Iniciando monitoramento de produtos
+[2025-05-24 11:18:12] Monitoramento concluído. Total: 94, OFF: 0, Desaparecidos: 0
+[2025-05-24 11:18:12] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-24 12:20:46] Iniciando monitoramento de produtos
+[2025-05-24 12:21:05] Monitoramento concluído. Total: 94, OFF: 0, Desaparecidos: 0
+[2025-05-24 12:21:06] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-24 13:25:11] Iniciando monitoramento de produtos
+[2025-05-24 13:25:29] Monitoramento concluído. Total: 94, OFF: 0, Desaparecidos: 0
+[2025-05-24 13:25:30] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-24 14:17:25] Iniciando monitoramento de produtos
+[2025-05-24 14:17:42] Monitoramento concluído. Total: 94, OFF: 0, Desaparecidos: 0
+[2025-05-24 14:17:43] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-24 15:27:49] Iniciando monitoramento de produtos
+[2025-05-24 15:28:07] Monitoramento concluído. Total: 94, OFF: 0, Desaparecidos: 0
+[2025-05-24 15:28:08] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-24 16:16:02] Iniciando monitoramento de produtos
+[2025-05-24 16:16:19] Monitoramento concluído. Total: 94, OFF: 0, Desaparecidos: 0
+[2025-05-24 16:16:19] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-24 17:22:07] Iniciando monitoramento de produtos
+[2025-05-24 17:22:24] ALERTA: 2 produtos desapareceram
+[2025-05-24 17:22:28] Monitoramento concluído. Total: 104, OFF: 2, Desaparecidos: 2
+[2025-05-24 17:22:29] ALERTA: 2 produtos com problemas
+[2025-05-24 18:18:47] Iniciando monitoramento de produtos
+[2025-05-24 18:19:05] Monitoramento concluído. Total: 104, OFF: 0, Desaparecidos: 0
+[2025-05-24 18:19:07] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-24 19:19:33] Iniciando monitoramento de produtos
+[2025-05-24 19:19:49] Monitoramento concluído. Total: 104, OFF: 0, Desaparecidos: 0
+[2025-05-24 19:19:50] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-24 20:19:51] Iniciando monitoramento de produtos
+[2025-05-24 20:20:08] Monitoramento concluído. Total: 104, OFF: 0, Desaparecidos: 0
+[2025-05-24 20:20:08] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-25 08:16:28] Iniciando monitoramento de produtos
+[2025-05-25 08:16:42] ALERTA: 13 produtos desapareceram
+[2025-05-25 08:16:46] Monitoramento concluído. Total: 91, OFF: 13, Desaparecidos: 13
+[2025-05-25 08:16:47] ALERTA: 13 produtos com problemas
+[2025-05-25 09:40:12] Iniciando monitoramento de produtos
+[2025-05-25 09:40:30] Monitoramento concluído. Total: 91, OFF: 0, Desaparecidos: 0
+[2025-05-25 09:40:31] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-25 10:27:18] Iniciando monitoramento de produtos
+[2025-05-25 10:27:34] Monitoramento concluído. Total: 91, OFF: 0, Desaparecidos: 0
+[2025-05-25 10:27:35] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-25 11:20:16] Iniciando monitoramento de produtos
+[2025-05-25 11:20:34] Monitoramento concluído. Total: 96, OFF: 0, Desaparecidos: 0
+[2025-05-25 11:20:34] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-25 12:21:03] Iniciando monitoramento de produtos
+[2025-05-25 12:21:25] Monitoramento concluído. Total: 96, OFF: 0, Desaparecidos: 0
+[2025-05-25 12:21:26] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-25 13:24:51] Iniciando monitoramento de produtos
+[2025-05-25 13:25:08] Monitoramento concluído. Total: 96, OFF: 0, Desaparecidos: 0
+[2025-05-25 13:25:09] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-25 14:17:16] Iniciando monitoramento de produtos
+[2025-05-25 14:17:32] Monitoramento concluído. Total: 96, OFF: 0, Desaparecidos: 0
+[2025-05-25 14:17:33] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-25 15:28:47] Iniciando monitoramento de produtos
+[2025-05-25 15:29:10] ❌ Tempo esgotado esperando a página carregar os produtos.
+[2025-05-25 16:16:09] Iniciando monitoramento de produtos
+[2025-05-25 16:16:25] Monitoramento concluído. Total: 96, OFF: 0, Desaparecidos: 0
+[2025-05-25 16:16:26] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-25 17:22:08] Iniciando monitoramento de produtos
+[2025-05-25 17:22:23] ALERTA: 2 produtos desapareceram
+[2025-05-25 17:22:25] Monitoramento concluído. Total: 106, OFF: 2, Desaparecidos: 2
+[2025-05-25 17:22:25] ALERTA: 2 produtos com problemas
+[2025-05-25 18:18:56] Iniciando monitoramento de produtos
+[2025-05-25 18:19:13] Monitoramento concluído. Total: 106, OFF: 0, Desaparecidos: 0
+[2025-05-25 18:19:14] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-25 19:19:41] Iniciando monitoramento de produtos
+[2025-05-25 19:19:58] Monitoramento concluído. Total: 106, OFF: 0, Desaparecidos: 0
+[2025-05-25 19:19:58] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-25 20:19:53] Iniciando monitoramento de produtos
+[2025-05-25 20:20:10] Monitoramento concluído. Total: 106, OFF: 0, Desaparecidos: 0
+[2025-05-25 20:20:11] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-26 08:17:33] Iniciando monitoramento de produtos
+[2025-05-26 08:17:50] ALERTA: 12 produtos desapareceram
+[2025-05-26 08:17:52] Monitoramento concluído. Total: 94, OFF: 12, Desaparecidos: 12
+[2025-05-26 08:17:53] ALERTA: 12 produtos com problemas
+[2025-05-26 09:42:45] Iniciando monitoramento de produtos
+[2025-05-26 09:43:03] Monitoramento concluído. Total: 94, OFF: 0, Desaparecidos: 0
+[2025-05-26 09:43:04] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-26 10:31:15] Iniciando monitoramento de produtos
+[2025-05-26 10:31:31] Monitoramento concluído. Total: 94, OFF: 0, Desaparecidos: 0
+[2025-05-26 10:31:32] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-26 11:21:52] Iniciando monitoramento de produtos
+[2025-05-26 11:22:09] Monitoramento concluído. Total: 96, OFF: 0, Desaparecidos: 0
+[2025-05-26 11:22:09] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-26 12:23:17] Iniciando monitoramento de produtos
+[2025-05-26 12:23:32] ALERTA: 2 produtos desapareceram
+[2025-05-26 12:23:36] Monitoramento concluído. Total: 96, OFF: 2, Desaparecidos: 2
+[2025-05-26 12:23:37] ALERTA: 2 produtos com problemas
+[2025-05-26 13:26:50] Iniciando monitoramento de produtos
+[2025-05-26 13:27:07] Monitoramento concluído. Total: 96, OFF: 0, Desaparecidos: 0
+[2025-05-26 13:27:07] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-26 14:18:23] Iniciando monitoramento de produtos
+[2025-05-26 14:18:41] Monitoramento concluído. Total: 96, OFF: 0, Desaparecidos: 0
+[2025-05-26 14:18:42] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-26 15:29:20] Iniciando monitoramento de produtos
+[2025-05-26 15:29:36] Monitoramento concluído. Total: 96, OFF: 0, Desaparecidos: 0
+[2025-05-26 15:29:36] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-26 16:17:24] Iniciando monitoramento de produtos
+[2025-05-26 16:17:43] Monitoramento concluído. Total: 96, OFF: 0, Desaparecidos: 0
+[2025-05-26 16:17:44] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-26 17:23:52] Iniciando monitoramento de produtos
+[2025-05-26 17:24:07] ALERTA: 2 produtos desapareceram
+[2025-05-26 17:24:10] Monitoramento concluído. Total: 106, OFF: 2, Desaparecidos: 2
+[2025-05-26 17:24:11] ALERTA: 2 produtos com problemas
+[2025-05-26 18:19:24] Iniciando monitoramento de produtos
+[2025-05-26 18:19:40] ALERTA: 2 produtos desapareceram
+[2025-05-26 18:19:42] Monitoramento concluído. Total: 116, OFF: 2, Desaparecidos: 2
+[2025-05-26 18:19:43] ALERTA: 2 produtos com problemas
+[2025-05-26 19:19:58] Iniciando monitoramento de produtos
+[2025-05-26 19:20:17] Monitoramento concluído. Total: 116, OFF: 0, Desaparecidos: 0
+[2025-05-26 19:20:17] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-26 20:19:49] Iniciando monitoramento de produtos
+[2025-05-26 20:20:07] Monitoramento concluído. Total: 116, OFF: 0, Desaparecidos: 0
+[2025-05-26 20:20:08] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-27 08:18:51] Iniciando monitoramento de produtos
+[2025-05-27 08:19:07] ALERTA: 12 produtos desapareceram
+[2025-05-27 08:19:12] Monitoramento concluído. Total: 104, OFF: 12, Desaparecidos: 12
+[2025-05-27 08:19:13] ALERTA: 12 produtos com problemas
+[2025-05-27 09:46:37] Iniciando monitoramento de produtos
+[2025-05-27 09:46:54] Monitoramento concluído. Total: 105, OFF: 0, Desaparecidos: 0
+[2025-05-27 09:46:55] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-27 10:34:12] Iniciando monitoramento de produtos
+[2025-05-27 10:34:30] Monitoramento concluído. Total: 105, OFF: 0, Desaparecidos: 0
+[2025-05-27 10:34:30] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-27 11:21:42] Iniciando monitoramento de produtos
+[2025-05-27 11:21:58] ALERTA: 13 produtos desapareceram
+[2025-05-27 11:22:02] Monitoramento concluído. Total: 95, OFF: 13, Desaparecidos: 13
+[2025-05-27 11:22:03] ALERTA: 13 produtos com problemas
+[2025-05-27 12:24:31] Iniciando monitoramento de produtos
+[2025-05-27 12:24:51] Monitoramento concluído. Total: 95, OFF: 0, Desaparecidos: 0
+[2025-05-27 12:24:52] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-27 13:28:25] Iniciando monitoramento de produtos
+[2025-05-27 13:28:41] Monitoramento concluído. Total: 95, OFF: 0, Desaparecidos: 0
+[2025-05-27 13:28:41] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-27 14:19:40] Iniciando monitoramento de produtos
+[2025-05-27 14:19:56] Monitoramento concluído. Total: 95, OFF: 0, Desaparecidos: 0
+[2025-05-27 14:19:57] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-27 15:29:38] Iniciando monitoramento de produtos
+[2025-05-27 15:29:55] Monitoramento concluído. Total: 95, OFF: 0, Desaparecidos: 0
+[2025-05-27 15:29:55] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-27 16:17:18] Iniciando monitoramento de produtos
+[2025-05-27 16:17:37] Monitoramento concluído. Total: 95, OFF: 0, Desaparecidos: 0
+[2025-05-27 16:17:38] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-27 17:26:07] Iniciando monitoramento de produtos
+[2025-05-27 17:26:24] ALERTA: 2 produtos desapareceram
+[2025-05-27 17:26:27] Monitoramento concluído. Total: 105, OFF: 2, Desaparecidos: 2
+[2025-05-27 17:26:28] ALERTA: 2 produtos com problemas
+[2025-05-27 18:21:40] Iniciando monitoramento de produtos
+[2025-05-27 18:22:00] Monitoramento concluído. Total: 105, OFF: 0, Desaparecidos: 0
+[2025-05-27 18:22:01] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-27 19:20:43] Iniciando monitoramento de produtos
+[2025-05-27 19:20:59] Monitoramento concluído. Total: 105, OFF: 0, Desaparecidos: 0
+[2025-05-27 19:21:00] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-27 20:20:06] Iniciando monitoramento de produtos
+[2025-05-27 20:20:21] ALERTA: 2 produtos desapareceram
+[2025-05-27 20:20:25] Monitoramento concluído. Total: 103, OFF: 2, Desaparecidos: 2
+[2025-05-27 20:20:26] ALERTA: 2 produtos com problemas
+[2025-05-28 08:19:17] Iniciando monitoramento de produtos
+[2025-05-28 08:19:31] ALERTA: 11 produtos desapareceram
+[2025-05-28 08:19:34] Monitoramento concluído. Total: 93, OFF: 11, Desaparecidos: 11
+[2025-05-28 08:19:35] ALERTA: 11 produtos com problemas
+[2025-05-28 09:45:35] Iniciando monitoramento de produtos
+[2025-05-28 09:45:51] Monitoramento concluído. Total: 93, OFF: 0, Desaparecidos: 0
+[2025-05-28 09:45:52] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-28 10:34:31] Iniciando monitoramento de produtos
+[2025-05-28 10:34:51] Monitoramento concluído. Total: 93, OFF: 0, Desaparecidos: 0
+[2025-05-28 10:34:52] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-28 12:09:27] Iniciando monitoramento de produtos
+[2025-05-28 12:09:40] ALERTA: 7 produtos desapareceram
+[2025-05-28 12:09:43] Monitoramento concluído. Total: 88, OFF: 7, Desaparecidos: 7
+[2025-05-28 12:09:43] ALERTA: 7 produtos com problemas
+[2025-05-28 12:24:30] Iniciando monitoramento de produtos
+[2025-05-28 12:24:50] Monitoramento concluído. Total: 88, OFF: 0, Desaparecidos: 0
+[2025-05-28 12:24:51] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-28 13:28:35] Iniciando monitoramento de produtos
+[2025-05-28 13:28:51] Monitoramento concluído. Total: 88, OFF: 0, Desaparecidos: 0
+[2025-05-28 13:28:52] Todos os produtos estão ON e nenhum desapareceu
+[2025-05-28 14:19:44] Iniciando monitoramento de produtos
+[2025-05-28 14:20:01] Monitoramento concluído. Total: 88, OFF: 0, Desaparecidos: 0
+[2025-05-28 14:20:01] Todos os produtos estão ON e nenhum desapareceu
