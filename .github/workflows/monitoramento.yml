@@ -2,47 +2,53 @@ name: Monitoramento de Produtos iFood
 
 on:
   schedule:
-    # Executa a cada hora das 11:00 às 23:00 (UTC)
-    - cron: '0 11-23 * * *'
-  workflow_dispatch:  # Permite execução manual
+    # Executa a cada hora das 11h às 23h no horário de Brasília (UTC-3)
+    - cron: '0 14-23 * * *'  # 11h-20h BRT (14h-23h UTC)
+    - cron: '0 0-2 * * *'     # 21h-23h BRT (0h-2h UTC do dia seguinte)
+  workflow_dispatch:
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
+    timeout-minutes: 10  # Limita o tempo de execução para evitar consumo excessivo
     
     steps:
     - name: Checkout do repositório
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4  # Versão mais recente
       
     - name: Configurar Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
+        python-version: '3.10'  # Versão mais recente estável
         
+    - name: Cache de dependências
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          
     - name: Instalar dependências
       run: |
         python -m pip install --upgrade pip
         pip install selenium pandas openpyxl requests webdriver-manager
         
-    - name: Instalar Chrome e ChromeDriver
-      run: |
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-        sudo apt-get update
-        sudo apt-get install -y google-chrome-stable
-        python -c "from webdriver_manager.chrome import ChromeDriverManager; ChromeDriverManager().install()"
-        
+    - name: Configurar Chrome (otimizado para GitHub Actions)
+      uses: browser-actions/setup-chrome@latest
+      
     - name: Executar monitoramento
-      run: python monitoramento_produtos_actions.py
       env:
         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: python monitoramento_produtos_actions.py
         
-    - name: Configurar GitHub Pages
+    - name: Publicar no GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
+      if: success()  # Só publica se o monitoramento for bem-sucedido
       with:
-        github_token: ${{ secrets.GH_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: .
         publish_branch: gh-pages
-        force_orphan: true
+        keep_files: true  # Mantém arquivos existentes
