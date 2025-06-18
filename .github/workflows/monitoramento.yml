@@ -2,53 +2,54 @@ name: Monitoramento de Produtos iFood
 
 on:
   schedule:
-    # Executa a cada hora das 11h às 23h no horário de Brasília (UTC-3)
-    - cron: '0 14-23 * * *'  # 11h-20h BRT (14h-23h UTC)
-    - cron: '0 0-2 * * *'     # 21h-23h BRT (0h-2h UTC do dia seguinte)
-  workflow_dispatch:
+    # Executar a cada hora das 11:00 às 23:00 (UTC-3, ajustado para UTC)
+    - cron: '0 14-2 * * *'
+  workflow_dispatch:  # Permite execução manual
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 10  # Limita o tempo de execução para evitar consumo excessivo
-    
     steps:
-    - name: Checkout do repositório
-      uses: actions/checkout@v4  # Versão mais recente
-      
-    - name: Configurar Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'  # Versão mais recente estável
-        
-    - name: Cache de dependências
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
-          
-    - name: Instalar dependências
-      run: |
-        python -m pip install --upgrade pip
-        pip install selenium pandas openpyxl requests webdriver-manager
-        
-    - name: Configurar Chrome (otimizado para GitHub Actions)
-      uses: browser-actions/setup-chrome@latest
-      
-    - name: Executar monitoramento
-      env:
-        TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: python monitoramento_produtos_actions.py
-        
-    - name: Publicar no GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      if: success()  # Só publica se o monitoramento for bem-sucedido
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: .
-        publish_branch: gh-pages
-        keep_files: true  # Mantém arquivos existentes
+      - name: Checkout código
+        uses: actions/checkout@v2
+
+      - name: Configurar Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Instalar dependências do Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip fonts-liberation libasound2 libatk-bridge2.0-0 libatk1.0-0 libatspi2.0-0 libcups2 libdbus-1-3 libdrm2 libgbm1 libgtk-3-0 libnspr4 libnss3 libxcomposite1 libxdamage1 libxfixes3 libxkbcommon0 libxrandr2 xdg-utils
+
+      - name: Instalar Chrome
+        run: |
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt install ./google-chrome-stable_current_amd64.deb
+
+      - name: Instalar dependências Python
+        run: |
+          python -m pip install --upgrade pip
+          pip install selenium pandas openpyxl requests
+
+      - name: Instalar ChromeDriver
+        run: |
+          CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d. -f1 )
+          CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION" )
+          wget "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+          unzip chromedriver_linux64.zip
+          chmod +x chromedriver
+          sudo mv chromedriver /usr/local/bin/
+
+      - name: Executar monitoramento
+        run: python monitoramento_produtos_actions_br_responsive.py
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Verificar arquivos gerados
+        run: |
+          ls -la
+          echo "Verificando se os arquivos foram gerados corretamente"
