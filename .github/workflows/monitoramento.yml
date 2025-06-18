@@ -43,7 +43,7 @@ jobs:
           sudo mv chromedriver /usr/local/bin/
 
       - name: Executar monitoramento
-        run: python monitoramento_produtos_actions_br_responsive.py
+        run: python monitoramento_produtos_actions.py
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
