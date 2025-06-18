@@ -709,7 +709,7 @@ def gerar_dashboard_html(historico):
                 <button class="filter-btn active" data-filter="all">Todos</button>
                 <button class="filter-btn" data-filter="on">Apenas ON</button>
                 <button class="filter-btn" data-filter="off">Apenas OFF</button>
-                <button class="filter-btn" data-filter="desapareceu">Apenas Desaparecidos</button>
+                <button class="filter-btn" data-filter="desapareceu">Off Recentemente</button>
                 <button class="filter-btn" data-filter="changed">Mudaram Recentemente</button>
             </div>
     """
