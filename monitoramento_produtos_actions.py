@@ -1109,9 +1109,9 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
         # Adicionar contagem de produtos ativos
         texto += f"✅ Produtos ativos no site: {total_produtos_ativos}\n\n"
         
-        # Produtos desaparecidos (são considerados OFF)
+        # Produtos que ficaram OFF (antigos "desaparecidos")
         if produtos_desaparecidos:
-            texto += f"⚠️ {len(produtos_desaparecidos)} produtos DESAPARECERAM (OFF):\n"
+            texto += f"⚠️ {len(produtos_desaparecidos)} produtos ficaram OFF (não encontrados):\n"
             for p in produtos_desaparecidos[:10]:
                 texto += f"- {p['Seção']} - {p['Produto']} - Preço: {p['Preço']}\n"
             if len(produtos_desaparecidos) > 10:
@@ -1134,14 +1134,14 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
             for produto in todos_produtos:
                 secao = produto['Seção']
                 if secao not in produtos_por_secao:
-                    produtos_por_secao[secao] = {'total': 0, 'off': 0, 'desaparecidos': 0}
+                    produtos_por_secao[secao] = {'total': 0, 'off': 0, 'nao_encontrados': 0}
                 
                 produtos_por_secao[secao]['total'] += 1
                 
-                # Contar produtos OFF e desaparecidos separadamente
+                # Contar produtos OFF e não encontrados separadamente
                 if 'Status' in produto and 'Desapareceu' in produto.get('Status', ''):
-                    produtos_por_secao[secao]['desaparecidos'] += 1
-                    produtos_por_secao[secao]['off'] += 1  # Desaparecidos também são OFF
+                    produtos_por_secao[secao]['nao_encontrados'] += 1
+                    produtos_por_secao[secao]['off'] += 1  # Não encontrados também são OFF
                 elif 'Status' in produto and produto['Status'] != 'ON':
                     produtos_por_secao[secao]['off'] += 1
             
@@ -1149,12 +1149,12 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
             for secao, contagem in sorted(produtos_por_secao.items()):
                 on_count = contagem['total'] - contagem['off']
                 off_count = contagem['off']
-                desaparecidos = contagem['desaparecidos']
+                nao_encontrados = contagem['nao_encontrados']
                 
                 # Usar emojis para representar status
                 status_texto = f"🟢 {on_count} ON | 🔴 {off_count} OFF"
-                if desaparecidos > 0:
-                    status_texto += f" (inclui {desaparecidos} desaparecidos)"
+                if nao_encontrados > 0:
+                    status_texto += f" (inclui {nao_encontrados} não encontrados)"
                 
                 texto += f"- {secao}: {status_texto}\n"
             
