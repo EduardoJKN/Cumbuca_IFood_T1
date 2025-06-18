@@ -1104,7 +1104,7 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
         url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
         
         # Criar mensagem formatada
-        texto = f"🚨 ALERTA: Monitoramento de Produtos iFood 🚨
+        texto = f"🚨 ALERTA: Monitoramento de Produtos iFood 🚨 "
 
 "
         texto += f"Data/Hora: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}
