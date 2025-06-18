@@ -1489,11 +1489,11 @@ def monitorar_produtos():
             )
             
         else:
-            print("\n✅ Todos os produtos estão ON e nenhum desapareceu!")
-            salvar_log("Todos os produtos estão ON e nenhum desapareceu")
+            print("\n✅ Todos os produtos estão ON e nenhum ficou OFF!")
+            salvar_log("Todos os produtos estão ON e nenhum ficou OFF")
             
             # Enviar mensagem de status normal para o Telegram
-            mensagem = "✅ Todos os produtos estão ON e nenhum desapareceu!"
+            mensagem = "✅ Todos os produtos estão ON e nenhum ficou OFF!"
             enviar_alerta_telegram(
                 mensagem,
                 None,
