@@ -1044,8 +1044,15 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
     
     try:
         # Ler o conteúdo do arquivo
-        with open(arquivo_local, 'r', encoding='utf-8') as f:
+        modo = 'rb' if nome_arquivo_github.endswith('.xlsx') else 'r'
+        with open(arquivo_local, modo) as f:
             conteudo = f.read()
+
+        if modo == 'rb':
+            conteudo_base64 = base64.b64encode(conteudo).decode('utf-8')
+        else:
+            conteudo_base64 = base64.b64encode(conteudo.encode('utf-8')).decode('utf-8')
+
         
         # Codificar o conteúdo em base64
         conteudo_base64 = base64.b64encode(conteudo.encode('utf-8')).decode('utf-8')
