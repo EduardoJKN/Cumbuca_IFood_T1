@@ -853,3 +853,4 @@
 [2025-06-26 17:01:21] ALERTA: 3 produtos com problemas
 [2025-06-26 18:01:14] Iniciando monitoramento de produtos
 [2025-06-26 18:01:34] Monitoramento concluído. Total: 103, OFF: 0, Desaparecidos: 0
+[2025-06-26 18:01:34] Todos os produtos estão ON e nenhum ficou OFF
