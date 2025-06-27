@@ -916,3 +916,4 @@
 [2025-06-27 14:01:12] Todos os produtos estão ON e nenhum ficou OFF
 [2025-06-27 15:01:01] Iniciando monitoramento de produtos
 [2025-06-27 15:01:25] ❌ Tempo esgotado esperando a página carregar os produtos.
+[2025-06-27 16:00:57] Iniciando monitoramento de produtos
