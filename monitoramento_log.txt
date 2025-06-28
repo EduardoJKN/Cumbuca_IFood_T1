@@ -995,3 +995,4 @@
 [2025-06-28 17:01:30] ALERTA: 2 produtos desapareceram
 [2025-06-28 17:01:34] Monitoramento concluído. Total: 113, OFF: 2, Desaparecidos: 2
 [2025-06-28 17:01:35] ALERTA: 2 produtos com problemas
+[2025-06-28 18:01:12] Iniciando monitoramento de produtos
