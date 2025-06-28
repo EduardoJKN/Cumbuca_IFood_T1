@@ -988,3 +988,6 @@
 [2025-06-28 15:10:27] Iniciando monitoramento de produtos
 [2025-06-28 15:10:52] Monitoramento concluído. Total: 103, OFF: 0, Desaparecidos: 0
 [2025-06-28 15:10:53] Todos os produtos estão ON e nenhum ficou OFF
+[2025-06-28 16:01:14] Iniciando monitoramento de produtos
+[2025-06-28 16:01:44] Monitoramento concluído. Total: 103, OFF: 0, Desaparecidos: 0
+[2025-06-28 16:01:45] Todos os produtos estão ON e nenhum ficou OFF
