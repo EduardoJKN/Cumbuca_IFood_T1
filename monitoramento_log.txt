@@ -1221,3 +1221,4 @@
 [2025-07-01 19:01:24] Monitoramento concluído. Total: 111, OFF: 1, Desaparecidos: 1
 [2025-07-01 19:01:25] ALERTA: 1 produtos com problemas
 [2025-07-01 20:01:23] Iniciando monitoramento de produtos
+[2025-07-01 20:01:50] ALERTA: 1 produtos desapareceram
