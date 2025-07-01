@@ -1173,3 +1173,4 @@
 [2025-07-01 04:10:51] Iniciando monitoramento de produtos
 [2025-07-01 04:11:21] ❌ Tempo esgotado esperando a página carregar os produtos.
 [2025-07-01 05:12:47] Iniciando monitoramento de produtos
+[2025-07-01 05:13:05] Monitoramento concluído. Total: 102, OFF: 0, Desaparecidos: 0
