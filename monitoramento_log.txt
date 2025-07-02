@@ -1231,3 +1231,4 @@
 [2025-07-01 23:41:15] Monitoramento concluído. Total: 110, OFF: 0, Desaparecidos: 0
 [2025-07-01 23:41:16] Todos os produtos estão ON e nenhum ficou OFF
 [2025-07-02 00:43:24] Iniciando monitoramento de produtos
+[2025-07-02 00:43:48] ALERTA: 12 produtos desapareceram
