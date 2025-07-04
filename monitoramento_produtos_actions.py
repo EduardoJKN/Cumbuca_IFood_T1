@@ -164,7 +164,7 @@ def atualizar_historico_status(dados_produtos, produtos_desaparecidos):
     
     # Atualizar produtos atuais
     for produto in dados_produtos:
-        chave = f"{produto["Seção"]}|{produto["Produto"]}"
+        chave = f"{produto['Seção']}{produto['Produto']}"
         if chave not in historico:
             historico[chave] = {
                 "nome": produto["Produto"],
