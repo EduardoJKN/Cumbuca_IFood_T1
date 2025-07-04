@@ -96,7 +96,7 @@ def salvar_estado_produtos(dados_produtos):
     estado = {}
     for produto in dados_produtos:
         # Usar nome do produto como chave
-        chave = f'{produto["Seção"]}|{produto["Produto"]}'
+        chave = f"{{produto["Seção"]}}|{produto["Produto"]}"
         estado[chave] = {
             "Preço": produto["Preço"],
             "Descrição": produto.get("Descrição", ""),
@@ -164,7 +164,7 @@ def atualizar_historico_status(dados_produtos, produtos_desaparecidos):
     
     # Atualizar produtos atuais
     for produto in dados_produtos:
-        chave = f"{produto['Seção']}{produto['Produto']}"
+        chave = f"{{produto["Seção"]}}|{produto["Produto"]}"
         if chave not in historico:
             historico[chave] = {
                 "nome": produto["Produto"],
@@ -190,7 +190,7 @@ def atualizar_historico_status(dados_produtos, produtos_desaparecidos):
     
     # Atualizar produtos desaparecidos
     for produto in produtos_desaparecidos:
-        chave = f"{produto["Seção"]}|{produto["Produto"]}"
+        chave = f"{{produto["Seção"]}}|{produto["Produto"]}"
         if chave not in historico:
             historico[chave] = {
                 "nome": produto["Produto"],
@@ -1407,7 +1407,7 @@ def monitorar_produtos():
         # Comparar com estado anterior para encontrar produtos que desapareceram
         produtos_atuais = {}
         for produto in dados_produtos:
-            chave = f"{produto["Seção"]}|{produto["Produto"]}"
+            chave = f"{{produto["Seção"]}}|{produto["Produto"]}"
             produtos_atuais[chave] = produto
         
         # Encontrar produtos que existiam antes mas não existem mais (desapareceram)
