@@ -1095,7 +1095,7 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
             
             # Retornar URL do arquivo
             if nome_arquivo_github == "index.html":
-                url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split("/")[1]}"
+                url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}"
                 print(f"📊 Dashboard disponível em: {url_dashboard}")
                 return url_dashboard
             
@@ -1112,11 +1112,11 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
     """Envia alerta para um grupo no Telegram"""
     try:
         # URL do dashboard
-        url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split("/")[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
+        url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
         
         # Criar mensagem formatada
         texto = f"🚨 ALERTA: Monitoramento de Produtos iFood 🚨\n\n"
-        texto += f"Data/Hora: {horario_brasil().strftime("%d/%m/%Y %H:%M:%S")}\n\n"
+        texto += f"Data/Hora: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}\n\n"
         
         # Adicionar contagem de produtos ativos
         texto += f"✅ Produtos ativos no site: {total_produtos_ativos}\n\n"
@@ -1125,7 +1125,7 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
         if produtos_desaparecidos:
             texto += f"⚠️ {len(produtos_desaparecidos)} produtos ficaram OFF (não encontrados):\n"
             for p in produtos_desaparecidos[:10]:
-                texto += f"- {p["Seção"]} - {p["Produto"]} - Preço: {p["Preço"]}\n"
+                texto += f"- {p['Seção']} - {p['Produto']} - Preço: {p['Preço']}\n"
             if len(produtos_desaparecidos) > 10:
                 texto += f"... e mais {len(produtos_desaparecidos) - 10} produtos\n"
             texto += "\n"
@@ -1134,7 +1134,7 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
         if produtos_off:
             texto += f"⚠️ {len(produtos_off)} produtos marcados como OFF no site:\n"
             for p in produtos_off[:5]:
-                texto += f"- {p["Seção"]} - {p["Produto"]} - Preço: {p["Preço"]}\n"
+                texto += f"- {p['Seção']} - {p['Produto']} - Preço: {p['Preço']}\n"
             if len(produtos_off) > 5:
                 texto += f"... e mais {len(produtos_off) - 5} produtos\n"
             texto += "\n"
