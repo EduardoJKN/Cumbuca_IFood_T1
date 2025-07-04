@@ -16,16 +16,21 @@ from openpyxl import load_workbook
 from openpyxl.styles import Font, Border, Side, Alignment, PatternFill
 from openpyxl.utils import get_column_letter
 
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
+
 # Configurações do Telegram
 # Estas serão substituídas pelos secrets do GitHub Actions
-TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN', '7538392371:AAH3-eZcq7wrf3Uycv9zPq1PjlSvWfLtYlc')
-TELEGRAM_CHAT_ID = os.environ.get('TELEGRAM_CHAT_ID', '-1002593932783')
+TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN", "7538392371:AAH3-eZcq7wrf3Uycv9zPq1PjlSvWfLtYlc")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "-1002593932783")
 
 # Configurações do GitHub
 # Estas serão substituídas pelos secrets do GitHub Actions
-GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN', '')
-GITHUB_REPOSITORY = os.environ.get('GITHUB_REPOSITORY', '')
-GITHUB_ACTOR = os.environ.get('GITHUB_ACTOR', '')
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
+GITHUB_REPOSITORY = os.environ.get("GITHUB_REPOSITORY", "")
+GITHUB_ACTOR = os.environ.get("GITHUB_ACTOR", "")
 
 # Função para obter o horário atual no fuso horário de Brasília (UTC-3)
 def horario_brasil():
@@ -37,11 +42,11 @@ def limpar_preco(texto):
     if not texto:
         return None
     
-    if 'R$' in texto:
-        partes = texto.split('R$')
+    if "R$" in texto:
+        partes = texto.split("R$")
         if len(partes) > 1:
-            prefixo = partes[0].strip() + ' ' if partes[0].strip() else ''
-            valor = 'R$' + partes[1].split()[0].strip()
+            prefixo = partes[0].strip() + " " if partes[0].strip() else ""
+            valor = "R$" + partes[1].split()[0].strip()
             return prefixo + valor
     
     return texto.strip()
@@ -50,19 +55,19 @@ def extrair_preco(product):
     """Extrai e formata o preço do produto sem repetições"""
     try:
         try:
-            price_discount = product.find_element(By.CLASS_NAME, 'dish-card__price--discount').text.strip()
+            price_discount = product.find_element(By.CLASS_NAME, "dish-card__price--discount").text.strip()
             price_discount = limpar_preco(price_discount)
         except NoSuchElementException:
             price_discount = None
 
         try:
-            price_original = product.find_element(By.CLASS_NAME, 'dish-card__price--original').text.strip()
+            price_original = product.find_element(By.CLASS_NAME, "dish-card__price--original").text.strip()
             price_original = limpar_preco(price_original)
         except NoSuchElementException:
             price_original = None
 
         try:
-            price_normal = product.find_element(By.CLASS_NAME, 'dish-card__price').text.strip()
+            price_normal = product.find_element(By.CLASS_NAME, "dish-card__price").text.strip()
             price_normal = limpar_preco(price_normal)
         except NoSuchElementException:
             price_normal = None
@@ -85,22 +90,22 @@ def extrair_preco(product):
 def salvar_estado_produtos(dados_produtos):
     """Salva o estado atual dos produtos para comparação futura"""
     # No GitHub Actions, salvamos no diretório de trabalho
-    arquivo_estado = 'estado_produtos.json'
+    arquivo_estado = "estado_produtos.json"
     
     # Criar dicionário com informações essenciais
     estado = {}
     for produto in dados_produtos:
         # Usar nome do produto como chave
-        chave = f"{produto['Seção']}|{produto['Produto']}"
+        chave = f"{produto["Seção"]}|{produto["Produto"]}"
         estado[chave] = {
-            'Preço': produto['Preço'],
-            'Descrição': produto.get('Descrição', ''),
-            'Status': produto.get('Status', 'ON'),
-            'Última verificação': horario_brasil().strftime('%Y-%m-%d %H:%M:%S')
+            "Preço": produto["Preço"],
+            "Descrição": produto.get("Descrição", ""),
+            "Status": produto.get("Status", "ON"),
+            "Última verificação": horario_brasil().strftime("%Y-%m-%d %H:%M:%S")
         }
     
     # Salvar no arquivo
-    with open(arquivo_estado, 'w', encoding='utf-8') as f:
+    with open(arquivo_estado, "w", encoding="utf-8") as f:
         json.dump(estado, f, ensure_ascii=False, indent=2)
     
     print(f"✅ Estado atual salvo com {len(estado)} produtos")
@@ -112,7 +117,7 @@ def salvar_estado_produtos(dados_produtos):
 
 def carregar_estado_anterior():
     """Carrega o estado anterior dos produtos para comparação"""
-    arquivo_estado = 'estado_produtos.json'
+    arquivo_estado = "estado_produtos.json"
     
     # Tentar baixar o arquivo do GitHub primeiro
     baixar_arquivo_github(arquivo_estado)
@@ -122,7 +127,7 @@ def carregar_estado_anterior():
         return {}
     
     try:
-        with open(arquivo_estado, 'r', encoding='utf-8') as f:
+        with open(arquivo_estado, "r", encoding="utf-8") as f:
             estado = json.load(f)
             print(f"✅ Estado anterior carregado com {len(estado)} produtos")
             return estado
@@ -132,7 +137,7 @@ def carregar_estado_anterior():
 
 def carregar_historico_status():
     """Carrega o histórico de status dos produtos"""
-    arquivo_historico = 'historico_status.json'
+    arquivo_historico = "historico_status.json"
     
     # Tentar baixar o arquivo do GitHub primeiro
     baixar_arquivo_github(arquivo_historico)
@@ -142,7 +147,7 @@ def carregar_historico_status():
         return {}
     
     try:
-        with open(arquivo_historico, 'r', encoding='utf-8') as f:
+        with open(arquivo_historico, "r", encoding="utf-8") as f:
             historico = json.load(f)
             print(f"✅ Histórico carregado com {len(historico)} produtos")
             return historico
@@ -152,64 +157,64 @@ def carregar_historico_status():
 
 def atualizar_historico_status(dados_produtos, produtos_desaparecidos):
     """Atualiza o histórico de status dos produtos"""
-    arquivo_historico = 'historico_status.json'
+    arquivo_historico = "historico_status.json"
     historico = carregar_historico_status()
     
-    timestamp = horario_brasil().strftime('%Y-%m-%d %H:%M:%S')
+    timestamp = horario_brasil().strftime("%Y-%m-%d %H:%M:%S")
     
     # Atualizar produtos atuais
     for produto in dados_produtos:
-        chave = f"{produto['Seção']}|{produto['Produto']}"
+        chave = f"{produto["Seção"]}|{produto["Produto"]}"
         if chave not in historico:
             historico[chave] = {
-                'nome': produto['Produto'],
-                'secao': produto['Seção'],
-                'status_atual': produto['Status'],
-                'preco_atual': produto['Preço'],
-                'ultima_verificacao': timestamp,
-                'historico': []
+                "nome": produto["Produto"],
+                "secao": produto["Seção"],
+                "status_atual": produto["Status"],
+                "preco_atual": produto["Preço"],
+                "ultima_verificacao": timestamp,
+                "historico": []
             }
         else:
             # Se o status mudou, adicionar ao histórico
-            if historico[chave]['status_atual'] != produto['Status']:
-                historico[chave]['historico'].append({
-                    'status': historico[chave]['status_atual'],
-                    'preco': historico[chave]['preco_atual'],
-                    'timestamp': historico[chave]['ultima_verificacao']
+            if historico[chave]["status_atual"] != produto["Status"]:
+                historico[chave]["historico"].append({
+                    "status": historico[chave]["status_atual"],
+                    "preco": historico[chave]["preco_atual"],
+                    "timestamp": historico[chave]["ultima_verificacao"]
                 })
             
             # Atualizar status atual
-            historico[chave]['status_atual'] = produto['Status']
-            historico[chave]['preco_atual'] = produto['Preço']
-            historico[chave]['ultima_verificacao'] = timestamp
+            historico[chave]["status_atual"] = produto["Status"]
+            historico[chave]["preco_atual"] = produto["Preço"]
+            historico[chave]["ultima_verificacao"] = timestamp
     
     # Atualizar produtos desaparecidos
     for produto in produtos_desaparecidos:
-        chave = f"{produto['Seção']}|{produto['Produto']}"
+        chave = f"{produto["Seção"]}|{produto["Produto"]}"
         if chave not in historico:
             historico[chave] = {
-                'nome': produto['Produto'],
-                'secao': produto['Seção'],
-                'status_atual': 'OFF (Desapareceu)',
-                'preco_atual': produto['Preço'],
-                'ultima_verificacao': timestamp,
-                'historico': []
+                "nome": produto["Produto"],
+                "secao": produto["Seção"],
+                "status_atual": "OFF (Desapareceu)",
+                "preco_atual": produto["Preço"],
+                "ultima_verificacao": timestamp,
+                "historico": []
             }
         else:
             # Se o status mudou, adicionar ao histórico
-            if historico[chave]['status_atual'] != 'OFF (Desapareceu)':
-                historico[chave]['historico'].append({
-                    'status': historico[chave]['status_atual'],
-                    'preco': historico[chave]['preco_atual'],
-                    'timestamp': historico[chave]['ultima_verificacao']
+            if historico[chave]["status_atual"] != "OFF (Desapareceu)":
+                historico[chave]["historico"].append({
+                    "status": historico[chave]["status_atual"],
+                    "preco": historico[chave]["preco_atual"],
+                    "timestamp": historico[chave]["ultima_verificacao"]
                 })
             
             # Atualizar status atual
-            historico[chave]['status_atual'] = 'OFF (Desapareceu)'
-            historico[chave]['ultima_verificacao'] = timestamp
+            historico[chave]["status_atual"] = "OFF (Desapareceu)"
+            historico[chave]["ultima_verificacao"] = timestamp
     
     # Salvar histórico atualizado
-    with open(arquivo_historico, 'w', encoding='utf-8') as f:
+    with open(arquivo_historico, "w", encoding="utf-8") as f:
         json.dump(historico, f, ensure_ascii=False, indent=2)
     
     print(f"✅ Histórico atualizado com {len(historico)} produtos")
@@ -221,26 +226,26 @@ def atualizar_historico_status(dados_produtos, produtos_desaparecidos):
 
 def calcular_estatisticas_produto(historico_produto):
     """Calcula estatísticas para um produto com base em seu histórico"""
-    if not historico_produto['historico']:
+    if not historico_produto["historico"]:
         return {
-            'total_mudancas': 0,
-            'tempo_medio_on': 'N/A',
-            'tempo_medio_off': 'N/A',
-            'porcentagem_on': 100 if historico_produto['status_atual'] == 'ON' else 0,
-            'ultima_mudanca': 'Nunca'
+            "total_mudancas": 0,
+            "tempo_medio_on": "N/A",
+            "tempo_medio_off": "N/A",
+            "porcentagem_on": 100 if historico_produto["status_atual"] == "ON" else 0,
+            "ultima_mudanca": "Nunca"
         }
     
     # Adicionar o status atual ao histórico para cálculos
-    historico_completo = historico_produto['historico'] + [{
-        'status': historico_produto['status_atual'],
-        'timestamp': historico_produto['ultima_verificacao']
+    historico_completo = historico_produto["historico"] + [{
+        "status": historico_produto["status_atual"],
+        "timestamp": historico_produto["ultima_verificacao"]
     }]
     
     # Ordenar histórico por timestamp
-    historico_ordenado = sorted(historico_completo, key=lambda x: x['timestamp'])
+    historico_ordenado = sorted(historico_completo, key=lambda x: x["timestamp"])
     
     # Calcular estatísticas
-    total_mudancas = len(historico_produto['historico'])
+    total_mudancas = len(historico_produto["historico"])
     
     # Calcular tempos médios e porcentagem
     tempo_total_on = 0
@@ -249,13 +254,13 @@ def calcular_estatisticas_produto(historico_produto):
     contagem_off = 0
     
     for i in range(len(historico_ordenado) - 1):
-        status_atual = historico_ordenado[i]['status']
-        timestamp_atual = datetime.datetime.strptime(historico_ordenado[i]['timestamp'], '%Y-%m-%d %H:%M:%S')
-        timestamp_proximo = datetime.datetime.strptime(historico_ordenado[i+1]['timestamp'], '%Y-%m-%d %H:%M:%S')
+        status_atual = historico_ordenado[i]["status"]
+        timestamp_atual = datetime.datetime.strptime(historico_ordenado[i]["timestamp"], "%Y-%m-%d %H:%M:%S")
+        timestamp_proximo = datetime.datetime.strptime(historico_ordenado[i+1]["timestamp"], "%Y-%m-%d %H:%M:%S")
         
         duracao = (timestamp_proximo - timestamp_atual).total_seconds() / 3600  # em horas
         
-        if status_atual == 'ON':
+        if status_atual == "ON":
             tempo_total_on += duracao
             contagem_on += 1
         else:
@@ -268,46 +273,46 @@ def calcular_estatisticas_produto(historico_produto):
     
     # Calcular porcentagem de tempo ON
     tempo_total = tempo_total_on + tempo_total_off
-    porcentagem_on = (tempo_total_on / tempo_total * 100) if tempo_total > 0 else (100 if historico_produto['status_atual'] == 'ON' else 0)
+    porcentagem_on = (tempo_total_on / tempo_total * 100) if tempo_total > 0 else (100 if historico_produto["status_atual"] == "ON" else 0)
     
     # Última mudança
-    if historico_produto['historico']:
-        ultima_mudanca = historico_produto['historico'][-1]['timestamp']
+    if historico_produto["historico"]:
+        ultima_mudanca = historico_produto["historico"][-1]["timestamp"]
     else:
-        ultima_mudanca = 'Nunca'
+        ultima_mudanca = "Nunca"
     
     return {
-        'total_mudancas': total_mudancas,
-        'tempo_medio_on': f"{tempo_medio_on:.2f} horas" if contagem_on > 0 else 'N/A',
-        'tempo_medio_off': f"{tempo_medio_off:.2f} horas" if contagem_off > 0 else 'N/A',
-        'porcentagem_on': round(porcentagem_on, 2),
-        'ultima_mudanca': ultima_mudanca
+        "total_mudancas": total_mudancas,
+        "tempo_medio_on": f"{tempo_medio_on:.2f} horas" if contagem_on > 0 else "N/A",
+        "tempo_medio_off": f"{tempo_medio_off:.2f} horas" if contagem_off > 0 else "N/A",
+        "porcentagem_on": round(porcentagem_on, 2),
+        "ultima_mudanca": ultima_mudanca
     }
 
 def gerar_dashboard_html(historico):
     """Gera um dashboard HTML com o status de todos os produtos e histórico"""
-    arquivo_dashboard = 'index.html'
+    arquivo_dashboard = "index.html"
     
     # Agrupar produtos por seção
     produtos_por_secao = {}
     for chave, info in historico.items():
-        secao = info['secao']
+        secao = info["secao"]
         if secao not in produtos_por_secao:
             produtos_por_secao[secao] = []
         
         # Calcular estatísticas para o produto
         estatisticas = calcular_estatisticas_produto(info)
-        info['estatisticas'] = estatisticas
+        info["estatisticas"] = estatisticas
         
         produtos_por_secao[secao].append(info)
     
     # Contar produtos ON e OFF
     total_produtos = len(historico)
-    produtos_off = sum(1 for info in historico.values() if info['status_atual'] != 'ON')
+    produtos_off = sum(1 for info in historico.values() if info["status_atual"] != "ON")
     produtos_on = total_produtos - produtos_off
     
     # Contar produtos desaparecidos
-    produtos_desaparecidos = sum(1 for info in historico.values() if 'Desapareceu' in info['status_atual'])
+    produtos_desaparecidos = sum(1 for info in historico.values() if "Desapareceu" in info["status_atual"])
     
     # Gerar HTML
     html = f"""
@@ -666,7 +671,7 @@ def gerar_dashboard_html(historico):
         <div class="container">
             <div class="header">
                 <h1>Dashboard de Produtos iFood</h1>
-                <p class="timestamp">Última atualização: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}</p>
+                <p class="timestamp">Última atualização: {horario_brasil().strftime("%d/%m/%Y %H:%M:%S")}</p>
             </div>
             
             <div class="stats">
@@ -716,8 +721,8 @@ def gerar_dashboard_html(historico):
     
     # Adicionar seções com produtos
     for secao, produtos in sorted(produtos_por_secao.items()):
-        produtos_off_secao = sum(1 for p in produtos if p['status_atual'] != 'ON')
-        produtos_desaparecidos_secao = sum(1 for p in produtos if 'Desapareceu' in p['status_atual'])
+        produtos_off_secao = sum(1 for p in produtos if p["status_atual"] != "ON")
+        produtos_desaparecidos_secao = sum(1 for p in produtos if "Desapareceu" in p["status_atual"])
         
         html += f"""
             <div class="section">
@@ -739,12 +744,12 @@ def gerar_dashboard_html(historico):
                         <tbody>
         """
         
-        for produto in sorted(produtos, key=lambda x: x['nome']):
+        for produto in sorted(produtos, key=lambda x: x["nome"]):
             # Determinar classe de status
-            if 'Desapareceu' in produto['status_atual']:
+            if "Desapareceu" in produto["status_atual"]:
                 status_class = "status-desapareceu"
                 filtro_class = "produto-row filter-off filter-desapareceu"
-            elif produto['status_atual'] == 'ON':
+            elif produto["status_atual"] == "ON":
                 status_class = "status-on"
                 filtro_class = "produto-row filter-on"
             else:
@@ -753,27 +758,27 @@ def gerar_dashboard_html(historico):
             
             # Determinar se o produto mudou recentemente (nas últimas 24 horas)
             mudou_recentemente = False
-            if produto['historico']:
-                ultima_mudanca = datetime.datetime.strptime(produto['historico'][-1]['timestamp'], '%Y-%m-%d %H:%M:%S')
+            if produto["historico"]:
+                ultima_mudanca = datetime.datetime.strptime(produto["historico"][-1]["timestamp"], "%Y-%m-%d %H:%M:%S")
                 agora = horario_brasil()
                 if (agora - ultima_mudanca).total_seconds() < 24 * 3600:  # 24 horas em segundos
                     mudou_recentemente = True
                     filtro_class += " filter-changed"
             
             # Barra de disponibilidade
-            porcentagem_on = produto['estatisticas']['porcentagem_on']
+            porcentagem_on = produto["estatisticas"]["porcentagem_on"]
             
             html += f"""
                             <tr class="{filtro_class}">
-                                <td>{produto['nome']}</td>
-                                <td>{produto['preco_atual']}</td>
-                                <td><span class="status {status_class}">{produto['status_atual']}</span></td>
+                                <td>{produto["nome"]}</td>
+                                <td>{produto["preco_atual"]}</td>
+                                <td><span class="status {status_class}">{produto["status_atual"]}</span></td>
                                 <td>
                                     <div class="availability-bar">
                                         <div class="availability-fill" style="width: {porcentagem_on}%"></div>
                                     </div>
                                 </td>
-                                <td>{produto['ultima_verificacao']}</td>
+                                <td>{produto["ultima_verificacao"]}</td>
                             </tr>
                             <tr class="history-row {filtro_class}" style="display: none;">
                                 <td colspan="5">
@@ -786,19 +791,19 @@ def gerar_dashboard_html(historico):
                                         <div class="stats-container">
                                             <div class="stat-item">
                                                 <div class="stat-item-label">Mudanças de Status</div>
-                                                <div class="stat-item-value">{produto['estatisticas']['total_mudancas']}</div>
+                                                <div class="stat-item-value">{produto["estatisticas"]["total_mudancas"]}</div>
                                             </div>
                                             <div class="stat-item">
                                                 <div class="stat-item-label">Disponibilidade</div>
-                                                <div class="stat-item-value">{produto['estatisticas']['porcentagem_on']}%</div>
+                                                <div class="stat-item-value">{produto["estatisticas"]["porcentagem_on"]}%</div>
                                             </div>
                                             <div class="stat-item">
                                                 <div class="stat-item-label">Tempo Médio ON</div>
-                                                <div class="stat-item-value">{produto['estatisticas']['tempo_medio_on']}</div>
+                                                <div class="stat-item-value">{produto["estatisticas"]["tempo_medio_on"]}</div>
                                             </div>
                                             <div class="stat-item">
                                                 <div class="stat-item-label">Tempo Médio OFF</div>
-                                                <div class="stat-item-value">{produto['estatisticas']['tempo_medio_off']}</div>
+                                                <div class="stat-item-value">{produto["estatisticas"]["tempo_medio_off"]}</div>
                                             </div>
                                         </div>
                                         
@@ -806,20 +811,20 @@ def gerar_dashboard_html(historico):
             """
             
             # Adicionar itens do histórico
-            if produto['historico']:
-                for item in reversed(produto['historico']):
-                    if 'Desapareceu' in item['status']:
+            if produto["historico"]:
+                for item in reversed(produto["historico"]):
+                    if "Desapareceu" in item["status"]:
                         status_class_hist = "desapareceu"
-                    elif item['status'] == 'ON':
+                    elif item["status"] == "ON":
                         status_class_hist = "on"
                     else:
                         status_class_hist = "off"
                     
                     html += f"""
                                             <div class="history-item">
-                                                <div class="history-status {status_class_hist}">{item['status']}</div>
-                                                <div class="history-price">{item['preco']}</div>
-                                                <div class="history-date">{item['timestamp']}</div>
+                                                <div class="history-status {status_class_hist}">{item["status"]}</div>
+                                                <div class="history-price">{item["preco"]}</div>
+                                                <div class="history-date">{item["timestamp"]}</div>
                                             </div>
                     """
             else:
@@ -991,7 +996,7 @@ def gerar_dashboard_html(historico):
     """
     
     # Salvar HTML
-    with open(arquivo_dashboard, 'w', encoding='utf-8') as f:
+    with open(arquivo_dashboard, "w", encoding="utf-8") as f:
         f.write(html)
     
     print(f"✅ Dashboard HTML gerado em: {arquivo_dashboard}")
@@ -1020,10 +1025,10 @@ def baixar_arquivo_github(nome_arquivo):
         if response.status_code == 200:
             # Arquivo existe, baixar
             conteudo_base64 = response.json()["content"]
-            conteudo = base64.b64decode(conteudo_base64).decode('utf-8')
+            conteudo = base64.b64decode(conteudo_base64).decode("utf-8")
             
             # Salvar localmente
-            with open(nome_arquivo, 'w', encoding='utf-8') as f:
+            with open(nome_arquivo, "w", encoding="utf-8") as f:
                 f.write(conteudo)
             
             print(f"✅ Arquivo {nome_arquivo} baixado com sucesso do GitHub")
@@ -1044,18 +1049,18 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
     
     try:
         # Ler o conteúdo do arquivo
-        modo = 'rb' if nome_arquivo_github.endswith('.xlsx') else 'r'
+        modo = "rb" if nome_arquivo_github.endswith(".xlsx") else "r"
         with open(arquivo_local, modo) as f:
             conteudo = f.read()
 
-        if modo == 'rb':
-            conteudo_base64 = base64.b64encode(conteudo).decode('utf-8')
+        if modo == "rb":
+            conteudo_base64 = base64.b64encode(conteudo).decode("utf-8")
         else:
-            conteudo_base64 = base64.b64encode(conteudo.encode('utf-8')).decode('utf-8')
+            conteudo_base64 = base64.b64encode(conteudo.encode("utf-8")).decode("utf-8")
 
         
         # Codificar o conteúdo em base64
-        conteudo_base64 = base64.b64encode(conteudo.encode('utf-8')).decode('utf-8')
+        #conteudo_base64 = base64.b64encode(conteudo.encode("utf-8")).decode("utf-8") # Removido, já tratado acima
         
         # Verificar se o arquivo já existe
         url = f"https://api.github.com/repos/{GITHUB_REPOSITORY}/contents/{nome_arquivo_github}"
@@ -1071,14 +1076,14 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
             sha = response.json()["sha"]
             
             payload = {
-                "message": f"Atualizar {nome_arquivo_github} - {horario_brasil().strftime('%Y-%m-%d %H:%M:%S')}",
+                "message": f"Atualizar {nome_arquivo_github} - {horario_brasil().strftime("%Y-%m-%d %H:%M:%S")}",
                 "content": conteudo_base64,
                 "sha": sha
             }
         else:
             # Arquivo não existe, criar
             payload = {
-                "message": f"Adicionar {nome_arquivo_github} - {horario_brasil().strftime('%Y-%m-%d %H:%M:%S')}",
+                "message": f"Adicionar {nome_arquivo_github} - {horario_brasil().strftime("%Y-%m-%d %H:%M:%S")}",
                 "content": conteudo_base64
             }
         
@@ -1089,8 +1094,8 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
             print(f"✅ Arquivo {nome_arquivo_github} enviado com sucesso para o GitHub")
             
             # Retornar URL do arquivo
-            if nome_arquivo_github == 'index.html':
-                url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}"
+            if nome_arquivo_github == "index.html":
+                url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split("/")[1]}"
                 print(f"📊 Dashboard disponível em: {url_dashboard}")
                 return url_dashboard
             
@@ -1103,15 +1108,15 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
         print(f"❌ Erro ao fazer upload para o GitHub: {str(e)}")
         return False
 
-def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=None, total_produtos_ativos=0, todos_produtos=None):
+def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=None, total_produtos_ativos=0, todos_produtos=None, google_sheet_link=None):
     """Envia alerta para um grupo no Telegram"""
     try:
         # URL do dashboard
-        url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
+        url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split("/")[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
         
         # Criar mensagem formatada
         texto = f"🚨 ALERTA: Monitoramento de Produtos iFood 🚨\n\n"
-        texto += f"Data/Hora: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}\n\n"
+        texto += f"Data/Hora: {horario_brasil().strftime("%d/%m/%Y %H:%M:%S")}\n\n"
         
         # Adicionar contagem de produtos ativos
         texto += f"✅ Produtos ativos no site: {total_produtos_ativos}\n\n"
@@ -1120,7 +1125,7 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
         if produtos_desaparecidos:
             texto += f"⚠️ {len(produtos_desaparecidos)} produtos ficaram OFF (não encontrados):\n"
             for p in produtos_desaparecidos[:10]:
-                texto += f"- {p['Seção']} - {p['Produto']} - Preço: {p['Preço']}\n"
+                texto += f"- {p["Seção"]} - {p["Produto"]} - Preço: {p["Preço"]}\n"
             if len(produtos_desaparecidos) > 10:
                 texto += f"... e mais {len(produtos_desaparecidos) - 10} produtos\n"
             texto += "\n"
@@ -1129,7 +1134,7 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
         if produtos_off:
             texto += f"⚠️ {len(produtos_off)} produtos marcados como OFF no site:\n"
             for p in produtos_off[:5]:
-                texto += f"- {p['Seção']} - {p['Produto']} - Preço: {p['Preço']}\n"
+                texto += f"- {p["Seção"]} - {p["Produto"]} - Preço: {p["Preço"]}\n"
             if len(produtos_off) > 5:
                 texto += f"... e mais {len(produtos_off) - 5} produtos\n"
             texto += "\n"
@@ -1139,24 +1144,24 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
             # Agrupar produtos por seção
             produtos_por_secao = {}
             for produto in todos_produtos:
-                secao = produto['Seção']
+                secao = produto["Seção"]
                 if secao not in produtos_por_secao:
-                    produtos_por_secao[secao] = {'total': 0, 'off': 0, 'nao_encontrados': 0}
+                    produtos_por_secao[secao] = {"total": 0, "off": 0, "nao_encontrados": 0}
                 
-                produtos_por_secao[secao]['total'] += 1
+                produtos_por_secao[secao]["total"] += 1
                 
                 # Contar produtos OFF e não encontrados separadamente
-                if 'Status' in produto and 'Desapareceu' in produto.get('Status', ''):
-                    produtos_por_secao[secao]['nao_encontrados'] += 1
-                    produtos_por_secao[secao]['off'] += 1  # Não encontrados também são OFF
-                elif 'Status' in produto and produto['Status'] != 'ON':
-                    produtos_por_secao[secao]['off'] += 1
+                if "Status" in produto and "Desapareceu" in produto.get("Status", ""):
+                    produtos_por_secao[secao]["nao_encontrados"] += 1
+                    produtos_por_secao[secao]["off"] += 1  # Não encontrados também são OFF
+                elif "Status" in produto and produto["Status"] != "ON":
+                    produtos_por_secao[secao]["off"] += 1
             
             texto += "📊 Status por Seção:\n"
             for secao, contagem in sorted(produtos_por_secao.items()):
-                on_count = contagem['total'] - contagem['off']
-                off_count = contagem['off']
-                nao_encontrados = contagem['nao_encontrados']
+                on_count = contagem["total"] - contagem["off"]
+                off_count = contagem["off"]
+                nao_encontrados = contagem["nao_encontrados"]
                 
                 # Usar emojis para representar status
                 status_texto = f"🟢 {on_count} ON | 🔴 {off_count} OFF"
@@ -1171,9 +1176,13 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
         
         # Adicionar link para o dashboard
         if url_dashboard:
-            texto += f"🔗 Dashboard completo disponível em: {url_dashboard}"
+            texto += f"🔗 Dashboard completo disponível em: {url_dashboard}\n"
         else:
-            texto += "🔗 Dashboard completo disponível em HTML."
+            texto += "🔗 Dashboard completo disponível em HTML.\n"
+
+        # Adicionar link para o Google Sheet
+        if google_sheet_link:
+            texto += f"📊 Planilha Google Sheets: {google_sheet_link}\n"
         
         # Enviar mensagem
         url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
@@ -1196,15 +1205,15 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
 
 def salvar_log(mensagem):
     """Salva mensagem de log em arquivo"""
-    arquivo_log = 'monitoramento_log.txt'
+    arquivo_log = "monitoramento_log.txt"
     
     # Tentar baixar o arquivo de log existente
     baixar_arquivo_github(arquivo_log)
     
-    timestamp = horario_brasil().strftime('%Y-%m-%d %H:%M:%S')
+    timestamp = horario_brasil().strftime("%Y-%m-%d %H:%M:%S")
     
     # Abrir em modo append para adicionar nova linha
-    with open(arquivo_log, 'a', encoding='utf-8') as f:
+    with open(arquivo_log, "a", encoding="utf-8") as f:
         f.write(f"[{timestamp}] {mensagem}\n")
     
     # Fazer upload do arquivo atualizado
@@ -1218,14 +1227,14 @@ def verificar_status_produto(product):
         
         # Verificar se há classe de indisponibilidade
         try:
-            indisponivel = product.find_element(By.CLASS_NAME, 'dish-card--unavailable')
+            indisponivel = product.find_element(By.CLASS_NAME, "dish-card--unavailable")
             return "OFF"
         except NoSuchElementException:
             pass
             
         # Verificar texto de indisponibilidade
         try:
-            texto_indisponivel = product.find_element(By.CSS_SELECTOR, '.dish-card__unavailable-label')
+            texto_indisponivel = product.find_element(By.CSS_SELECTOR, ".dish-card__unavailable-label")
             if texto_indisponivel:
                 return "OFF"
         except NoSuchElementException:
@@ -1233,7 +1242,7 @@ def verificar_status_produto(product):
             
         # Verificar se o botão de adicionar está desabilitado
         try:
-            botao_adicionar = product.find_element(By.CSS_SELECTOR, 'button[disabled]')
+            botao_adicionar = product.find_element(By.CSS_SELECTOR, "button[disabled]")
             if botao_adicionar:
                 return "OFF"
         except NoSuchElementException:
@@ -1246,9 +1255,65 @@ def verificar_status_produto(product):
         print(f"Erro ao verificar status do produto: {str(e)}")
         return "Erro"
 
+def exportar_para_google_sheets(arquivo_excel):
+    """Exporta o arquivo Excel para o Google Sheets e retorna o link compartilhável"""
+    try:
+        print("Iniciando exportação para Google Sheets...")
+        
+        # Configurar credenciais do Google Sheets
+        GOOGLE_CREDENTIALS_JSON = os.environ.get("GOOGLE_CREDENTIALS_JSON", "")
+        
+        if not GOOGLE_CREDENTIALS_JSON:
+            print("❌ Credenciais do Google não configuradas. Certifique-se de que o secret GOOGLE_CREDENTIALS_JSON está definido no GitHub.")
+            return None
+            
+        # Salvar credenciais em arquivo temporário
+        with open("credentials.json", "w") as f:
+            f.write(GOOGLE_CREDENTIALS_JSON)
+            
+        # Autenticar com Google API
+        scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+        credentials = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+        client = gspread.authorize(credentials)
+        drive_service = build("drive", "v3", credentials=credentials)
+        
+        # Criar nova planilha
+        titulo = f"Monitoramento iFood - {horario_brasil().strftime("%d/%m/%Y %H:%M")}"
+        spreadsheet = client.create(titulo)
+        
+        # Fazer upload do Excel para o Google Drive
+        media = MediaFileUpload(arquivo_excel, mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        file_metadata = {"name": titulo, "mimeType": "application/vnd.google-apps.spreadsheet"}
+        uploaded_file = drive_service.files().create(body=file_metadata, media_body=media, fields="id").execute()
+        
+        # Tornar a planilha pública com link de compartilhamento
+        drive_service.permissions().create(
+            fileId=uploaded_file.get("id"),
+            body={
+                "type": "anyone",
+                "role": "reader"
+            },
+            fields="id"
+        ).execute()
+        
+        # Obter link compartilhável
+        link = f"https://docs.google.com/spreadsheets/d/{uploaded_file.get("id")}/edit?usp=sharing"
+        print(f"✅ Planilha exportada com sucesso: {link}")
+        
+        # Remover arquivo de credenciais temporário
+        os.remove("credentials.json")
+
+        return link
+        
+    except Exception as e:
+        print(f"❌ Erro ao exportar para Google Sheets: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return None
+
 def monitorar_produtos():
     """Função principal para monitorar produtos"""
-    timestamp = horario_brasil().strftime('%Y-%m-%d %H:%M:%S')
+    timestamp = horario_brasil().strftime("%Y-%m-%d %H:%M:%S")
     print(f"\n🔍 Iniciando monitoramento de produtos em {timestamp}")
     salvar_log(f"Iniciando monitoramento de produtos")
     
@@ -1257,11 +1322,11 @@ def monitorar_produtos():
     
     # Configuração do Selenium para GitHub Actions
     options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--disable-gpu')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--window-size=1920,1080')
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--window-size=1920,1080")
     
     # No GitHub Actions, não precisamos especificar o caminho do chromedriver
     driver = webdriver.Chrome(options=options)
@@ -1270,14 +1335,16 @@ def monitorar_produtos():
     contagem_por_secao = {}
     produtos_off = []
     
+    google_sheet_link = None # Inicializa o link do Google Sheet
+
     try:
-        url = 'https://www.ifood.com.br/delivery/rio-de-janeiro-rj/cumbuca-catete/e2c3f587-3c83-4ea7-8418-a4b693caaaa4'
+        url = "https://www.ifood.com.br/delivery/rio-de-janeiro-rj/cumbuca-catete/e2c3f587-3c83-4ea7-8418-a4b693caaaa4"
         driver.get(url)
         
         wait = WebDriverWait(driver, 20)
-        wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'restaurant-menu-group__title')))
+        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "restaurant-menu-group__title")))
         
-        sections = driver.find_elements(By.CLASS_NAME, 'restaurant-menu-group')
+        sections = driver.find_elements(By.CLASS_NAME, "restaurant-menu-group")
         
         print("🛒 Produtos por Seção:\n")
         
@@ -1285,10 +1352,10 @@ def monitorar_produtos():
         total_produtos_off = 0
         
         for section in sections:
-            title_element = section.find_element(By.CLASS_NAME, 'restaurant-menu-group__title')
+            title_element = section.find_element(By.CLASS_NAME, "restaurant-menu-group__title")
             section_title = title_element.text.strip()
             
-            products = section.find_elements(By.CLASS_NAME, 'dish-card')
+            products = section.find_elements(By.CLASS_NAME, "dish-card")
             quantidade_seção = len(products)
             contagem_por_secao[section_title] = quantidade_seção
             total_produtos += quantidade_seção
@@ -1302,10 +1369,10 @@ def monitorar_produtos():
             produtos_off_secao = 0
             
             for idx, product in enumerate(products, start=1):
-                name = product.find_element(By.CLASS_NAME, 'dish-card__description').text.strip()
+                name = product.find_element(By.CLASS_NAME, "dish-card__description").text.strip()
                 
                 try:
-                    description = product.find_element(By.CLASS_NAME, 'dish-card__details').text.strip()
+                    description = product.find_element(By.CLASS_NAME, "dish-card__details").text.strip()
                 except NoSuchElementException:
                     description = "Descrição não encontrada"
                 
@@ -1318,11 +1385,11 @@ def monitorar_produtos():
                 print(f"{idx:02d}. {name} - {price_display} - Status: {status_icon} {status}")
                 
                 produto_info = {
-                    'Seção': section_title,
-                    'Produto': name,
-                    'Preço': price_display,
-                    'Descrição': description,
-                    'Status': status
+                    "Seção": section_title,
+                    "Produto": name,
+                    "Preço": price_display,
+                    "Descrição": description,
+                    "Status": status
                 }
                 
                 dados_produtos.append(produto_info)
@@ -1340,21 +1407,21 @@ def monitorar_produtos():
         # Comparar com estado anterior para encontrar produtos que desapareceram
         produtos_atuais = {}
         for produto in dados_produtos:
-            chave = f"{produto['Seção']}|{produto['Produto']}"
+            chave = f"{produto["Seção"]}|{produto["Produto"]}"
             produtos_atuais[chave] = produto
         
         # Encontrar produtos que existiam antes mas não existem mais (desapareceram)
         produtos_desaparecidos = []
         for chave, info in estado_anterior.items():
             if chave not in produtos_atuais:
-                secao, nome = chave.split('|', 1)
+                secao, nome = chave.split("|", 1)
                 produtos_desaparecidos.append({
-                    'Seção': secao,
-                    'Produto': nome,
-                    'Preço': info.get('Preço', 'N/A'),
-                    'Status': 'OFF (Desapareceu)',
-                    'Última verificação': info.get('Última verificação', 'Desconhecido'),
-                    'Descrição': info.get('Descrição', '')
+                    "Seção": secao,
+                    "Produto": nome,
+                    "Preço": info.get("Preço", "N/A"),
+                    "Status": "OFF (Desapareceu)",
+                    "Última verificação": info.get("Última verificação", "Desconhecido"),
+                    "Descrição": info.get("Descrição", "")
                 })
         
         # Adicionar produtos desaparecidos à lista de produtos com problemas
@@ -1363,7 +1430,7 @@ def monitorar_produtos():
             salvar_log(f"ALERTA: {len(produtos_desaparecidos)} produtos desapareceram")
             
             for p in produtos_desaparecidos:
-                print(f"  ❌ {p['Seção']} - {p['Produto']} - Última verificação: {p['Última verificação']}")
+                print(f"  ❌ {p["Seção"]} - {p["Produto"]} - Última verificação: {p["Última verificação"]}")
         else:
             print("\n✅ Nenhum produto desapareceu desde a última verificação.")
         
@@ -1375,7 +1442,7 @@ def monitorar_produtos():
         arquivo_dashboard = gerar_dashboard_html(historico)
         
         # Salvar dados em Excel
-        arquivo_excel = 'produtos_cumbuca.xlsx'
+        arquivo_excel = "produtos_cumbuca.xlsx"
         
         # Adicionar produtos desaparecidos ao DataFrame para o relatório
         for produto in produtos_desaparecidos:
@@ -1385,42 +1452,42 @@ def monitorar_produtos():
         df = pd.DataFrame(dados_produtos)
         
         # Garantir que todas as colunas necessárias existam
-        for coluna in ['Seção', 'Produto', 'Preço', 'Descrição', 'Status', 'Última verificação']:
+        for coluna in ["Seção", "Produto", "Preço", "Descrição", "Status", "Última verificação"]:
             if coluna not in df.columns:
-                df[coluna] = ''
+                df[coluna] = ""
         
         # Organizar colunas
-        colunas = ['Seção', 'Produto', 'Preço', 'Descrição', 'Status']
-        if 'Última verificação' in df.columns:
-            colunas.append('Última verificação')
+        colunas = ["Seção", "Produto", "Preço", "Descrição", "Status"]
+        if "Última verificação" in df.columns:
+            colunas.append("Última verificação")
         df = df[colunas]
         
-        df_contagem = pd.DataFrame(list(contagem_por_secao.items()), columns=['Seção', 'Quantidade de Itens'])
+        df_contagem = pd.DataFrame(list(contagem_por_secao.items()), columns=["Seção", "Quantidade de Itens"])
         
-        linha_em_branco = pd.DataFrame([{col: '' for col in df.columns}])
+        linha_em_branco = pd.DataFrame([{col: "" for col in df.columns}])
         linha_total = pd.DataFrame([{
-            'Seção': 'TOTAL DE PRODUTOS', 
-            'Produto': total_produtos, 
-            'Status': f'OFF: {total_produtos_off} ({len(produtos_desaparecidos)} desaparecidos)'
+            "Seção": "TOTAL DE PRODUTOS", 
+            "Produto": total_produtos, 
+            "Status": f"OFF: {total_produtos_off} ({len(produtos_desaparecidos)} desaparecidos)"
         }])
         
-        with pd.ExcelWriter(arquivo_excel, engine='openpyxl', mode='w') as writer:
-            df.to_excel(writer, sheet_name='Produtos', index=False)
-            linha_em_branco.to_excel(writer, sheet_name='Produtos', index=False, header=False, startrow=len(df)+1)
-            df_contagem.to_excel(writer, sheet_name='Produtos', index=False, startrow=len(df)+2)
-            linha_total.to_excel(writer, sheet_name='Produtos', index=False, header=False, startrow=len(df)+2+len(df_contagem)+1)
+        with pd.ExcelWriter(arquivo_excel, engine="openpyxl", mode="w") as writer:
+            df.to_excel(writer, sheet_name="Produtos", index=False)
+            linha_em_branco.to_excel(writer, sheet_name="Produtos", index=False, header=False, startrow=len(df)+1)
+            df_contagem.to_excel(writer, sheet_name="Produtos", index=False, startrow=len(df)+2)
+            linha_total.to_excel(writer, sheet_name="Produtos", index=False, header=False, startrow=len(df)+2+len(df_contagem)+1)
         
         # Formatar Excel
         wb = load_workbook(arquivo_excel)
-        ws = wb['Produtos']
+        ws = wb["Produtos"]
         
         bold_font = Font(bold=True)
-        center_align = Alignment(horizontal='center', vertical='center')
+        center_align = Alignment(horizontal="center", vertical="center")
         thin_border = Border(
-            left=Side(style='thin'),
-            right=Side(style='thin'),
-            top=Side(style='thin'),
-            bottom=Side(style='thin')
+            left=Side(style="thin"),
+            right=Side(style="thin"),
+            top=Side(style="thin"),
+            bottom=Side(style="thin")
         )
         
         # Definir preenchimentos para status
@@ -1468,9 +1535,9 @@ def monitorar_produtos():
         
         wb.save(arquivo_excel)
         
-        # Fazer upload do Excel para o GitHub
-        fazer_upload_github(arquivo_excel, arquivo_excel)
-        
+        # Exportar para Google Sheets
+        google_sheet_link = exportar_para_google_sheets(arquivo_excel)
+
         print(f"\n✅ Dados formatados e salvos com sucesso em: {arquivo_excel}")
         salvar_log(f"Monitoramento concluído. Total: {total_produtos}, OFF: {total_produtos_off}, Desaparecidos: {len(produtos_desaparecidos)}")
         
@@ -1492,7 +1559,8 @@ def monitorar_produtos():
                 produtos_off, 
                 produtos_desaparecidos, 
                 total_produtos_ativos,
-                dados_produtos
+                dados_produtos,
+                google_sheet_link
             )
             
         else:
@@ -1506,15 +1574,16 @@ def monitorar_produtos():
                 None,
                 None,
                 total_produtos,
-                dados_produtos
+                dados_produtos,
+                google_sheet_link
             )
         
         return {
-            'total_produtos': total_produtos,
-            'produtos_off': produtos_off,
-            'produtos_desaparecidos': produtos_desaparecidos,
-            'total_produtos_ativos': total_produtos_ativos,
-            'timestamp': timestamp
+            "total_produtos": total_produtos,
+            "produtos_off": produtos_off,
+            "produtos_desaparecidos": produtos_desaparecidos,
+            "total_produtos_ativos": total_produtos_ativos,
+            "timestamp": timestamp
         }
         
     except TimeoutException:
@@ -1535,8 +1604,8 @@ if __name__ == "__main__":
     # Imprimir resumo
     if resultado:
         print("\n📋 Resumo do monitoramento:")
-        print(f"- Total de produtos: {resultado['total_produtos']}")
-        print(f"- Produtos OFF: {len(resultado['produtos_off'])}")
-        print(f"- Produtos desaparecidos: {len(resultado['produtos_desaparecidos'])}")
-        print(f"- Produtos ativos: {resultado['total_produtos_ativos']}")
-        print(f"- Timestamp: {resultado['timestamp']}")
+        print(f"- Total de produtos: {resultado["total_produtos"]}")
+        print(f"- Produtos OFF: {len(resultado["produtos_off"])}")
+        print(f"- Produtos desaparecidos: {len(resultado["produtos_desaparecidos"])}")
+        print(f"- Produtos ativos: {resultado["total_produtos_ativos"]}")
+        print(f"- Timestamp: {resultado["timestamp"]}")
