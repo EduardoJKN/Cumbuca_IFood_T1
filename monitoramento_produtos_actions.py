@@ -1278,7 +1278,7 @@ def exportar_para_google_sheets(arquivo_excel):
         drive_service = build("drive", "v3", credentials=credentials)
         
         # Criar nova planilha
-        titulo = f"Monitoramento iFood - {horario_brasil().strftime("%d/%m/%Y %H:%M")}"
+        titulo = f"Monitoramento iFood - {horario_brasil().strftime('%d/%m/%Y %H:%M')}"
         spreadsheet = client.create(titulo)
         
         # Fazer upload do Excel para o Google Drive
