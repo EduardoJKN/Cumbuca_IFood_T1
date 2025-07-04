@@ -47,6 +47,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_ACTOR: ${{ github.actor }}
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
         run: |
           python monitoramento_produtos_actions.py
 
@@ -56,3 +57,5 @@ jobs:
           personal_token: ${{ secrets.GH_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./
+
+
