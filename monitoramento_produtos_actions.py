@@ -1076,7 +1076,7 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
             sha = response.json()["sha"]
             
             payload = {
-                "message": f"Atualizar {nome_arquivo_github} - {horario_brasil().strftime("%Y-%m-%d %H:%M:%S")}",
+                "message": f"Atualizar {nome_arquivo_github} - {horario_brasil().strftime('%Y-%m-%d %H:%M:%S')}",
                 "content": conteudo_base64,
                 "sha": sha
             }
