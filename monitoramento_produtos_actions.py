@@ -1430,7 +1430,7 @@ def monitorar_produtos():
             salvar_log(f"ALERTA: {len(produtos_desaparecidos)} produtos desapareceram")
             
             for p in produtos_desaparecidos:
-                print(f"  ❌ {p["Seção"]} - {p["Produto"]} - Última verificação: {p["Última verificação"]}")
+                print(f"  ❌ {p['Seção']} - {p['Produto']} - Última verificação: {p['Última verificação']}")
         else:
             print("\n✅ Nenhum produto desapareceu desde a última verificação.")
         
