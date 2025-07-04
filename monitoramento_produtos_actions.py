@@ -96,7 +96,7 @@ def salvar_estado_produtos(dados_produtos):
     estado = {}
     for produto in dados_produtos:
         # Usar nome do produto como chave
-        chave = f"{produto["Seção"]}|{produto["Produto"]}"
+        chave = f'{produto["Seção"]}|{produto["Produto"]}'
         estado[chave] = {
             "Preço": produto["Preço"],
             "Descrição": produto.get("Descrição", ""),
