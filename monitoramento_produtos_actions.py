@@ -1083,7 +1083,7 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
         else:
             # Arquivo não existe, criar
             payload = {
-                "message": f"Adicionar {nome_arquivo_github} - {horario_brasil().strftime("%Y-%m-%d %H:%M:%S")}",
+                "message": f"Adicionar {nome_arquivo_github} - {horario_brasil().strftime('%Y-%m-%d %H:%M:%S')}",
                 "content": conteudo_base64
             }
         
