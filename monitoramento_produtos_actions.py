@@ -1604,8 +1604,8 @@ if __name__ == "__main__":
     # Imprimir resumo
     if resultado:
         print("\n📋 Resumo do monitoramento:")
-        print(f"- Total de produtos: {resultado["total_produtos"]}")
-        print(f"- Produtos OFF: {len(resultado["produtos_off"])}")
-        print(f"- Produtos desaparecidos: {len(resultado["produtos_desaparecidos"])}")
-        print(f"- Produtos ativos: {resultado["total_produtos_ativos"]}")
-        print(f"- Timestamp: {resultado["timestamp"]}")
+        print(f"- Total de produtos: {resultado['total_produtos']}")
+        print(f"- Produtos OFF: {len(resultado['produtos_off'])}")
+        print(f"- Produtos desaparecidos: {len(resultado['produtos_desaparecidos'])}")
+        print(f"- Produtos ativos: {resultado['total_produtos_ativos']}")
+        print(f"- Timestamp: {resultado['timestamp']}")
