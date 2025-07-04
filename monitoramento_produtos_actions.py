@@ -1297,7 +1297,7 @@ def exportar_para_google_sheets(arquivo_excel):
         ).execute()
         
         # Obter link compartilhável
-        link = f"https://docs.google.com/spreadsheets/d/{uploaded_file.get("id")}/edit?usp=sharing"
+        link = f"https://docs.google.com/spreadsheets/d/{uploaded_file.get('id')}/edit?usp=sharing"
         print(f"✅ Planilha exportada com sucesso: {link}")
         
         # Remover arquivo de credenciais temporário
@@ -1313,7 +1313,7 @@ def exportar_para_google_sheets(arquivo_excel):
 
 def monitorar_produtos():
     """Função principal para monitorar produtos"""
-    timestamp = horario_brasil().strftime("%Y-%m-%d %H:%M:%S")
+    timestamp = horario_brasil().strftime('%Y-%m-%d %H:%M:%S')
     print(f"\n🔍 Iniciando monitoramento de produtos em {timestamp}")
     salvar_log(f"Iniciando monitoramento de produtos")
     
@@ -1407,7 +1407,7 @@ def monitorar_produtos():
         # Comparar com estado anterior para encontrar produtos que desapareceram
         produtos_atuais = {}
         for produto in dados_produtos:
-            chave = f"{{produto["Seção"]}}|{produto["Produto"]}"
+            chave = f"{{produto['Seção']}}|{produto['Produto']}"
             produtos_atuais[chave] = produto
         
         # Encontrar produtos que existiam antes mas não existem mais (desapareceram)
