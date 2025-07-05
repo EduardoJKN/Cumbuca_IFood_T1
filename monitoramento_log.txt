@@ -1515,3 +1515,4 @@
 [2025-07-05 12:01:34] ALERTA: 97 produtos com problemas
 [2025-07-05 13:01:11] Iniciando monitoramento de produtos
 [2025-07-05 13:01:27] ALERTA: 97 produtos desapareceram
+[2025-07-05 13:01:36] Monitoramento concluído. Total: 97, OFF: 97, Desaparecidos: 97
