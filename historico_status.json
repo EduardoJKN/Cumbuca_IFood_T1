@@ -4,7 +4,7 @@
     "secao": "Destaques",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "De R$229,60 por R$159,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -110,6 +110,16 @@
         "status": "ON",
         "preco": "De R$229,60 por R$159,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "De R$229,60 por R$159,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "De R$229,60 por R$159,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -118,7 +128,7 @@
     "secao": "Destaques",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "De R$159,90 por R$114,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -224,6 +234,16 @@
         "status": "ON",
         "preco": "De R$159,90 por R$114,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "De R$159,90 por R$114,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "De R$159,90 por R$114,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -232,7 +252,7 @@
     "secao": "Destaques",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "De R$179,90 por R$129,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -338,6 +358,16 @@
         "status": "ON",
         "preco": "De R$179,90 por R$129,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "De R$179,90 por R$129,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "De R$179,90 por R$129,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -346,7 +376,7 @@
     "secao": "Destaques",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "De R$85,60 por R$68,48",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -460,7 +490,7 @@
     "secao": "* Nossa Batatinha Grátis *",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$0,21",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -566,6 +596,16 @@
         "status": "ON",
         "preco": "A partir de R$0,21",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$0,21",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$0,21",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -574,7 +614,7 @@
     "secao": "Arraiá da Cumbuca | Olha a Promo! É verdade",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$12,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -680,6 +720,16 @@
         "status": "ON",
         "preco": "R$12,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$12,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$12,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -688,7 +738,7 @@
     "secao": "[Novidade] Personalize sua Cumbuca!",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$43,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -794,6 +844,16 @@
         "status": "ON",
         "preco": "A partir de R$43,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$43,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$43,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -802,7 +862,7 @@
     "secao": "[Novidade] Personalize sua Cumbuca!",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$43,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -908,6 +968,16 @@
         "status": "ON",
         "preco": "A partir de R$43,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$43,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$43,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -916,7 +986,7 @@
     "secao": "[Novidade] Personalize sua Cumbuca!",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$43,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -1022,6 +1092,16 @@
         "status": "ON",
         "preco": "A partir de R$43,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$43,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$43,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -1030,7 +1110,7 @@
     "secao": "Promoções",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$61,70",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -1136,6 +1216,16 @@
         "status": "ON",
         "preco": "A partir de R$61,70",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$61,70",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$61,70",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -1144,7 +1234,7 @@
     "secao": "Promoções",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$47,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -1250,6 +1340,16 @@
         "status": "ON",
         "preco": "A partir de R$47,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$47,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$47,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -1258,7 +1358,7 @@
     "secao": "Promoções",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$79,85",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -1364,6 +1464,16 @@
         "status": "ON",
         "preco": "A partir de R$79,85",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$79,85",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$79,85",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -1372,7 +1482,7 @@
     "secao": "Promoções",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$89,80",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -1478,6 +1588,16 @@
         "status": "ON",
         "preco": "A partir de R$89,80",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$89,80",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$89,80",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -1486,7 +1606,7 @@
     "secao": "Promoções",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "De R$159,90 por R$114,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -1592,6 +1712,16 @@
         "status": "ON",
         "preco": "De R$159,90 por R$114,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "De R$159,90 por R$114,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "De R$159,90 por R$114,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -1600,7 +1730,7 @@
     "secao": "Promoções",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "De R$179,90 por R$129,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -1706,6 +1836,16 @@
         "status": "ON",
         "preco": "De R$179,90 por R$129,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "De R$179,90 por R$129,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "De R$179,90 por R$129,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -1714,7 +1854,7 @@
     "secao": "Promoções",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "De R$229,60 por R$159,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -1820,6 +1960,16 @@
         "status": "ON",
         "preco": "De R$229,60 por R$159,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "De R$229,60 por R$159,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "De R$229,60 por R$159,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -1828,7 +1978,7 @@
     "secao": "• Destaque •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -1934,6 +2084,16 @@
         "status": "ON",
         "preco": "A partir de R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -1942,7 +2102,7 @@
     "secao": "• Destaque •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$59,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -2048,6 +2208,16 @@
         "status": "ON",
         "preco": "A partir de R$59,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$59,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$59,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -2056,7 +2226,7 @@
     "secao": "• Destaque •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -2162,6 +2332,16 @@
         "status": "ON",
         "preco": "A partir de R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -2170,7 +2350,7 @@
     "secao": "• Destaque •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -2276,6 +2456,16 @@
         "status": "ON",
         "preco": "A partir de R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -2284,7 +2474,7 @@
     "secao": "• Destaque •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$54,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -2390,6 +2580,16 @@
         "status": "ON",
         "preco": "A partir de R$54,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$54,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$54,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -2398,7 +2598,7 @@
     "secao": "Descontinhos pra você ;)",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "De R$49,90 por R$39,92",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -2504,6 +2704,16 @@
         "status": "ON",
         "preco": "De R$49,90 por R$39,92",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "De R$49,90 por R$39,92",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "De R$49,90 por R$39,92",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -2512,7 +2722,7 @@
     "secao": "Descontinhos pra você ;)",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "De R$85,60 por R$68,48",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -2618,6 +2828,16 @@
         "status": "ON",
         "preco": "De R$85,60 por R$68,48",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "De R$85,60 por R$68,48",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "De R$85,60 por R$68,48",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -2626,7 +2846,7 @@
     "secao": "Para começar (Entradas)",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$12,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -2732,6 +2952,16 @@
         "status": "ON",
         "preco": "R$12,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$12,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$12,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -2740,7 +2970,7 @@
     "secao": "Para começar (Entradas)",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$39,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -2846,6 +3076,16 @@
         "status": "ON",
         "preco": "R$39,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$39,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$39,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -2854,7 +3094,7 @@
     "secao": "Para começar (Entradas)",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$22,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -2960,6 +3200,16 @@
         "status": "ON",
         "preco": "R$22,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$22,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$22,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -2968,7 +3218,7 @@
     "secao": "Para começar (Entradas)",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -3074,6 +3324,16 @@
         "status": "ON",
         "preco": "R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -3082,7 +3342,7 @@
     "secao": "Para começar (Entradas)",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$27,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -3188,6 +3448,16 @@
         "status": "ON",
         "preco": "R$27,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$27,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$27,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -3196,7 +3466,7 @@
     "secao": "Para começar (Entradas)",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$27,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -3302,6 +3572,16 @@
         "status": "ON",
         "preco": "A partir de R$27,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$27,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$27,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -3310,7 +3590,7 @@
     "secao": "Para começar (Entradas)",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$34,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -3416,6 +3696,16 @@
         "status": "ON",
         "preco": "A partir de R$34,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$34,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$34,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -3424,7 +3714,7 @@
     "secao": "Força, foco e fé",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$54,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -3530,6 +3820,16 @@
         "status": "ON",
         "preco": "A partir de R$54,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$54,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$54,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -3538,7 +3838,7 @@
     "secao": "Força, foco e fé",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$59,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -3644,6 +3944,16 @@
         "status": "ON",
         "preco": "A partir de R$59,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$59,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$59,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -3652,7 +3962,7 @@
     "secao": "Força, foco e fé",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$59,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -3758,6 +4068,16 @@
         "status": "ON",
         "preco": "A partir de R$59,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$59,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$59,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -3766,7 +4086,7 @@
     "secao": "Força, foco e fé",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -3872,6 +4192,16 @@
         "status": "ON",
         "preco": "A partir de R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -3880,7 +4210,7 @@
     "secao": "Força, foco e fé",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -3986,6 +4316,16 @@
         "status": "ON",
         "preco": "A partir de R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -3994,7 +4334,7 @@
     "secao": "Força, foco e fé",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -4100,6 +4440,16 @@
         "status": "ON",
         "preco": "A partir de R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -4108,7 +4458,7 @@
     "secao": "Força, foco e fé",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$54,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -4214,6 +4564,16 @@
         "status": "ON",
         "preco": "A partir de R$54,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$54,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$54,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -4222,7 +4582,7 @@
     "secao": "• Não julgue minha cumbuca •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$54,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -4328,6 +4688,16 @@
         "status": "ON",
         "preco": "A partir de R$54,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$54,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$54,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -4336,7 +4706,7 @@
     "secao": "• Não julgue minha cumbuca •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -4442,6 +4812,16 @@
         "status": "ON",
         "preco": "A partir de R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -4450,7 +4830,7 @@
     "secao": "• Não julgue minha cumbuca •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -4556,6 +4936,16 @@
         "status": "ON",
         "preco": "A partir de R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -4564,7 +4954,7 @@
     "secao": "• Não julgue minha cumbuca •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$59,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -4670,6 +5060,16 @@
         "status": "ON",
         "preco": "A partir de R$59,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$59,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$59,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -4678,7 +5078,7 @@
     "secao": "• Não julgue minha cumbuca •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$52,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -4784,6 +5184,16 @@
         "status": "ON",
         "preco": "A partir de R$52,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$52,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$52,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -4792,7 +5202,7 @@
     "secao": "• Não julgue minha cumbuca •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$54,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -4898,6 +5308,16 @@
         "status": "ON",
         "preco": "A partir de R$54,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$54,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$54,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -4906,7 +5326,7 @@
     "secao": "• Não julgue minha cumbuca •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$54,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -5012,6 +5432,16 @@
         "status": "ON",
         "preco": "A partir de R$54,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$54,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$54,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -5020,7 +5450,7 @@
     "secao": "• Não julgue minha cumbuca •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$59,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -5126,6 +5556,16 @@
         "status": "ON",
         "preco": "A partir de R$59,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$59,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$59,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -5134,7 +5574,7 @@
     "secao": "• Não julgue minha cumbuca •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -5240,6 +5680,16 @@
         "status": "ON",
         "preco": "A partir de R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -5248,7 +5698,7 @@
     "secao": "• Tô diferente •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$54,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -5354,6 +5804,16 @@
         "status": "ON",
         "preco": "A partir de R$54,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$54,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$54,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -5362,7 +5822,7 @@
     "secao": "• Tô diferente •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$67,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -5468,6 +5928,16 @@
         "status": "ON",
         "preco": "A partir de R$67,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$67,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$67,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -5476,7 +5946,7 @@
     "secao": "• Tô diferente •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$52,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -5582,6 +6052,16 @@
         "status": "ON",
         "preco": "A partir de R$52,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$52,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$52,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -5590,7 +6070,7 @@
     "secao": "• Tô veggie •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$52,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -5696,6 +6176,16 @@
         "status": "ON",
         "preco": "A partir de R$52,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$52,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$52,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -5704,7 +6194,7 @@
     "secao": "• Tô veggie •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -5810,6 +6300,16 @@
         "status": "ON",
         "preco": "A partir de R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -5818,7 +6318,7 @@
     "secao": "• Tô veggie •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -5924,6 +6424,16 @@
         "status": "ON",
         "preco": "A partir de R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -5932,7 +6442,7 @@
     "secao": "Wrap Combos",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "De R$61,90 por R$52,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -6038,6 +6548,16 @@
         "status": "ON",
         "preco": "De R$61,90 por R$52,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "De R$61,90 por R$52,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "De R$61,90 por R$52,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -6046,7 +6566,7 @@
     "secao": "Wrap Combos",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "De R$103,80 por R$87,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -6152,6 +6672,16 @@
         "status": "ON",
         "preco": "De R$103,80 por R$87,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "De R$103,80 por R$87,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "De R$103,80 por R$87,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -6160,7 +6690,7 @@
     "secao": "Novos Wraps - Novo tamanho e formato",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -6266,6 +6796,16 @@
         "status": "ON",
         "preco": "R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -6274,7 +6814,7 @@
     "secao": "Novos Wraps - Novo tamanho e formato",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -6380,6 +6920,16 @@
         "status": "ON",
         "preco": "R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -6388,7 +6938,7 @@
     "secao": "Novos Wraps - Novo tamanho e formato",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -6494,6 +7044,16 @@
         "status": "ON",
         "preco": "R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -6502,7 +7062,7 @@
     "secao": "Novos Wraps - Novo tamanho e formato",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$44,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -6608,6 +7168,16 @@
         "status": "ON",
         "preco": "R$44,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$44,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$44,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -6616,7 +7186,7 @@
     "secao": "Novos Wraps - Novo tamanho e formato",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -6722,6 +7292,16 @@
         "status": "ON",
         "preco": "R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -6730,7 +7310,7 @@
     "secao": "Novos Wraps - Novo tamanho e formato",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -6836,6 +7416,16 @@
         "status": "ON",
         "preco": "R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -6844,7 +7434,7 @@
     "secao": "Novos Wraps - Novo tamanho e formato",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -6950,6 +7540,16 @@
         "status": "ON",
         "preco": "R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -6958,7 +7558,7 @@
     "secao": "Novos Wraps - Novo tamanho e formato",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$44,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -7064,6 +7664,16 @@
         "status": "ON",
         "preco": "R$44,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$44,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$44,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -7072,7 +7682,7 @@
     "secao": "Novos Wraps - Novo tamanho e formato",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$49,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -7178,6 +7788,16 @@
         "status": "ON",
         "preco": "R$49,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$49,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -7186,7 +7806,7 @@
     "secao": "Novos Wraps - Novo tamanho e formato",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$44,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -7292,6 +7912,16 @@
         "status": "ON",
         "preco": "R$44,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$44,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$44,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -7300,7 +7930,7 @@
     "secao": "• Açaís •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$22,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -7406,6 +8036,16 @@
         "status": "ON",
         "preco": "R$22,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$22,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$22,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -7414,7 +8054,7 @@
     "secao": "• Açaís •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$32,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -7520,6 +8160,16 @@
         "status": "ON",
         "preco": "R$32,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$32,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$32,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -7528,7 +8178,7 @@
     "secao": "• Açaís •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$26,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -7634,6 +8284,16 @@
         "status": "ON",
         "preco": "R$26,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$26,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$26,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -7642,7 +8302,7 @@
     "secao": "• Açaís •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$36,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -7748,6 +8408,16 @@
         "status": "ON",
         "preco": "R$36,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$36,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$36,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -7756,7 +8426,7 @@
     "secao": "• Sobremesas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$12,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -7862,6 +8532,16 @@
         "status": "ON",
         "preco": "R$12,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$12,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$12,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -7870,7 +8550,7 @@
     "secao": "• Sobremesas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$47,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -7976,6 +8656,16 @@
         "status": "ON",
         "preco": "R$47,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$47,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$47,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -7984,7 +8674,7 @@
     "secao": "• Sobremesas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$12,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -8090,6 +8780,16 @@
         "status": "ON",
         "preco": "R$12,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$12,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$12,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -8098,7 +8798,7 @@
     "secao": "• Sobremesas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$42,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -8204,6 +8904,16 @@
         "status": "ON",
         "preco": "R$42,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$42,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$42,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -8212,7 +8922,7 @@
     "secao": "• Sobremesas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$12,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -8318,6 +9028,16 @@
         "status": "ON",
         "preco": "A partir de R$12,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$12,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$12,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -8326,7 +9046,7 @@
     "secao": "• Sobremesas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$12,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -8432,6 +9152,16 @@
         "status": "ON",
         "preco": "R$12,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$12,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$12,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -8440,7 +9170,7 @@
     "secao": "• Sobremesas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$12,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -8546,6 +9276,16 @@
         "status": "ON",
         "preco": "R$12,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$12,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$12,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -8554,7 +9294,7 @@
     "secao": "• Suchás •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$9,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -8660,6 +9400,16 @@
         "status": "ON",
         "preco": "A partir de R$9,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$9,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$9,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -8668,7 +9418,7 @@
     "secao": "• Suchás •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$9,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -8774,6 +9524,16 @@
         "status": "ON",
         "preco": "A partir de R$9,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$9,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$9,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -8782,7 +9542,7 @@
     "secao": "• Bebidas Alcoólicas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "De R$32,90 por R$29,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -8888,6 +9648,16 @@
         "status": "ON",
         "preco": "De R$32,90 por R$29,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "De R$32,90 por R$29,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "De R$32,90 por R$29,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -8896,7 +9666,7 @@
     "secao": "• Bebidas Alcoólicas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$39,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -9002,6 +9772,16 @@
         "status": "ON",
         "preco": "R$39,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$39,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$39,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -9010,7 +9790,7 @@
     "secao": "• Bebidas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$8,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -9116,6 +9896,16 @@
         "status": "ON",
         "preco": "R$8,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$8,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$8,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -9124,7 +9914,7 @@
     "secao": "• Bebidas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$8,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -9230,6 +10020,16 @@
         "status": "ON",
         "preco": "R$8,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$8,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$8,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -9238,7 +10038,7 @@
     "secao": "• Bebidas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$15,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -9344,6 +10144,16 @@
         "status": "ON",
         "preco": "A partir de R$15,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "A partir de R$15,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "A partir de R$15,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -9352,7 +10162,7 @@
     "secao": "• Bebidas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$11,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -9458,6 +10268,16 @@
         "status": "ON",
         "preco": "R$11,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$11,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$11,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -9466,7 +10286,7 @@
     "secao": "• Bebidas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$11,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -9572,6 +10392,16 @@
         "status": "ON",
         "preco": "R$11,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$11,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$11,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -9580,7 +10410,7 @@
     "secao": "• Bebidas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$13,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -9686,6 +10516,16 @@
         "status": "ON",
         "preco": "R$13,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$13,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$13,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -9694,7 +10534,7 @@
     "secao": "• Bebidas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$6,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -9800,6 +10640,16 @@
         "status": "ON",
         "preco": "R$6,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$6,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$6,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -9808,7 +10658,7 @@
     "secao": "• Bebidas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$7,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -9914,6 +10764,16 @@
         "status": "ON",
         "preco": "R$7,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$7,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$7,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -9922,7 +10782,7 @@
     "secao": "• Bebidas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$8,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -10028,6 +10888,16 @@
         "status": "ON",
         "preco": "R$8,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$8,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$8,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -10036,7 +10906,7 @@
     "secao": "• Bebidas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$8,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -10142,6 +11012,16 @@
         "status": "ON",
         "preco": "R$8,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$8,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$8,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -10150,7 +11030,7 @@
     "secao": "• Bebidas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$8,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -10256,6 +11136,16 @@
         "status": "ON",
         "preco": "R$8,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$8,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$8,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -10264,7 +11154,7 @@
     "secao": "• Bebidas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$8,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -10370,6 +11260,16 @@
         "status": "ON",
         "preco": "R$8,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$8,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$8,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -10378,7 +11278,7 @@
     "secao": "• Bebidas •",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$14,90",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -10484,6 +11384,16 @@
         "status": "ON",
         "preco": "R$14,90",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$14,90",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$14,90",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -10492,7 +11402,7 @@
     "secao": "[Não Ativar] Complementos [Não Ativar]",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$0,01",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -10598,6 +11508,16 @@
         "status": "ON",
         "preco": "R$0,01",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$0,01",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$0,01",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -10606,7 +11526,7 @@
     "secao": "[Não Ativar] Complementos [Não Ativar]",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "R$0,01",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -10712,6 +11632,16 @@
         "status": "ON",
         "preco": "R$0,01",
         "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "OFF (Desapareceu)",
+        "preco": "R$0,01",
+        "timestamp": "2025-07-06 16:01:16"
+      },
+      {
+        "status": "ON",
+        "preco": "R$0,01",
+        "timestamp": "2025-07-06 17:01:19"
       }
     ]
   },
@@ -10720,7 +11650,7 @@
     "secao": "Promoções: Leva pra mais tarde",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$79,85",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -10754,7 +11684,7 @@
     "secao": "Promoções: Leva pra mais tarde",
     "status_atual": "OFF (Desapareceu)",
     "preco_atual": "A partir de R$79,80",
-    "ultima_verificacao": "2025-07-06 16:01:16",
+    "ultima_verificacao": "2025-07-06 17:01:19",
     "historico": [
       {
         "status": "ON",
@@ -10782,5 +11712,109 @@
         "timestamp": "2025-07-06 16:01:16"
       }
     ]
+  },
+  "Destaques|Wrap Dupla": {
+    "nome": "Wrap Dupla",
+    "secao": "Destaques",
+    "status_atual": "ON",
+    "preco_atual": "De R$115,60 por R$87,90",
+    "ultima_verificacao": "2025-07-06 17:01:19",
+    "historico": []
+  },
+  "Wrap Naighty!|Wrap Lanche Feliz": {
+    "nome": "Wrap Lanche Feliz",
+    "secao": "Wrap Naighty!",
+    "status_atual": "ON",
+    "preco_atual": "De R$66,70 por R$52,90",
+    "ultima_verificacao": "2025-07-06 17:01:19",
+    "historico": []
+  },
+  "Wrap Naighty!|Wrap Dupla": {
+    "nome": "Wrap Dupla",
+    "secao": "Wrap Naighty!",
+    "status_atual": "ON",
+    "preco_atual": "De R$115,60 por R$87,90",
+    "ultima_verificacao": "2025-07-06 17:01:19",
+    "historico": []
+  },
+  "Novos Wraps - Novo formato e tamanho|Wrap Croc (N-O-V-I-D-A-D-E)": {
+    "nome": "Wrap Croc (N-O-V-I-D-A-D-E)",
+    "secao": "Novos Wraps - Novo formato e tamanho",
+    "status_atual": "ON",
+    "preco_atual": "R$49,90",
+    "ultima_verificacao": "2025-07-06 17:01:19",
+    "historico": []
+  },
+  "Novos Wraps - Novo formato e tamanho|Wrap Só O Filé (N-O-V-I-D-A-D-E)": {
+    "nome": "Wrap Só O Filé (N-O-V-I-D-A-D-E)",
+    "secao": "Novos Wraps - Novo formato e tamanho",
+    "status_atual": "ON",
+    "preco_atual": "R$49,90",
+    "ultima_verificacao": "2025-07-06 17:01:19",
+    "historico": []
+  },
+  "Novos Wraps - Novo formato e tamanho|Wrap Classiquinha (N-O-V-I-D-A-D-E)": {
+    "nome": "Wrap Classiquinha (N-O-V-I-D-A-D-E)",
+    "secao": "Novos Wraps - Novo formato e tamanho",
+    "status_atual": "ON",
+    "preco_atual": "R$49,90",
+    "ultima_verificacao": "2025-07-06 17:01:19",
+    "historico": []
+  },
+  "Novos Wraps - Novo formato e tamanho|U.S.Wrap (N-O-V-I-D-A-D-E)": {
+    "nome": "U.S.Wrap (N-O-V-I-D-A-D-E)",
+    "secao": "Novos Wraps - Novo formato e tamanho",
+    "status_atual": "ON",
+    "preco_atual": "R$49,90",
+    "ultima_verificacao": "2025-07-06 17:01:19",
+    "historico": []
+  },
+  "Novos Wraps - Novo formato e tamanho|Wrap Supremo! (Lançamento)": {
+    "nome": "Wrap Supremo! (Lançamento)",
+    "secao": "Novos Wraps - Novo formato e tamanho",
+    "status_atual": "ON",
+    "preco_atual": "R$49,90",
+    "ultima_verificacao": "2025-07-06 17:01:19",
+    "historico": []
+  },
+  "Novos Wraps - Novo formato e tamanho|Wrap S-U-R-R-E-A-L 2.0 (Lançamento)": {
+    "nome": "Wrap S-U-R-R-E-A-L 2.0 (Lançamento)",
+    "secao": "Novos Wraps - Novo formato e tamanho",
+    "status_atual": "ON",
+    "preco_atual": "R$49,90",
+    "ultima_verificacao": "2025-07-06 17:01:19",
+    "historico": []
+  },
+  "Novos Wraps - Novo formato e tamanho|Wrap Divino": {
+    "nome": "Wrap Divino",
+    "secao": "Novos Wraps - Novo formato e tamanho",
+    "status_atual": "ON",
+    "preco_atual": "R$49,90",
+    "ultima_verificacao": "2025-07-06 17:01:19",
+    "historico": []
+  },
+  "Novos Wraps - Novo formato e tamanho|Wrap Méxicomigo": {
+    "nome": "Wrap Méxicomigo",
+    "secao": "Novos Wraps - Novo formato e tamanho",
+    "status_atual": "ON",
+    "preco_atual": "R$44,90",
+    "ultima_verificacao": "2025-07-06 17:01:19",
+    "historico": []
+  },
+  "Novos Wraps - Novo formato e tamanho|Wrap Ahazô!": {
+    "nome": "Wrap Ahazô!",
+    "secao": "Novos Wraps - Novo formato e tamanho",
+    "status_atual": "ON",
+    "preco_atual": "R$49,90",
+    "ultima_verificacao": "2025-07-06 17:01:19",
+    "historico": []
+  },
+  "Novos Wraps - Novo formato e tamanho|Wrap Perfeitinho": {
+    "nome": "Wrap Perfeitinho",
+    "secao": "Novos Wraps - Novo formato e tamanho",
+    "status_atual": "ON",
+    "preco_atual": "R$44,90",
+    "ultima_verificacao": "2025-07-06 17:01:19",
+    "historico": []
   }
 }
