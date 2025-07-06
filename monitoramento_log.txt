@@ -1613,3 +1613,7 @@
 [2025-07-06 14:01:50] ❌ Tempo esgotado esperando a página carregar os produtos.
 [2025-07-06 15:10:34] Iniciando monitoramento de produtos
 [2025-07-06 15:10:57] ❌ Tempo esgotado esperando a página carregar os produtos.
+[2025-07-06 16:00:59] Iniciando monitoramento de produtos
+[2025-07-06 16:01:14] ALERTA: 96 produtos desapareceram
+[2025-07-06 16:01:29] Monitoramento concluído. Total: 96, OFF: 96, Desaparecidos: 96
+[2025-07-06 16:01:30] ALERTA: 96 produtos com problemas
