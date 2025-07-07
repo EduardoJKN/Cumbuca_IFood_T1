@@ -2,7 +2,7 @@ name: Monitoramento de Produtos iFood
 
 on:
   schedule:
-    - cron: '0 * * * *' # Executa a cada 1 hora
+  - cron: '0 14-2 * * *'  # 14h-2h UTC = 11h-23h BRT
   workflow_dispatch:
 
 permissions:
