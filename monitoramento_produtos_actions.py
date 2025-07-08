@@ -309,7 +309,7 @@ def gerar_dashboard_html(historico):
     # Contar produtos ON e OFF
     total_produtos = len(historico)
     produtos_off = sum(1 for info in historico.values() if info["status_atual"] != "ON")
-    produtos_on = total_produtos - produtos_off
+    produtos_on = total_produtos
     
     # Contar produtos desaparecidos
     produtos_desaparecidos = sum(1 for info in historico.values() if "Desapareceu" in info["status_atual"])
