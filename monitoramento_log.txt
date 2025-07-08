@@ -1768,3 +1768,4 @@
 [2025-07-08 18:13:17] Iniciando monitoramento de produtos
 [2025-07-08 18:13:45] ❌ Tempo esgotado esperando a página carregar os produtos.
 [2025-07-08 19:13:48] Iniciando monitoramento de produtos
+[2025-07-08 19:14:18] ❌ Tempo esgotado esperando a página carregar os produtos.
