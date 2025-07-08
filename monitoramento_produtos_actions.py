@@ -1534,7 +1534,7 @@ def monitorar_produtos():
             ws.column_dimensions[col_letter].width = adjusted_width
         
         wb.save(arquivo_excel)
-        
+            
         # Exportar para Google Sheets
         google_sheet_link = exportar_para_google_sheets(arquivo_excel)
 
