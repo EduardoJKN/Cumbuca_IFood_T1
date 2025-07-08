@@ -1542,7 +1542,7 @@ def monitorar_produtos():
         salvar_log(f"Monitoramento concluído. Total: {total_produtos}, OFF: {total_produtos_off}, Desaparecidos: {len(produtos_desaparecidos)}")
         
         # Calcular produtos ativos
-        total_produtos_ativos = total_produtos - total_produtos_off
+        total_produtos_ativos = total_produtos
         
         # Enviar alerta se houver produtos OFF ou desaparecidos
         if produtos_off or produtos_desaparecidos:
