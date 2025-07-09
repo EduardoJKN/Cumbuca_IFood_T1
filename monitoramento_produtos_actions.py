@@ -1130,33 +1130,29 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
 
 
 
+
 def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=None, produtos_off_recentemente=None, total_produtos_ativos=0, todos_produtos=None, google_sheet_link=None):
     try:
         url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
-        texto = "🚨 ALERTA: Monitoramento de Produtos iFood 🚨
 
-"
-        texto += f"📅 Data/Hora: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}
+        texto = f"""🚨 ALERTA: Monitoramento de Produtos iFood 🚨
 
-"
-        texto += f"✅ Produtos atualmente no site: {total_produtos_ativos}
-"
-        texto += f"🔴 Total de produtos OFF (Desligados do site atualmente): {len(produtos_desaparecidos)}
-"
-        texto += f"🆕 OFF recentemente: {len(produtos_off_recentemente)} produto(s) sumiram desde a última checagem.
+📅 Data/Hora: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}
 
-"
+✅ Produtos atualmente no site: {total_produtos_ativos}  
+🔴 Total de produtos OFF (Desligados do site atualmente): {len(produtos_desaparecidos)}  
+🆕 OFF recentemente: {len(produtos_off_recentemente)} produto(s) sumiram desde a última checagem.
+"""
 
         if produtos_off_recentemente:
-            texto += "🔍 Exemplos de OFF recentemente:
+            texto += "
+🔍 Exemplos de OFF recentemente:
 "
             for p in produtos_off_recentemente[:5]:
                 texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}
 "
             if len(produtos_off_recentemente) > 5:
                 texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)
-"
-            texto += "
 "
 
         if todos_produtos:
@@ -1181,7 +1177,8 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
                 if chave in recentes_keys:
                     secao_stats[secao]["recentes"] += 1
 
-            texto += "📊 Status por Seção:
+            texto += "
+📊 Status por Seção:
 
 "
             for secao, stats in sorted(secao_stats.items()):
