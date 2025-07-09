@@ -33,6 +33,26 @@ GITHUB_REPOSITORY = os.environ.get("GITHUB_REPOSITORY", "")
 GITHUB_ACTOR = os.environ.get("GITHUB_ACTOR", "")
 
 # Função para obter o horário atual no fuso horário de Brasília (UTC-3)
+
+def salvar_produtos_on(dados_produtos):
+    """Salva os produtos que estavam ON na execução atual"""
+    produtos_on = [f"{p['Seção']}|{p['Produto']}" for p in dados_produtos if p['Status'] == 'ON']
+    with open("produtos_on_ultima_execucao.json", "w", encoding="utf-8") as f:
+        json.dump(produtos_on, f, indent=2, ensure_ascii=False)
+    fazer_upload_github("produtos_on_ultima_execucao.json", "produtos_on_ultima_execucao.json")
+
+def carregar_produtos_on_anterior():
+    """Carrega os produtos que estavam ON na última execução"""
+    arquivo = "produtos_on_ultima_execucao.json"
+    baixar_arquivo_github(arquivo)
+    if not os.path.exists(arquivo):
+        return []
+    try:
+        with open(arquivo, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except:
+        return []
+
 def horario_brasil():
     """Retorna o horário atual no fuso horário de Brasília (UTC-3)"""
     return datetime.datetime.now() - datetime.timedelta(hours=3)
