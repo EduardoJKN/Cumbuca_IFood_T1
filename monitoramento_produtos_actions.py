@@ -1157,7 +1157,7 @@ if exemplos_off_recentemente:
     for exemplo in exemplos_off_recentemente:
         texto += f"- {exemplo}"
 
-    texto += "
+    texto += ""
 
 
 texto += "Status por Seção:
