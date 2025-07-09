@@ -1156,9 +1156,9 @@ if exemplos_off_recentemente:
     texto += "\n\n🔺 Exemplos de OFF recentemente:\n"
     for exemplo in exemplos_off_recentemente:
         texto += f"- {exemplo}"
-"
+
     texto += "
-"
+
 
 texto += "Status por Seção:
 
