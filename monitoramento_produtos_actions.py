@@ -1142,16 +1142,43 @@ def enviar_alerta_telegram(
     try:
         url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
 
-        texto = f"""\U0001F6A8 ALERTA: Monitoramento de Produtos iFood \U0001F6A8
+        
+texto = f"""[ALERTA] Monitoramento de Produtos iFood
 
-\U0001F4C5 Data/Hora: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}
+Data/Hora: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}
 
-\u2705 Produtos atualmente no site: {total_produtos_ativos}  
-\U0001F534 Total de produtos OFF (Desligados do site atualmente): {len(produtos_desaparecidos)}  
-\U0001F195 OFF recentemente: {len(produtos_off_recentemente)} produto(s) sumiram desde a última checagem.
+Produtos atualmente no site: {len(produtos_atuais)}
+Total de produtos OFF (Desligados do site atualmente): {len(produtos_off)}
+OFF recentemente: {len(off_recentes)} produto(s) sumiram desde a última checagem.
 """
 
-        if produtos_off_recentemente:
+if exemplos_off_recentemente:
+    texto += "Exemplos de OFF recentemente:
+"
+    for exemplo in exemplos_off_recentemente:
+        texto += f"- {exemplo}
+"
+    texto += "
+"
+
+texto += "Status por Seção:
+
+"
+for secao, status in secoes_status.items():
+    texto += f"{secao}:
+"
+    texto += f"ON: {status['on']} | OFF: {status['off']} (Recentes: {status['recentes']})
+
+"
+
+texto += f"Total acumulado de OFF: {total_off_acumulado}
+"
+texto += f"Desligados nesta verificação: {len(off_recentes)}
+
+"
+texto += f"Dashboard: {url_dashboard}
+"
+texto += f"Planilha: {url_planilha}"
 texto += ""
  Exemplos de OFF recentemente:
 "
