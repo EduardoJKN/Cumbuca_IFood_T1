@@ -1131,7 +1131,14 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
 
 
 
-def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=None, produtos_off_recentemente=None, total_produtos_ativos=0, todos_produtos=None, google_sheet_link=None):
+def enviar_alerta_telegram(
+    produtos_off=produtos_off,
+    produtos_desaparecidos=produtos_desaparecidos,
+    produtos_off_recentemente=produtos_off_recentemente,
+    total_produtos_ativos=len(produtos_ativos),
+    todos_produtos=produtos_ativos + produtos_off,
+    google_sheet_link="https://docs.google.com/spreadsheets/d/xxxxx/edit?usp=sharing"
+):
     try:
         url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
 
@@ -1145,11 +1152,15 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
 """
 
         if produtos_off_recentemente:
-            texto += "\n🔍 Exemplos de OFF recentemente:\n"
+            texto += "
+🔍 Exemplos de OFF recentemente:
+"
             for p in produtos_off_recentemente[:5]:
-                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}\n"
+                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}
+"
             if len(produtos_off_recentemente) > 5:
-                texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)\n"
+                texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)
+"
 
         if todos_produtos:
             secao_stats = {}
@@ -1173,18 +1184,29 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
                 if chave in recentes_keys:
                     secao_stats[secao]["recentes"] += 1
 
-            texto += "\n📊 Status por Seção:\n\n"
-            for secao, stats in sorted(secao_stats.items()):
-                texto += f"{secao}:\n"
-                texto += f"🟢 {stats['on']} ON | 🔴 {stats['off']} OFF ({stats['recentes']} recente)\n\n"
+            texto += "
+📊 Status por Seção:
 
-        texto += f"📈 Total acumulado de OFF: {len(produtos_desaparecidos)}\n"
-        texto += f"🆕 Desligados nesta verificação: {len(produtos_off_recentemente)}\n\n"
+"
+            for secao, stats in sorted(secao_stats.items()):
+                texto += f"{secao}:
+"
+                texto += f"🟢 {stats['on']} ON | 🔴 {stats['off']} OFF ({stats['recentes']} recente)
+
+"
+
+        texto += f"📈 Total acumulado de OFF: {len(produtos_desaparecidos)}
+"
+        texto += f"🆕 Desligados nesta verificação: {len(produtos_off_recentemente)}
+
+"
 
         if url_dashboard:
-            texto += f"🔗 Dashboard: {url_dashboard}\n"
+            texto += f"🔗 Dashboard: {url_dashboard}
+"
         if google_sheet_link:
-            texto += f"📊 Planilha: {google_sheet_link}\n"
+            texto += f"📊 Planilha: {google_sheet_link}
+"
 
         response = requests.post(
             f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
@@ -1552,13 +1574,13 @@ def monitorar_produtos():
             
             # Enviar alerta para o Telegram
             enviar_alerta_telegram(
-                mensagem, 
-                produtos_off, 
-                produtos_desaparecidos, 
-                total_produtos_ativos,
-                dados_produtos,
-                google_sheet_link
-            )
+    produtos_off=produtos_off,
+    produtos_desaparecidos=produtos_desaparecidos,
+    produtos_off_recentemente=produtos_off_recentemente,
+    total_produtos_ativos=len(produtos_ativos),
+    todos_produtos=produtos_ativos + produtos_off,
+    google_sheet_link="https://docs.google.com/spreadsheets/d/xxxxx/edit?usp=sharing"
+)
             
         else:
             print("\n✅ Todos os produtos estão ON e nenhum ficou OFF!")
@@ -1567,13 +1589,13 @@ def monitorar_produtos():
             # Enviar mensagem de status normal para o Telegram
             mensagem = "✅ Todos os produtos estão ON e nenhum ficou OFF!"
             enviar_alerta_telegram(
-                mensagem,
-                None,
-                None,
-                total_produtos,
-                dados_produtos,
-                google_sheet_link
-            )
+    produtos_off=produtos_off,
+    produtos_desaparecidos=produtos_desaparecidos,
+    produtos_off_recentemente=produtos_off_recentemente,
+    total_produtos_ativos=len(produtos_ativos),
+    todos_produtos=produtos_ativos + produtos_off,
+    google_sheet_link="https://docs.google.com/spreadsheets/d/xxxxx/edit?usp=sharing"
+)
         
         return {
             "total_produtos": total_produtos,
@@ -1615,8 +1637,13 @@ if __name__ == "__main__":
 
         print("🔔 Chamando alerta do Telegram com os dados finais...")
         enviar_alerta_telegram(
-            mensagem="Alerta automático iFood",
-            produtos_off=resultado.get("produtos_off", []),
+    produtos_off=produtos_off,
+    produtos_desaparecidos=produtos_desaparecidos,
+    produtos_off_recentemente=produtos_off_recentemente,
+    total_produtos_ativos=len(produtos_ativos),
+    todos_produtos=produtos_ativos + produtos_off,
+    google_sheet_link="https://docs.google.com/spreadsheets/d/xxxxx/edit?usp=sharing"
+),
             produtos_desaparecidos=resultado.get("produtos_desaparecidos", []),
             produtos_off_recentemente=resultado.get("produtos_off_recentemente", []),
             total_produtos_ativos=resultado.get("total_produtos_ativos", 0),
