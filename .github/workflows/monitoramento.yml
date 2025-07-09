@@ -2,60 +2,57 @@ name: Monitoramento de Produtos iFood
 
 on:
   schedule:
-    - cron: '0 14,15,16,17,18,19,20,21,22,23,0,1,2 * * *'  # 14h-2h UTC = 11h-23h BRT
+    - cron: '0 14-23,0-2 * * *'  # Formato simplificado (14h-2h UTC = 11h-23h BRT)
   workflow_dispatch:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
+    timeout-minutes: 10  # Previne execuções muito longas
 
     steps:
-      - name: Set up job
-        run: echo "Iniciando workflow de monitoramento..."
-
       - name: Checkout do repositório
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Atualizado para versão 4
 
       - name: Configurar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-
-      - name: Cache de dependências
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          cache: 'pip'  # Habilita cache automático
 
       - name: Instalar dependências
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install selenium pandas openpyxl gspread oauth2client requests
+          # Remova o -r requirements.txt se não estiver usando
 
-      - name: Configurar Chrome (otimizado para GitHub Actions)
+      - name: Configurar Chrome
         uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 'latest'  # Garante a versão mais recente
 
       - name: Executar monitoramento
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # Padronizado
           GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
         run: |
-          python monitoramento_produtos_actions.py
+          # Verificação pré-execução
+          echo "Python version: $(python --version)"
+          echo "Pip version: $(pip --version)"
+          python monitoramento_produtos_actions.py || exit 1
 
       - name: Publicar no GitHub Pages
+        if: success()  # Só executa se o passo anterior for bem-sucedido
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Padronizado
           publish_branch: gh-pages
           publish_dir: ./
-
-
+          keep_files: true  # Mantém arquivos existentes
