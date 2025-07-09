@@ -2,7 +2,7 @@ name: Monitoramento de Produtos iFood
 
 on:
   schedule:
-    - cron: '0 14-23,0-2 * * *'
+    - cron: '0 14-23,0-2 * * *'  # Executa de hora em hora entre 14h e 2h
   workflow_dispatch:
 
 jobs:
@@ -11,26 +11,39 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      - name: Checkout
+      - name: ⬇️ Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: Configurar Python
+      - name: 🐍 Configurar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: Instalar dependências
+      - name: 📦 Instalar dependências
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
-          pip check  # Verifica conflitos entre pacotes
+          pip check  # Verifica conflitos
 
-      - name: Executar monitoramento
+      - name: ✅ Executar monitoramento
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
         run: |
+          echo "⏱ Início da execução em $(date)"
           python monitoramento_produtos_actions.py
+          echo "🏁 Execução finalizada em $(date)"
+
+      - name: ❌ Se falhar, notificar no Telegram
+        if: failure()
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+          -d chat_id="${TELEGRAM_CHAT_ID}" \
+          -d text="🚨 *Erro na execução do monitoramento do iFood!* Verifique o GitHub Actions para mais detalhes." \
+          -d parse_mode=Markdown
