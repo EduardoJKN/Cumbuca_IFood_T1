@@ -1153,10 +1153,9 @@ OFF recentemente: {len(off_recentes)} produto(s) sumiram desde a última checage
 """
 
 if exemplos_off_recentemente:
-    texto += "\n\n📌 Exemplos de OFF recentemente:\n"
-"
+    texto += "\n\n🔺 Exemplos de OFF recentemente:\n"
     for exemplo in exemplos_off_recentemente:
-        texto += f"- {exemplo}
+        texto += f"- {exemplo}"
 "
     texto += "
 "
