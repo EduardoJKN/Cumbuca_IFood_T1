@@ -1156,7 +1156,7 @@ texto += ""
  Exemplos de OFF recentemente:
 ""
             for p in produtos_off_recentemente[:5]:
-                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}
+                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}"
 ""
             if len(produtos_off_recentemente) > 5:
                 texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)
