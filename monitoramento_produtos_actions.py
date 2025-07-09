@@ -1128,100 +1128,94 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
         print(f"❌ Erro ao fazer upload para o GitHub: {str(e)}")
         return False
 
-def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=None, total_produtos_ativos=0, todos_produtos=None, google_sheet_link=None):
-    """Envia alerta para um grupo no Telegram"""
-    try:
-        # URL do dashboard
-        url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
-        
-        # Criar mensagem formatada
-        texto = f"🚨 ALERTA: Monitoramento de Produtos iFood 🚨\n\n"
-        texto += f"Data/Hora: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}\n\n"
-        
-        # Adicionar contagem de produtos ativos
-        texto += f"✅ Produtos ativos no site: {total_produtos_ativos}\n\n"
-        
-        # Produtos que ficaram OFF (antigos "desaparecidos")
-        if produtos_desaparecidos:
-            texto += f"⚠️ {len(produtos_desaparecidos)} produtos ficaram OFF (não encontrados):\n"
-            for p in produtos_desaparecidos[:10]:
-                texto += f"- {p['Seção']} - {p['Produto']} - Preço: {p['Preço']}\n"
-            if len(produtos_desaparecidos) > 10:
-                texto += f"... e mais {len(produtos_desaparecidos) - 10} produtos\n"
-            texto += "\n"
-            
-        # Produtos marcados como OFF no site
-        if produtos_off:
-            texto += f"⚠️ {len(produtos_off)} produtos marcados como OFF no site:\n"
-            for p in produtos_off[:5]:
-                texto += f"- {p['Seção']} - {p['Produto']} - Preço: {p['Preço']}\n"
-            if len(produtos_off) > 5:
-                texto += f"... e mais {len(produtos_off) - 5} produtos\n"
-            texto += "\n"
-        
-        # Adicionar tabela resumida de status por seção
-        if todos_produtos:
-            # Agrupar produtos por seção
-            produtos_por_secao = {}
-            for produto in todos_produtos:
-                secao = produto["Seção"]
-                if secao not in produtos_por_secao:
-                    produtos_por_secao[secao] = {"total": 0, "off": 0, "nao_encontrados": 0}
-                
-                produtos_por_secao[secao]["total"] += 1
-                
-                # Contar produtos OFF e não encontrados separadamente
-                if "Status" in produto and "Desapareceu" in produto.get("Status", ""):
-                    produtos_por_secao[secao]["nao_encontrados"] += 1
-                    produtos_por_secao[secao]["off"] += 1  # Não encontrados também são OFF
-                elif "Status" in produto and produto["Status"] != "ON":
-                    produtos_por_secao[secao]["off"] += 1
-            
-            texto += "📊 Status por Seção:\n"
-            for secao, contagem in sorted(produtos_por_secao.items()):
-                on_count = contagem["total"] - contagem["off"]
-                off_count = contagem["off"]
-                nao_encontrados = contagem["nao_encontrados"]
-                
-                # Usar emojis para representar status
-                status_texto = f"🟢 {on_count} ON | 🔴 {off_count} OFF"
-                if nao_encontrados > 0:
-                    status_texto += f" (inclui {nao_encontrados} não encontrados)"
-                
-                texto += f"- {secao}: {status_texto}\n"
-            
-            texto += "\n"
-        
-        texto += f"{mensagem}\n\n"
-        
-        # Adicionar link para o dashboard
-        if url_dashboard:
-            texto += f"🔗 Dashboard completo disponível em: {url_dashboard}\n"
-        else:
-            texto += "🔗 Dashboard completo disponível em HTML.\n"
 
-        # Adicionar link para o Google Sheet
+def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=None, produtos_off_recentemente=None, total_produtos_ativos=0, todos_produtos=None, google_sheet_link=None):
+    try:
+        url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
+        texto = "🚨 ALERTA: Monitoramento de Produtos iFood 🚨
+
+"
+        texto += f"📅 Data/Hora: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}
+
+"
+        texto += f"✅ Produtos atualmente no site: {total_produtos_ativos}
+"
+        texto += f"🔴 Total de produtos OFF (Desligados do site atualmente): {len(produtos_desaparecidos)}
+"
+        texto += f"🆕 OFF recentemente: {len(produtos_off_recentemente)} produto(s) sumiram desde a última checagem.
+
+"
+
+        if produtos_off_recentemente:
+            texto += "🔍 Exemplos de OFF recentemente:
+"
+            for p in produtos_off_recentemente[:5]:
+                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}
+"
+            if len(produtos_off_recentemente) > 5:
+                texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)
+"
+            texto += "
+"
+
+        if todos_produtos:
+            secao_stats = {}
+            desaparecidos_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_desaparecidos)
+            recentes_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_off_recentemente)
+
+            for p in todos_produtos:
+                chave = f"{p['Seção']}|{p['Produto']}"
+                secao = p["Seção"]
+                if secao not in secao_stats:
+                    secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
+                if chave not in desaparecidos_keys:
+                    secao_stats[secao]["on"] += 1
+
+            for p in produtos_desaparecidos:
+                secao = p["Seção"]
+                chave = f"{p['Seção']}|{p['Produto']}"
+                if secao not in secao_stats:
+                    secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
+                secao_stats[secao]["off"] += 1
+                if chave in recentes_keys:
+                    secao_stats[secao]["recentes"] += 1
+
+            texto += "📊 Status por Seção:
+
+"
+            for secao, stats in sorted(secao_stats.items()):
+                texto += f"{secao}:
+"
+                texto += f"🟢 {stats['on']} ON | 🔴 {stats['off']} OFF ({stats['recentes']} recente)
+
+"
+
+        texto += f"📈 Total acumulado de OFF: {len(produtos_desaparecidos)}
+"
+        texto += f"🆕 Desligados nesta verificação: {len(produtos_off_recentemente)}
+
+"
+
+        if url_dashboard:
+            texto += f"🔗 Dashboard: {url_dashboard}
+"
         if google_sheet_link:
-            texto += f"📊 Planilha Google Sheets: {google_sheet_link}\n"
-        
-        # Enviar mensagem
-        url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-        payload = {
-            "chat_id": TELEGRAM_CHAT_ID,
-            "text": texto
-        }
-        
-        response = requests.post(url, data=payload)
+            texto += f"📊 Planilha: {google_sheet_link}
+"
+
+        response = requests.post(
+            f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
+            json={"chat_id": TELEGRAM_CHAT_ID, "text": texto}
+        )
+
         if response.status_code == 200:
-            print(f"✅ Alerta enviado com sucesso para o Telegram")
-            return True
+            print("✅ Mensagem enviada ao Telegram")
         else:
-            print(f"❌ Erro ao enviar alerta para o Telegram: {response.text}")
-            return False
-            
+            print(f"❌ Erro ao enviar para o Telegram: {response.text}")
+
     except Exception as e:
-        print(f"❌ Erro ao enviar alerta para o Telegram: {str(e)}")
-        return False
+        print(f"❌ Erro no envio do Telegram: {str(e)}")
+
 
 def salvar_log(mensagem):
     """Salva mensagem de log em arquivo"""
