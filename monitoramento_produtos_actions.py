@@ -1145,15 +1145,11 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
 """
 
         if produtos_off_recentemente:
-            texto += "
-🔍 Exemplos de OFF recentemente:
-"
+            texto += "\n🔍 Exemplos de OFF recentemente:\n"
             for p in produtos_off_recentemente[:5]:
-                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}
-"
+                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}\n"
             if len(produtos_off_recentemente) > 5:
-                texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)
-"
+                texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)\n"
 
         if todos_produtos:
             secao_stats = {}
@@ -1177,29 +1173,18 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
                 if chave in recentes_keys:
                     secao_stats[secao]["recentes"] += 1
 
-            texto += "
-📊 Status por Seção:
-
-"
+            texto += "\n📊 Status por Seção:\n\n"
             for secao, stats in sorted(secao_stats.items()):
-                texto += f"{secao}:
-"
-                texto += f"🟢 {stats['on']} ON | 🔴 {stats['off']} OFF ({stats['recentes']} recente)
+                texto += f"{secao}:\n"
+                texto += f"🟢 {stats['on']} ON | 🔴 {stats['off']} OFF ({stats['recentes']} recente)\n\n"
 
-"
-
-        texto += f"📈 Total acumulado de OFF: {len(produtos_desaparecidos)}
-"
-        texto += f"🆕 Desligados nesta verificação: {len(produtos_off_recentemente)}
-
-"
+        texto += f"📈 Total acumulado de OFF: {len(produtos_desaparecidos)}\n"
+        texto += f"🆕 Desligados nesta verificação: {len(produtos_off_recentemente)}\n\n"
 
         if url_dashboard:
-            texto += f"🔗 Dashboard: {url_dashboard}
-"
+            texto += f"🔗 Dashboard: {url_dashboard}\n"
         if google_sheet_link:
-            texto += f"📊 Planilha: {google_sheet_link}
-"
+            texto += f"📊 Planilha: {google_sheet_link}\n"
 
         response = requests.post(
             f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
