@@ -1153,7 +1153,7 @@ def enviar_alerta_telegram(
 
         if produtos_off_recentemente:
 texto += ""
-🆕 Exemplos de OFF recentemente:
+ Exemplos de OFF recentemente:
 "
             for p in produtos_off_recentemente[:5]:
                 texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}
