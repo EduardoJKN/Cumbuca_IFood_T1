@@ -1133,22 +1133,31 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
 def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=None, produtos_off_recentemente=None, total_produtos_ativos=0, todos_produtos=None, google_sheet_link=None):
     try:
         url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
+        texto = "🚨 ALERTA: Monitoramento de Produtos iFood 🚨
 
-        texto = f"""🚨 ALERTA: Monitoramento de Produtos iFood 🚨
+"
+        texto += f"📅 Data/Hora: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}
 
-📅 Data/Hora: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}
+"
+        texto += f"✅ Produtos atualmente no site: {total_produtos_ativos}
+"
+        texto += f"🔴 Total de produtos OFF (Desligados do site atualmente): {len(produtos_desaparecidos)}
+"
+        texto += f"🆕 OFF recentemente: {len(produtos_off_recentemente)} produto(s) sumiram desde a última checagem.
 
-✅ Produtos atualmente no site: {total_produtos_ativos}  
-🔴 Total de produtos OFF (Desligados do site atualmente): {len(produtos_desaparecidos)}  
-🆕 OFF recentemente: {len(produtos_off_recentemente)} produto(s) sumiram desde a última checagem.
-"""
+"
 
         if produtos_off_recentemente:
-            texto += "\n🔍 Exemplos de OFF recentemente:\n"
+            texto += "🔍 Exemplos de OFF recentemente:
+"
             for p in produtos_off_recentemente[:5]:
-                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}\n"
+                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}
+"
             if len(produtos_off_recentemente) > 5:
-                texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)\n"
+                texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)
+"
+            texto += "
+"
 
         if todos_produtos:
             secao_stats = {}
@@ -1172,18 +1181,28 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
                 if chave in recentes_keys:
                     secao_stats[secao]["recentes"] += 1
 
-            texto += "\n📊 Status por Seção:\n\n"
-            for secao, stats in sorted(secao_stats.items()):
-                texto += f"{secao}:\n"
-                texto += f"🟢 {stats['on']} ON | 🔴 {stats['off']} OFF ({stats['recentes']} recente)\n\n"
+            texto += "📊 Status por Seção:
 
-        texto += f"📈 Total acumulado de OFF: {len(produtos_desaparecidos)}\n"
-        texto += f"🆕 Desligados nesta verificação: {len(produtos_off_recentemente)}\n\n"
+"
+            for secao, stats in sorted(secao_stats.items()):
+                texto += f"{secao}:
+"
+                texto += f"🟢 {stats['on']} ON | 🔴 {stats['off']} OFF ({stats['recentes']} recente)
+
+"
+
+        texto += f"📈 Total acumulado de OFF: {len(produtos_desaparecidos)}
+"
+        texto += f"🆕 Desligados nesta verificação: {len(produtos_off_recentemente)}
+
+"
 
         if url_dashboard:
-            texto += f"🔗 Dashboard: {url_dashboard}\n"
+            texto += f"🔗 Dashboard: {url_dashboard}
+"
         if google_sheet_link:
-            texto += f"📊 Planilha: {google_sheet_link}\n"
+            texto += f"📊 Planilha: {google_sheet_link}
+"
 
         response = requests.post(
             f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
@@ -1593,7 +1612,7 @@ def monitorar_produtos():
     finally:
         driver.quit()
 
-if __name__ == "__main__":
+
     # Executar monitoramento
     resultado = monitorar_produtos()
     
@@ -1605,3 +1624,22 @@ if __name__ == "__main__":
         print(f"- Produtos desaparecidos: {len(resultado['produtos_desaparecidos'])}")
         print(f"- Produtos ativos: {resultado['total_produtos_ativos']}")
         print(f"- Timestamp: {resultado['timestamp']}")
+
+if __name__ == "__main__":
+    try:
+        print("▶️ Iniciando monitoramento...")
+        resultado = monitorar_produtos()
+        print("🧪 Resultado do monitoramento:", resultado)
+
+        print("🔔 Chamando alerta do Telegram com os dados finais...")
+        enviar_alerta_telegram(
+            mensagem="Alerta automático iFood",
+            produtos_off=resultado.get("produtos_off", []),
+            produtos_desaparecidos=resultado.get("produtos_desaparecidos", []),
+            produtos_off_recentemente=resultado.get("produtos_off_recentemente", []),
+            total_produtos_ativos=resultado.get("total_produtos_ativos", 0),
+            todos_produtos=resultado.get("todos_produtos", []),
+            google_sheet_link=resultado.get("google_sheet_link")
+        )
+    except Exception as e:
+        print(f"❌ Erro final no monitoramento: {str(e)}")
