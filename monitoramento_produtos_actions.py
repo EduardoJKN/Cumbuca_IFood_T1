@@ -1152,7 +1152,7 @@ def enviar_alerta_telegram(
 """
 
         if produtos_off_recentemente:
-            texto += "
+texto += ""
 🔍 Exemplos de OFF recentemente:
 "
             for p in produtos_off_recentemente[:5]:
@@ -1184,7 +1184,7 @@ def enviar_alerta_telegram(
                 if chave in recentes_keys:
                     secao_stats[secao]["recentes"] += 1
 
-            texto += "
+texto += ""
 📊 Status por Seção:
 
 "
