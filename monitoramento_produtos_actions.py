@@ -1133,31 +1133,22 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
 def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=None, produtos_off_recentemente=None, total_produtos_ativos=0, todos_produtos=None, google_sheet_link=None):
     try:
         url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
-        texto = "🚨 ALERTA: Monitoramento de Produtos iFood 🚨
 
-"
-        texto += f"📅 Data/Hora: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}
+        texto = f"""🚨 ALERTA: Monitoramento de Produtos iFood 🚨
 
-"
-        texto += f"✅ Produtos atualmente no site: {total_produtos_ativos}
-"
-        texto += f"🔴 Total de produtos OFF (Desligados do site atualmente): {len(produtos_desaparecidos)}
-"
-        texto += f"🆕 OFF recentemente: {len(produtos_off_recentemente)} produto(s) sumiram desde a última checagem.
+📅 Data/Hora: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}
 
-"
+✅ Produtos atualmente no site: {total_produtos_ativos}  
+🔴 Total de produtos OFF (Desligados do site atualmente): {len(produtos_desaparecidos)}  
+🆕 OFF recentemente: {len(produtos_off_recentemente)} produto(s) sumiram desde a última checagem.
+"""
 
         if produtos_off_recentemente:
-            texto += "🔍 Exemplos de OFF recentemente:
-"
+            texto += "\n🔍 Exemplos de OFF recentemente:\n"
             for p in produtos_off_recentemente[:5]:
-                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}
-"
+                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}\n"
             if len(produtos_off_recentemente) > 5:
-                texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)
-"
-            texto += "
-"
+                texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)\n"
 
         if todos_produtos:
             secao_stats = {}
@@ -1181,28 +1172,18 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
                 if chave in recentes_keys:
                     secao_stats[secao]["recentes"] += 1
 
-            texto += "📊 Status por Seção:
-
-"
+            texto += "\n📊 Status por Seção:\n\n"
             for secao, stats in sorted(secao_stats.items()):
-                texto += f"{secao}:
-"
-                texto += f"🟢 {stats['on']} ON | 🔴 {stats['off']} OFF ({stats['recentes']} recente)
+                texto += f"{secao}:\n"
+                texto += f"🟢 {stats['on']} ON | 🔴 {stats['off']} OFF ({stats['recentes']} recente)\n\n"
 
-"
-
-        texto += f"📈 Total acumulado de OFF: {len(produtos_desaparecidos)}
-"
-        texto += f"🆕 Desligados nesta verificação: {len(produtos_off_recentemente)}
-
-"
+        texto += f"📈 Total acumulado de OFF: {len(produtos_desaparecidos)}\n"
+        texto += f"🆕 Desligados nesta verificação: {len(produtos_off_recentemente)}\n\n"
 
         if url_dashboard:
-            texto += f"🔗 Dashboard: {url_dashboard}
-"
+            texto += f"🔗 Dashboard: {url_dashboard}\n"
         if google_sheet_link:
-            texto += f"📊 Planilha: {google_sheet_link}
-"
+            texto += f"📊 Planilha: {google_sheet_link}\n"
 
         response = requests.post(
             f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
