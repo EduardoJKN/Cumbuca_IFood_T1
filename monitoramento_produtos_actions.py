@@ -1153,7 +1153,7 @@ def enviar_alerta_telegram(
 
         if produtos_off_recentemente:
 texto += ""
-🔍 Exemplos de OFF recentemente:
+🆕 Exemplos de OFF recentemente:
 "
             for p in produtos_off_recentemente[:5]:
                 texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}
@@ -1333,7 +1333,7 @@ def exportar_para_google_sheets(arquivo_excel):
 def monitorar_produtos():
     """Função principal para monitorar produtos"""
     timestamp = horario_brasil().strftime('%Y-%m-%d %H:%M:%S')
-    print(f"\n🔍 Iniciando monitoramento de produtos em {timestamp}")
+    print(f"\n🆕 Iniciando monitoramento de produtos em {timestamp}")
     salvar_log(f"Iniciando monitoramento de produtos")
     
     # Carregar estado anterior para comparação
