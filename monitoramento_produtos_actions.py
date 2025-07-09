@@ -1159,7 +1159,7 @@ texto += ""
                 texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}"
 ""
             if len(produtos_off_recentemente) > 5:
-                texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)
+                texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)"
 ""
 
         if todos_produtos:
@@ -1189,23 +1189,23 @@ texto += ""
 
 "
             for secao, stats in sorted(secao_stats.items()):
-                texto += f"{secao}:
+                texto += f"{secao}:"
 "
-                texto += f"\U0001F7E2 {stats['on']} ON | \U0001F534 {stats['off']} OFF ({stats['recentes']} recente)
+                texto += f"\U0001F7E2 {stats['on']} ON | \U0001F534 {stats['off']} OFF ({stats['recentes']} recente)"
 
 "
 
-        texto += f"\U0001F4C8 Total acumulado de OFF: {len(produtos_desaparecidos)}
+        texto += f"\U0001F4C8 Total acumulado de OFF: {len(produtos_desaparecidos)}"
 "
-        texto += f"\U0001F195 Desligados nesta verificação: {len(produtos_off_recentemente)}
+        texto += f"\U0001F195 Desligados nesta verificação: {len(produtos_off_recentemente)}"
 
 "
 
         if url_dashboard:
-            texto += f"🔗 Dashboard: {url_dashboard}
+            texto += f"🔗 Dashboard: {url_dashboard}"
 "
         if google_sheet_link:
-            texto += f"\U0001F4CA Planilha: {google_sheet_link}
+            texto += f"\U0001F4CA Planilha: {google_sheet_link}"
 "
 
         response = requests.post(
