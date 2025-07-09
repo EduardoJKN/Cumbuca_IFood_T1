@@ -1148,46 +1148,12 @@ def enviar_alerta_telegram(
 
 ✅ Produtos atualmente no site: {total_produtos_ativos}  
 🔴 Total de produtos OFF (Desligados do site atualmente): {len(produtos_desaparecidos)}  
-🆕 OFF recentemente: {len(produtos_off_recentemente)} produto(s) sumiram desde a última checagem.
+        texto = f"""🚨 ALERTA: Monitoramento de Produtos iFood 🚨\n\n
+📅 Data/Hora: {horario_brasil().strftime("%d/%m/%Y %H:%M:%S")}\n\n
+✅ Produtos atualmente no site: {total_produtos_ativos}  \n
+🔴 Total de produtos OFF (Desligados do site atualmente): {len(produtos_desaparecidos)}  \n
+🆕 OFF recentemente: {len(produtos_off_recentemente)} produto(s) sumiram desde a última checagem.\n
 """
-
-        if produtos_off_recentemente:
-texto += ""
- Exemplos de OFF recentemente:
-"
-            for p in produtos_off_recentemente[:5]:
-                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}
-"
-            if len(produtos_off_recentemente) > 5:
-                texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)
-"
-
-        if todos_produtos:
-            secao_stats = {}
-            desaparecidos_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_desaparecidos)
-            recentes_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_off_recentemente)
-
-            for p in todos_produtos:
-                chave = f"{p['Seção']}|{p['Produto']}"
-                secao = p["Seção"]
-                if secao not in secao_stats:
-                    secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
-                if chave not in desaparecidos_keys:
-                    secao_stats[secao]["on"] += 1
-
-            for p in produtos_desaparecidos:
-                secao = p["Seção"]
-                chave = f"{p['Seção']}|{p['Produto']}"
-                if secao not in secao_stats:
-                    secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
-                secao_stats[secao]["off"] += 1
-                if chave in recentes_keys:
-                    secao_stats[secao]["recentes"] += 1
-
-texto += ""
-📊 Status por Seção:
-
-"
             for secao, stats in sorted(secao_stats.items()):
                 texto += f"{secao}:
 "
