@@ -1183,8 +1183,7 @@ texto += f"Desligados nesta verificação: {len(off_recentes)}\n"
 texto += f"Dashboard: {url_dashboard}\n"
 
 texto += f"Planilha: {url_planilha}"
-texto += ""
- Exemplos de OFF recentemente:
+texto += "Exemplos de OFF recentemente:"
 
             for p in produtos_off_recentemente[:5]:
                 texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}"
