@@ -1145,8 +1145,7 @@ def enviar_alerta_telegram(
         
 try:
     texto = f"""[ALERTA] Monitoramento de Produtos iFood
-    ...
-    """
+
 except Exception as e:
     print(f"Erro ao gerar o texto: {e}")
 
