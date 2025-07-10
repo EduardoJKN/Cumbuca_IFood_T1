@@ -1132,17 +1132,26 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
 
 
 def enviar_alerta_telegram(
-    produtos_off=produtos_off,
-    produtos_desaparecidos=produtos_desaparecidos,
-    produtos_off_recentemente=produtos_off_recentemente,
-    total_produtos_ativos=len(produtos_ativos),
-    todos_produtos=produtos_ativos + produtos_off,
-    google_sheet_link="https://docs.google.com/spreadsheets/d/xxxxx/edit?usp=sharing"
+    produtos_off=None,
+    produtos_desaparecidos=None,
+    produtos_off_recentemente=None,
+    total_produtos_ativos=0,
+    todos_produtos=None,
+    google_sheet_link=None
 ):
+    produtos_off = produtos_off or []
+    produtos_desaparecidos = produtos_desaparecidos or []
+    produtos_off_recentemente = produtos_off_recentemente or []
+    todos_produtos = todos_produtos or []
+
     try:
-        url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
+        url_dashboard = (
+            f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}"
+            if GITHUB_ACTOR and GITHUB_REPOSITORY else None
+        )
     except Exception as e:
         print(f"Erro ao montar URL do dashboard: {e}")
+
 
         
 try:
@@ -1599,15 +1608,12 @@ def monitorar_produtos():
             # Mensagem para alertas
             mensagem = f"Total de {total_problemas} produtos com problemas. Verifique o relatório completo."
             
-            # Enviar alerta para o Telegram
-            enviar_alerta_telegram(
-    produtos_off=produtos_off,
-    produtos_desaparecidos=produtos_desaparecidos,
-    produtos_off_recentemente=produtos_off_recentemente,
-    total_produtos_ativos=len(produtos_ativos),
-    todos_produtos=produtos_ativos + produtos_off,
-    google_sheet_link="https://docs.google.com/spreadsheets/d/xxxxx/edit?usp=sharing"
+resultado = monitorar_produtos()
+enviar_alerta_telegram(
+    produtos_off=resultado.get("produtos_off", []),
+    ...
 )
+
             
         else:
             print("\n\u2705 Todos os produtos estão ON e nenhum ficou OFF!")
