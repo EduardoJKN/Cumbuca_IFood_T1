@@ -1193,7 +1193,7 @@ if len(produtos_off_recentemente) > 5:
 
 
 
-           if todos_produtos:  # <- Aqui está no lugar certo
+if todos_produtos:  # <- Aqui está no lugar certo
             secao_stats = {}
             desaparecidos_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_desaparecidos)
             recentes_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_off_recentemente)
