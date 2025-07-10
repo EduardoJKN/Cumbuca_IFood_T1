@@ -1599,41 +1599,40 @@ def monitorar_produtos():
         # Calcular produtos ativos
         total_produtos_ativos = total_produtos
 
-resultado = monitorar_produtos()
+        # Enviar alerta se houver produtos OFF ou desaparecidos
+        # Enviar alerta se houver produtos OFF ou desaparecidos
+        if produtos_off or produtos_desaparecidos:
+            total_problemas = len(produtos_off) + len(produtos_desaparecidos)
+            print(f"\n⚠️ ALERTA: {total_problemas} produtos com problemas!")
+            salvar_log(f"ALERTA: {total_problemas} produtos com problemas")
 
-produtos_off = resultado.get("produtos_off", [])
-produtos_desaparecidos = resultado.get("produtos_desaparecidos", [])
-total_produtos_ativos = resultado.get("total_produtos_ativos", 0)
-todos_produtos = resultado.get("todos_produtos", [])
+            mensagem = f"Total de {total_problemas} produtos com problemas. Verifique o relatório completo."
+        else:
+            print("\n✅ Todos os produtos estão ON e nenhum ficou OFF!")
+            salvar_log("Todos os produtos estão ON e nenhum ficou OFF")
 
-if produtos_off or produtos_desaparecidos:
-    total_problemas = len(produtos_off) + len(produtos_desaparecidos)
-    print(f"\n⚠️ ALERTA: {total_problemas} produtos com problemas!")
-    salvar_log(f"ALERTA: {total_problemas} produtos com problemas")
+            mensagem = "✅ Todos os produtos estão ON e nenhum ficou OFF!"
 
-    mensagem = f"Total de {total_problemas} produtos com problemas. Verifique o relatório completo."
-else:
-    print("\n✅ Todos os produtos estão ON e nenhum ficou OFF!")
-    salvar_log("Todos os produtos estão ON e nenhum ficou OFF")
-    mensagem = "✅ Todos os produtos estão ON e nenhum ficou OFF!"
+        enviar_alerta_telegram(
+            produtos_off=produtos_off,
+            produtos_desaparecidos=produtos_desaparecidos,
+            produtos_off_recentemente=produtos_off_recentemente,
+            total_produtos_ativos=total_produtos_ativos,
+            todos_produtos=produtos_ativos + produtos_off,
+            google_sheet_link=google_sheet_link
+        )
 
-enviar_alerta_telegram(
-    produtos_off=produtos_off,
-    produtos_desaparecidos=produtos_desaparecidos,
-    produtos_off_recentemente=resultado.get("produtos_off_recentemente", []),
-    total_produtos_ativos=total_produtos_ativos,
-    todos_produtos=todos_produtos,
-    google_sheet_link=resultado.get("google_sheet_link")
-)
-
-        
         return {
             "total_produtos": total_produtos,
             "produtos_off": produtos_off,
             "produtos_desaparecidos": produtos_desaparecidos,
             "total_produtos_ativos": total_produtos_ativos,
+            "todos_produtos": produtos_ativos + produtos_off,
+            "produtos_off_recentemente": produtos_off_recentemente,
+            "google_sheet_link": google_sheet_link,
             "timestamp": timestamp
         }
+
         
     except TimeoutException:
         erro_msg = "❌ Tempo esgotado esperando a página carregar os produtos."
