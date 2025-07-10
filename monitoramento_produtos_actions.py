@@ -1224,18 +1224,16 @@ for secao, stats in sorted(secao_stats.items()):
 texto += f"📈 Total acumulado de OFF: {len(produtos_desaparecidos)}\n"
 texto += f"🆕 Desligados nesta verificação: {len(produtos_off_recentemente)}\n"
 
+if url_dashboard:
+    texto += f"🔗 Dashboard: {url_dashboard}\n"
 
+if google_sheet_link:
+    texto += f"📊 Planilha: {google_sheet_link}\n"
 
-    if url_dashboard:
-        texto += f"🔗 Dashboard: {url_dashboard}"
+response = requests.post(
+    f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
+    json={"
 
-    if google_sheet_link:
-        texto += f"\U0001F4CA Planilha: {google_sheet_link}"
-
-
-    response = requests.post(
-        f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
-        json={"chat_id": TELEGRAM_CHAT_ID, "text": texto})
 
 
     if response.status_code == 200:
