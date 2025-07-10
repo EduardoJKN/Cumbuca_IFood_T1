@@ -1183,13 +1183,14 @@ texto += f"Desligados nesta verificação: {len(off_recentes)}\n"
 texto += f"Dashboard: {url_dashboard}\n"
 
 texto += f"Planilha: {url_planilha}"
-texto += "Exemplos de OFF recentemente:"
+texto += "Exemplos de OFF recentemente:\n"
 
-            for p in produtos_off_recentemente[:5]:
-                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}"
+for p in produtos_off_recentemente[:5]:
+    texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}\n"
 
-            if len(produtos_off_recentemente) > 5:
-                texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)"
+if len(produtos_off_recentemente) > 5:
+    texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)\n"
+
 
 
         if todos_produtos:
