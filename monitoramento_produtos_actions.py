@@ -1226,22 +1226,22 @@ texto += f"🆕 Desligados nesta verificação: {len(produtos_off_recentemente)}
 
 
 
-        if url_dashboard:
-            texto += f"🔗 Dashboard: {url_dashboard}"
+    if url_dashboard:
+        texto += f"🔗 Dashboard: {url_dashboard}"
 
-        if google_sheet_link:
-            texto += f"\U0001F4CA Planilha: {google_sheet_link}"
+    if google_sheet_link:
+        texto += f"\U0001F4CA Planilha: {google_sheet_link}"
 
 
-        response = requests.post(
-            f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
-            json={"chat_id": TELEGRAM_CHAT_ID, "text": texto}
-        )
+    response = requests.post(
+        f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
+        json={"chat_id": TELEGRAM_CHAT_ID, "text": texto})
 
-        if response.status_code == 200:
-            print("\u2705 Mensagem enviada ao Telegram")
-        else:
-            print(f"❌ Erro ao enviar para o Telegram: {response.text}")
+
+    if response.status_code == 200:
+        print("\u2705 Mensagem enviada ao Telegram")
+    else:
+        print(f"❌ Erro ao enviar para o Telegram: {response.text}")
 
     except Exception as e:
         print(f"❌ Erro no envio do Telegram: {str(e)}")
