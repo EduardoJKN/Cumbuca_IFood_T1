@@ -1230,19 +1230,23 @@ if url_dashboard:
 if google_sheet_link:
     texto += f"📊 Planilha: {google_sheet_link}\n"
 
-response = requests.post(
-    f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
-    json={"
-
-
+try:
+    response = requests.post(
+        f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
+        json={
+            "chat_id": TELEGRAM_CHAT_ID,
+            "text": texto
+        }
+    )
 
     if response.status_code == 200:
-        print("\u2705 Mensagem enviada ao Telegram")
+        print("✅ Mensagem enviada ao Telegram")
     else:
         print(f"❌ Erro ao enviar para o Telegram: {response.text}")
 
-    except Exception as e:
-        print(f"❌ Erro no envio do Telegram: {str(e)}")
+except Exception as e:
+    print(f"❌ Erro no envio do Telegram: {str(e)}")
+
 
 
 def salvar_log(mensagem):
