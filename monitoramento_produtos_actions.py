@@ -1170,12 +1170,12 @@ for secao, status in secoes_status.items():
 
 
 
-texto += f"Total acumulado de OFF: {total_off_acumulado}
+texto += f"Total acumulado de OFF: {total_off_acumulado}\n"
 
-texto += f"Desligados nesta verificação: {len(off_recentes)}
+texto += f"Desligados nesta verificação: {len(off_recentes)}\n"
 
 
-texto += f"Dashboard: {url_dashboard}
+texto += f"Dashboard: {url_dashboard}\n"
 
 texto += f"Planilha: {url_planilha}"
 texto += ""
