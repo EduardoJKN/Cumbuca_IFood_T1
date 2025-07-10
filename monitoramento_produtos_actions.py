@@ -1193,27 +1193,27 @@ if len(produtos_off_recentemente) > 5:
 
 
 
-if todos_produtos:  # <- Aqui está no lugar certo
-            secao_stats = {}
-            desaparecidos_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_desaparecidos)
-            recentes_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_off_recentemente)
+if todos_produtos:  # <- Aqui agora está certo
+    secao_stats = {}
+    desaparecidos_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_desaparecidos)
+    recentes_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_off_recentemente)
 
-            for p in todos_produtos:
-                chave = f"{p['Seção']}|{p['Produto']}"
-                secao = p["Seção"]
-                if secao not in secao_stats:
-                    secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
-                if chave not in desaparecidos_keys:
-                    secao_stats[secao]["on"] += 1
+    for p in todos_produtos:
+        chave = f"{p['Seção']}|{p['Produto']}"
+        secao = p["Seção"]
+        if secao not in secao_stats:
+            secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
+        if chave not in desaparecidos_keys:
+            secao_stats[secao]["on"] += 1
 
-            for p in produtos_desaparecidos:
-                secao = p["Seção"]
-                chave = f"{p['Seção']}|{p['Produto']}"
-                if secao not in secao_stats:
-                    secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
-                secao_stats[secao]["off"] += 1
-                if chave in recentes_keys:
-                    secao_stats[secao]["recentes"] += 1
+        for p in produtos_desaparecidos:
+            secao = p["Seção"]
+            chave = f"{p['Seção']}|{p['Produto']}"
+        if secao not in secao_stats:
+            secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
+            secao_stats[secao]["off"] += 1
+        if chave in recentes_keys:
+            secao_stats[secao]["recentes"] += 1
 
 texto += ""
 \U0001F4CA Status por Seção:
