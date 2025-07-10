@@ -1146,14 +1146,14 @@ def enviar_alerta_telegram(
 try:
     texto = f"""[ALERTA] Monitoramento de Produtos iFood
 
-Data/Hora: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}
+    Data/Hora: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}
 
-Produtos atualmente no site: {len(produtos_atuais)}
-Total de produtos OFF (Desligados do site atualmente): {len(produtos_off)}
-OFF recentemente: {len(off_recentes)} produto(s) sumiram desde a última checagem.
-"""
+     Produtos atualmente no site: {len(produtos_atuais)}
+     Total de produtos OFF: {len(produtos_off)}
+     OFF recentemente: {len(off_recentes)} produto(s)
+    """
 except Exception as e:
-    print(f"Erro ao gerar o texto: {e}")
+    print(f"Erro ao montar a mensagem: {e}")
 
 if exemplos_off_recentemente:
     texto += "\n\n🔺 Exemplos de OFF recentemente:\n"
