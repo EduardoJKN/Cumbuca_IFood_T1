@@ -1137,12 +1137,19 @@ def enviar_alerta_telegram(
     produtos_off_recentemente=None,
     total_produtos_ativos=0,
     todos_produtos=None,
-    google_sheet_link=None
+    google_sheet_link=None,
+    produtos_atuais=None,
+    secoes_status=None,
+    total_off_acumulado=0,
+    off_recentes=None
 ):
     produtos_off = produtos_off or []
     produtos_desaparecidos = produtos_desaparecidos or []
     produtos_off_recentemente = produtos_off_recentemente or []
     todos_produtos = todos_produtos or []
+    produtos_atuais = produtos_atuais or []
+    secoes_status = secoes_status or {}
+    off_recentes = off_recentes or []
 
     try:
         url_dashboard = (
@@ -1151,99 +1158,87 @@ def enviar_alerta_telegram(
         )
     except Exception as e:
         print(f"Erro ao montar URL do dashboard: {e}")
+        url_dashboard = None
 
+    try:
+        exemplos_off_recentemente = produtos_off_recentemente[:5]
 
-        
-
-try:
-    exemplos_off_recentemente = produtos_off_recentemente[:5]
-
-    texto = (
-        "[ALERTA] Monitoramento de Produtos iFood\n\n"
-        f"Data/Hora: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}\n\n"
-        f"Produtos atualmente no site: {len(produtos_atuais)}\n"
-        f"Total de produtos OFF: {len(produtos_off)}\n"
-        f"OFF recentemente: {len(produtos_off_recentemente)} produto(s)\n"
-    )
-
-    if exemplos_off_recentemente:
-        texto += "\n🔺 Exemplos de OFF recentemente:\n"
-        for p in exemplos_off_recentemente:
-            texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}\n"
-
-    texto += "\nStatus por Seção:\n"
-    for secao, status in secoes_status.items():
-        texto += (
-            f"{secao}: "
-            f"ON: {status['on']} | OFF: {status['off']} "
-            f"(Recentes: {status['recentes']})\n"
+        texto = (
+            "[ALERTA] Monitoramento de Produtos iFood\n\n"
+            f"Data/Hora: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}\n\n"
+            f"Produtos atualmente no site: {len(produtos_atuais)}\n"
+            f"Total de produtos OFF: {len(produtos_off)}\n"
+            f"OFF recentemente: {len(produtos_off_recentemente)} produto(s)\n"
         )
 
-    texto += f"\n📈 Total acumulado de OFF: {total_off_acumulado}\n"
-    texto += f"🆕 Desligados nesta verificação: {len(off_recentes)}\n"
-    texto += f"🔗 Dashboard: {url_dashboard}\n"
-    texto += f"📊 Planilha: {url_planilha}\n"
+        if exemplos_off_recentemente:
+            texto += "\n🔺 Exemplos de OFF recentemente:\n"
+            for p in exemplos_off_recentemente:
+                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}\n"
 
-except Exception as e:
-    print(f"Erro ao montar a mensagem: {e}")
-    texto = "[ERRO] Não foi possível montar a mensagem.\n"
+        texto += "\nStatus por Seção:\n"
+        for secao, status in secoes_status.items():
+            texto += (
+                f"{secao}: "
+                f"ON: {status['on']} | OFF: {status['off']} "
+                f"(Recentes: {status['recentes']})\n"
+            )
 
+        texto += f"\n📈 Total acumulado de OFF: {total_off_acumulado}\n"
+        texto += f"🆕 Desligados nesta verificação: {len(off_recentes)}\n"
+        if url_dashboard:
+            texto += f"🔗 Dashboard: {url_dashboard}\n"
+        if google_sheet_link:
+            texto += f"📊 Planilha: {google_sheet_link}\n"
 
+    except Exception as e:
+        print(f"Erro ao montar a mensagem: {e}")
+        texto = "[ERRO] Não foi possível montar a mensagem.\n"
 
+    # Agora o status por seção baseado em todos_produtos
+    if todos_produtos:
+        secao_stats = {}
+        desaparecidos_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_desaparecidos)
+        recentes_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_off_recentemente)
 
-if todos_produtos:  # <- Aqui agora está certo
-    secao_stats = {}
-    desaparecidos_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_desaparecidos)
-    recentes_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_off_recentemente)
+        for p in todos_produtos:
+            chave = f"{p['Seção']}|{p['Produto']}"
+            secao = p["Seção"]
+            if secao not in secao_stats:
+                secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
+            if chave not in desaparecidos_keys:
+                secao_stats[secao]["on"] += 1
 
-for p in todos_produtos:
-    chave = f"{p['Seção']}|{p['Produto']}"
-    secao = p["Seção"]
-    if secao not in secao_stats:
-        secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
-    if chave not in desaparecidos_keys:
-        secao_stats[secao]["on"] += 1
+        for p in produtos_desaparecidos:
+            secao = p["Seção"]
+            chave = f"{p['Seção']}|{p['Produto']}"
+            if secao not in secao_stats:
+                secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
+            secao_stats[secao]["off"] += 1
+            if chave in recentes_keys:
+                secao_stats[secao]["recentes"] += 1
 
-for p in produtos_desaparecidos:
-    secao = p["Seção"]
-    chave = f"{p['Seção']}|{p['Produto']}"
-    if secao not in secao_stats:
-        secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
-    secao_stats[secao]["off"] += 1
-    if chave in recentes_keys:
-        secao_stats[secao]["recentes"] += 1
+        texto += "\n📊 Status por Seção:\n"
+        for secao, stats in sorted(secao_stats.items()):
+            texto += f"{secao}:\n"
+            texto += f"🟢 {stats['on']} ON | 🔴 {stats['off']} OFF ({stats['recentes']} recente)\n"
 
-texto += "📊 Status por Seção:\n"
+    # Enviar mensagem ao Telegram
+    try:
+        response = requests.post(
+            f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
+            json={
+                "chat_id": TELEGRAM_CHAT_ID,
+                "text": texto
+            }
+        )
+        if response.status_code == 200:
+            print("✅ Mensagem enviada ao Telegram")
+        else:
+            print(f"❌ Erro ao enviar para o Telegram: {response.text}")
+    except Exception as e:
+        print(f"❌ Erro no envio do Telegram: {str(e)}")
 
-for secao, stats in sorted(secao_stats.items()):
-    texto += f"{secao}:\n"
-    texto += f"🟢 {stats['on']} ON | 🔴 {stats['off']} OFF ({stats['recentes']} recente)\n"
-
-texto += f"📈 Total acumulado de OFF: {len(produtos_desaparecidos)}\n"
-texto += f"🆕 Desligados nesta verificação: {len(produtos_off_recentemente)}\n"
-
-if url_dashboard:
-    texto += f"🔗 Dashboard: {url_dashboard}\n"
-
-if google_sheet_link:
-    texto += f"📊 Planilha: {google_sheet_link}\n"
-
-try:
-    response = requests.post(
-        f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
-        json={
-            "chat_id": TELEGRAM_CHAT_ID,
-            "text": texto
-        }
-    )
-
-    if response.status_code == 200:
-        print("✅ Mensagem enviada ao Telegram")
-    else:
-        print(f"❌ Erro ao enviar para o Telegram: {response.text}")
-
-except Exception as e:
-    print(f"❌ Erro no envio do Telegram: {str(e)}")
 
 
 
