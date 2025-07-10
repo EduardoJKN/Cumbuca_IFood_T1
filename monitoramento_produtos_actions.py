@@ -1143,7 +1143,13 @@ def enviar_alerta_telegram(
         url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
 
         
-texto = f"""[ALERTA] Monitoramento de Produtos iFood
+try:
+    texto = f"""[ALERTA] Monitoramento de Produtos iFood
+    ...
+    """
+except Exception as e:
+    print(f"Erro ao gerar o texto: {e}")
+
 
 Data/Hora: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}
 
