@@ -1141,6 +1141,8 @@ def enviar_alerta_telegram(
 ):
     try:
         url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
+    except Exception as e:
+        print(f"Erro ao montar URL do dashboard: {e}")
 
         
 try:
