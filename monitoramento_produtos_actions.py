@@ -1219,10 +1219,10 @@ texto += "\U0001F4CA Status por Seção:"
 
 
 
-            for secao, stats in sorted(secao_stats.items()):
-                texto += f"{secao}:"
+        for secao, stats in sorted(secao_stats.items()):
+            texto += f"{secao}:"
 
-                texto += f"\U0001F7E2 {stats['on']} ON | \U0001F534 {stats['off']} OFF ({stats['recentes']} recente)"
+            texto += f"\U0001F7E2 {stats['on']} ON | \U0001F534 {stats['off']} OFF ({stats['recentes']} recente)"
 
 
 
