@@ -1162,31 +1162,31 @@ if exemplos_off_recentemente:
 
 texto += "Status por Seção:\n"
 
-"
-for secao, status in secoes_status.items():
-    texto += f"{secao}:
-"
-    texto += f"ON: {status['on']} | OFF: {status['off']} (Recentes: {status['recentes']})
 
-"
+for secao, status in secoes_status.items():
+    texto += f"{secao}:"
+
+    texto += f"ON: {status['on']} | OFF: {status['off']} (Recentes: {status['recentes']})"
+
+
 
 texto += f"Total acumulado de OFF: {total_off_acumulado}
-"
+
 texto += f"Desligados nesta verificação: {len(off_recentes)}
 
-"
+
 texto += f"Dashboard: {url_dashboard}
-"
+
 texto += f"Planilha: {url_planilha}"
 texto += ""
  Exemplos de OFF recentemente:
-"
+
             for p in produtos_off_recentemente[:5]:
                 texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}"
-"
+
             if len(produtos_off_recentemente) > 5:
                 texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)"
-"
+
 
         if todos_produtos:
             secao_stats = {}
