@@ -1215,29 +1215,29 @@ if todos_produtos:  # <- Aqui agora está certo
         if chave in recentes_keys:
             secao_stats[secao]["recentes"] += 1
 
-texto += ""
-\U0001F4CA Status por Seção:
+texto += "\U0001F4CA Status por Seção:"
 
-"
+
+
             for secao, stats in sorted(secao_stats.items()):
                 texto += f"{secao}:"
-"
+
                 texto += f"\U0001F7E2 {stats['on']} ON | \U0001F534 {stats['off']} OFF ({stats['recentes']} recente)"
 
-"
+
 
         texto += f"\U0001F4C8 Total acumulado de OFF: {len(produtos_desaparecidos)}"
-"
+
         texto += f"\U0001F195 Desligados nesta verificação: {len(produtos_off_recentemente)}"
 
-"
+
 
         if url_dashboard:
             texto += f"🔗 Dashboard: {url_dashboard}"
-"
+
         if google_sheet_link:
             texto += f"\U0001F4CA Planilha: {google_sheet_link}"
-"
+
 
         response = requests.post(
             f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
