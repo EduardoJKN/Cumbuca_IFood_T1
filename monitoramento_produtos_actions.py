@@ -1154,33 +1154,34 @@ def enviar_alerta_telegram(
 
 
         
+
 try:
-    texto = f"""[ALERTA] Monitoramento de Produtos iFood
+    exemplos_off_recentemente = produtos_off_recentemente[:5]
 
-    Data/Hora: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}
+    texto = (
+        "[ALERTA] Monitoramento de Produtos iFood\n\n"
+        f"Data/Hora: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}\n\n"
+        f"Produtos atualmente no site: {len(produtos_atuais)}\n"
+        f"Total de produtos OFF: {len(produtos_off)}\n"
+        f"OFF recentemente: {len(produtos_off_recentemente)} produto(s)\n"
+    )
 
-     Produtos atualmente no site: {len(produtos_atuais)}
-     Total de produtos OFF: {len(produtos_off)}
-     OFF recentemente: {len(off_recentes)} produto(s)
-    """
+    if exemplos_off_recentemente:
+        texto += "\n🔺 Exemplos de OFF recentemente:\n"
+        for p in exemplos_off_recentemente:
+            texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}\n"
+
+    texto += "\nStatus por Seção:\n"
+    for secao, status in secoes_status.items():
+        texto += (
+            f"{secao}: "
+            f"ON: {status['on']} | OFF: {status['off']} "
+            f"(Recentes: {status['recentes']})\n"
+        )
+
 except Exception as e:
     print(f"Erro ao montar a mensagem: {e}")
 
-if exemplos_off_recentemente:
-    texto += "\n\n🔺 Exemplos de OFF recentemente:\n"
-    for exemplo in exemplos_off_recentemente:
-        texto += f"- {exemplo}"
-
-    texto += ""
-
-
-texto += "Status por Seção:\n"
-
-
-for secao, status in secoes_status.items():
-    texto += f"{secao}:"
-
-    texto += f"ON: {status['on']} | OFF: {status['off']} (Recentes: {status['recentes']})"
 
 
 
