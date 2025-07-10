@@ -1198,37 +1198,31 @@ if todos_produtos:  # <- Aqui agora está certo
     desaparecidos_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_desaparecidos)
     recentes_keys = set(f"{p['Seção']}|{p['Produto']}" for p in produtos_off_recentemente)
 
-    for p in todos_produtos:
-        chave = f"{p['Seção']}|{p['Produto']}"
-        secao = p["Seção"]
-        if secao not in secao_stats:
-            secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
-        if chave not in desaparecidos_keys:
-            secao_stats[secao]["on"] += 1
+for p in todos_produtos:
+    chave = f"{p['Seção']}|{p['Produto']}"
+    secao = p["Seção"]
+    if secao not in secao_stats:
+        secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
+    if chave not in desaparecidos_keys:
+        secao_stats[secao]["on"] += 1
 
-        for p in produtos_desaparecidos:
-            secao = p["Seção"]
-            chave = f"{p['Seção']}|{p['Produto']}"
-        if secao not in secao_stats:
-            secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
-            secao_stats[secao]["off"] += 1
-        if chave in recentes_keys:
-            secao_stats[secao]["recentes"] += 1
+for p in produtos_desaparecidos:
+    secao = p["Seção"]
+    chave = f"{p['Seção']}|{p['Produto']}"
+    if secao not in secao_stats:
+        secao_stats[secao] = {"on": 0, "off": 0, "recentes": 0}
+    secao_stats[secao]["off"] += 1
+    if chave in recentes_keys:
+        secao_stats[secao]["recentes"] += 1
 
-texto += "\U0001F4CA Status por Seção:"
+texto += "📊 Status por Seção:\n"
 
+for secao, stats in sorted(secao_stats.items()):
+    texto += f"{secao}:\n"
+    texto += f"🟢 {stats['on']} ON | 🔴 {stats['off']} OFF ({stats['recentes']} recente)\n"
 
-
-        for secao, stats in sorted(secao_stats.items()):
-            texto += f"{secao}:"
-
-            texto += f"\U0001F7E2 {stats['on']} ON | \U0001F534 {stats['off']} OFF ({stats['recentes']} recente)"
-
-
-
-        texto += f"\U0001F4C8 Total acumulado de OFF: {len(produtos_desaparecidos)}"
-
-        texto += f"\U0001F195 Desligados nesta verificação: {len(produtos_off_recentemente)}"
+texto += f"📈 Total acumulado de OFF: {len(produtos_desaparecidos)}\n"
+texto += f"🆕 Desligados nesta verificação: {len(produtos_off_recentemente)}\n"
 
 
 
