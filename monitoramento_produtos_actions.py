@@ -1160,7 +1160,7 @@ if exemplos_off_recentemente:
     texto += ""
 
 
-texto += "Status por Seção:
+texto += "Status por Seção:\n"
 
 "
 for secao, status in secoes_status.items():
