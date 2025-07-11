@@ -1630,8 +1630,6 @@ def monitorar_produtos():
         driver.quit()
 
 
-    # Executar monitoramento
-    resultado = monitorar_produtos()
     
     # Imprimir resumo
     if resultado:
