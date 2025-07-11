@@ -1646,16 +1646,18 @@ if __name__ == "__main__":
         resultado = monitorar_produtos()
         print("🧪 Resultado do monitoramento:", resultado)
 
-        print("🔔 Chamando alerta do Telegram com os dados finais...")
-        enviar_alerta_telegram(
-            produtos_off=resultado.get("produtos_off", []),
-            produtos_desaparecidos=resultado.get("produtos_desaparecidos", []),
-            produtos_off_recentemente=resultado.get("produtos_off_recentemente", []),
-            total_produtos_ativos=resultado.get("total_produtos_ativos", 0),
-            todos_produtos=resultado.get("todos_produtos", []),
-            google_sheet_link=resultado.get("google_sheet_link")
-        )
+        if resultado:
+            print("🔔 Chamando alerta do Telegram com os dados finais...")
+            enviar_alerta_telegram(
+                produtos_off=resultado.get("produtos_off", []),
+                produtos_desaparecidos=resultado.get("produtos_desaparecidos", []),
+                produtos_off_recentemente=resultado.get("produtos_off_recentemente", []),
+                total_produtos_ativos=resultado.get("total_produtos_ativos", 0),
+                todos_produtos=resultado.get("todos_produtos", []),
+                google_sheet_link=resultado.get("google_sheet_link")
+            )
+        else:
+            print("⚠️ Resultado do monitoramento está vazio. Nenhum alerta enviado.")
 
     except Exception as e:
         print(f"❌ Erro final no monitoramento: {str(e)}")
-
