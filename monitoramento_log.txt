@@ -1797,3 +1797,4 @@
 [2025-07-15 14:17:22] ALERTA: 103 produtos com problemas
 [2025-07-15 15:27:27] Iniciando monitoramento de produtos
 [2025-07-15 15:27:55] ❌ Tempo esgotado esperando a página carregar os produtos.
+[2025-07-15 16:16:16] Iniciando monitoramento de produtos
