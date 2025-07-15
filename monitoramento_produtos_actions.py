@@ -1136,7 +1136,6 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
         todos_produtos=todos_produtos,
         link_planilha=link_planilha
     )
-    :
     """Envia alerta para um grupo no Telegram"""
     try:
         # URL do dashboard
