@@ -128,7 +128,7 @@ def salvar_estado_produtos(dados_produtos):
     with open(arquivo_estado, "w", encoding="utf-8") as f:
         json.dump(estado, f, ensure_ascii=False, indent=2)
     
-    print(f"✅ Estado atual salvo com {len(estado)} produtos")
+    print(f"\u2705 Estado atual salvo com {len(estado)} produtos")
     
     # Fazer upload do arquivo para o GitHub
     fazer_upload_github(arquivo_estado, arquivo_estado)
@@ -149,7 +149,7 @@ def carregar_estado_anterior():
     try:
         with open(arquivo_estado, "r", encoding="utf-8") as f:
             estado = json.load(f)
-            print(f"✅ Estado anterior carregado com {len(estado)} produtos")
+            print(f"\u2705 Estado anterior carregado com {len(estado)} produtos")
             return estado
     except Exception as e:
         print(f"❌ Erro ao carregar estado anterior: {str(e)}")
@@ -169,7 +169,7 @@ def carregar_historico_status():
     try:
         with open(arquivo_historico, "r", encoding="utf-8") as f:
             historico = json.load(f)
-            print(f"✅ Histórico carregado com {len(historico)} produtos")
+            print(f"\u2705 Histórico carregado com {len(historico)} produtos")
             return historico
     except Exception as e:
         print(f"❌ Erro ao carregar histórico: {str(e)}")
@@ -237,7 +237,7 @@ def atualizar_historico_status(dados_produtos, produtos_desaparecidos):
     with open(arquivo_historico, "w", encoding="utf-8") as f:
         json.dump(historico, f, ensure_ascii=False, indent=2)
     
-    print(f"✅ Histórico atualizado com {len(historico)} produtos")
+    print(f"\u2705 Histórico atualizado com {len(historico)} produtos")
     
     # Fazer upload do arquivo para o GitHub
     fazer_upload_github(arquivo_historico, arquivo_historico)
@@ -1019,7 +1019,7 @@ def gerar_dashboard_html(historico):
     with open(arquivo_dashboard, "w", encoding="utf-8") as f:
         f.write(html)
     
-    print(f"✅ Dashboard HTML gerado em: {arquivo_dashboard}")
+    print(f"\u2705 Dashboard HTML gerado em: {arquivo_dashboard}")
     
     # Fazer upload do arquivo para o GitHub
     fazer_upload_github(arquivo_dashboard, arquivo_dashboard)
@@ -1051,7 +1051,7 @@ def baixar_arquivo_github(nome_arquivo):
             with open(nome_arquivo, "w", encoding="utf-8") as f:
                 f.write(conteudo)
             
-            print(f"✅ Arquivo {nome_arquivo} baixado com sucesso do GitHub")
+            print(f"\u2705 Arquivo {nome_arquivo} baixado com sucesso do GitHub")
             return True
         else:
             print(f"⚠️ Arquivo {nome_arquivo} não encontrado no GitHub ou erro ao baixar: {response.status_code}")
@@ -1111,12 +1111,12 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
         response = requests.put(url, headers=headers, json=payload)
         
         if response.status_code in [200, 201]:
-            print(f"✅ Arquivo {nome_arquivo_github} enviado com sucesso para o GitHub")
+            print(f"\u2705 Arquivo {nome_arquivo_github} enviado com sucesso para o GitHub")
             
             # Retornar URL do arquivo
             if nome_arquivo_github == "index.html":
                 url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}"
-                print(f"📊 Dashboard disponível em: {url_dashboard}")
+                print(f"\U0001F4CA Dashboard disponível em: {url_dashboard}")
                 return url_dashboard
             
             return True
@@ -1142,24 +1142,51 @@ def enviar_alerta_telegram(
     try:
         url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
 
-        texto = f"""🚨 ALERTA: Monitoramento de Produtos iFood 🚨
+        
+texto = f"""[ALERTA] Monitoramento de Produtos iFood
 
-📅 Data/Hora: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}
+Data/Hora: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}
 
-✅ Produtos atualmente no site: {total_produtos_ativos}  
-🔴 Total de produtos OFF (Desligados do site atualmente): {len(produtos_desaparecidos)}  
-🆕 OFF recentemente: {len(produtos_off_recentemente)} produto(s) sumiram desde a última checagem.
+Produtos atualmente no site: {len(produtos_atuais)}
+Total de produtos OFF (Desligados do site atualmente): {len(produtos_off)}
+OFF recentemente: {len(off_recentes)} produto(s) sumiram desde a última checagem.
 """
 
-        if produtos_off_recentemente:
+if exemplos_off_recentemente:
+    texto += "Exemplos de OFF recentemente:
+"
+    for exemplo in exemplos_off_recentemente:
+        texto += f"- {exemplo}
+"
+    texto += "
+"
+
+texto += "Status por Seção:
+
+"
+for secao, status in secoes_status.items():
+    texto += f"{secao}:
+"
+    texto += f"ON: {status['on']} | OFF: {status['off']} (Recentes: {status['recentes']})
+
+"
+
+texto += f"Total acumulado de OFF: {total_off_acumulado}
+"
+texto += f"Desligados nesta verificação: {len(off_recentes)}
+
+"
+texto += f"Dashboard: {url_dashboard}
+"
+texto += f"Planilha: {url_planilha}"
 texto += ""
-🔍 Exemplos de OFF recentemente:
+ Exemplos de OFF recentemente:
 "
             for p in produtos_off_recentemente[:5]:
-                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}
+                texto += f"- {p['Seção']} - {p['Produto']} – {p['Preço']}"
 "
             if len(produtos_off_recentemente) > 5:
-                texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)
+                texto += f"... e mais {len(produtos_off_recentemente) - 5} produto(s)"
 "
 
         if todos_produtos:
@@ -1185,27 +1212,27 @@ texto += ""
                     secao_stats[secao]["recentes"] += 1
 
 texto += ""
-📊 Status por Seção:
+\U0001F4CA Status por Seção:
 
 "
             for secao, stats in sorted(secao_stats.items()):
-                texto += f"{secao}:
+                texto += f"{secao}:"
 "
-                texto += f"🟢 {stats['on']} ON | 🔴 {stats['off']} OFF ({stats['recentes']} recente)
+                texto += f"\U0001F7E2 {stats['on']} ON | \U0001F534 {stats['off']} OFF ({stats['recentes']} recente)"
 
 "
 
-        texto += f"📈 Total acumulado de OFF: {len(produtos_desaparecidos)}
+        texto += f"\U0001F4C8 Total acumulado de OFF: {len(produtos_desaparecidos)}"
 "
-        texto += f"🆕 Desligados nesta verificação: {len(produtos_off_recentemente)}
+        texto += f"\U0001F195 Desligados nesta verificação: {len(produtos_off_recentemente)}"
 
 "
 
         if url_dashboard:
-            texto += f"🔗 Dashboard: {url_dashboard}
+            texto += f"🔗 Dashboard: {url_dashboard}"
 "
         if google_sheet_link:
-            texto += f"📊 Planilha: {google_sheet_link}
+            texto += f"\U0001F4CA Planilha: {google_sheet_link}"
 "
 
         response = requests.post(
@@ -1214,7 +1241,7 @@ texto += ""
         )
 
         if response.status_code == 200:
-            print("✅ Mensagem enviada ao Telegram")
+            print("\u2705 Mensagem enviada ao Telegram")
         else:
             print(f"❌ Erro ao enviar para o Telegram: {response.text}")
 
@@ -1317,7 +1344,7 @@ def exportar_para_google_sheets(arquivo_excel):
         
         # Obter link compartilhável
         link = f"https://docs.google.com/spreadsheets/d/{uploaded_file.get('id')}/edit?usp=sharing"
-        print(f"✅ Planilha exportada com sucesso: {link}")
+        print(f"\u2705 Planilha exportada com sucesso: {link}")
         
         # Remover arquivo de credenciais temporário
         os.remove("credentials.json")
@@ -1333,7 +1360,7 @@ def exportar_para_google_sheets(arquivo_excel):
 def monitorar_produtos():
     """Função principal para monitorar produtos"""
     timestamp = horario_brasil().strftime('%Y-%m-%d %H:%M:%S')
-    print(f"\n🔍 Iniciando monitoramento de produtos em {timestamp}")
+    print(f"\n\U0001F195 Iniciando monitoramento de produtos em {timestamp}")
     salvar_log(f"Iniciando monitoramento de produtos")
     
     # Carregar estado anterior para comparação
@@ -1400,7 +1427,7 @@ def monitorar_produtos():
                 # Verificar status do produto (ON/OFF)
                 status = verificar_status_produto(product)
                 
-                status_icon = "✅" if status == "ON" else "❌"
+                status_icon = "\u2705" if status == "ON" else "❌"
                 print(f"{idx:02d}. {name} - {price_display} - Status: {status_icon} {status}")
                 
                 produto_info = {
@@ -1420,7 +1447,7 @@ def monitorar_produtos():
             
             print(f"  ℹ️ Produtos OFF nesta seção: {produtos_off_secao}\n")
         
-        print(f"✅ Total de produtos: {total_produtos}")
+        print(f"\u2705 Total de produtos: {total_produtos}")
         print(f"❌ Total de produtos marcados como OFF: {total_produtos_off}")
         
         # Comparar com estado anterior para encontrar produtos que desapareceram
@@ -1451,7 +1478,7 @@ def monitorar_produtos():
             for p in produtos_desaparecidos:
                 print(f"  ❌ {p['Seção']} - {p['Produto']} - Última verificação: {p['Última verificação']}")
         else:
-            print("\n✅ Nenhum produto desapareceu desde a última verificação.")
+            print("\n\u2705 Nenhum produto desapareceu desde a última verificação.")
         
         # Salvar estado atual para próxima comparação
         salvar_estado_produtos(dados_produtos)
@@ -1557,7 +1584,7 @@ def monitorar_produtos():
         # Exportar para Google Sheets
         google_sheet_link = exportar_para_google_sheets(arquivo_excel)
 
-        print(f"\n✅ Dados formatados e salvos com sucesso em: {arquivo_excel}")
+        print(f"\n\u2705 Dados formatados e salvos com sucesso em: {arquivo_excel}")
         salvar_log(f"Monitoramento concluído. Total: {total_produtos}, OFF: {total_produtos_off}, Desaparecidos: {len(produtos_desaparecidos)}")
         
         # Calcular produtos ativos
@@ -1583,11 +1610,11 @@ def monitorar_produtos():
 )
             
         else:
-            print("\n✅ Todos os produtos estão ON e nenhum ficou OFF!")
+            print("\n\u2705 Todos os produtos estão ON e nenhum ficou OFF!")
             salvar_log("Todos os produtos estão ON e nenhum ficou OFF")
             
             # Enviar mensagem de status normal para o Telegram
-            mensagem = "✅ Todos os produtos estão ON e nenhum ficou OFF!"
+            mensagem = "\u2705 Todos os produtos estão ON e nenhum ficou OFF!"
             enviar_alerta_telegram(
     produtos_off=produtos_off,
     produtos_desaparecidos=produtos_desaparecidos,
