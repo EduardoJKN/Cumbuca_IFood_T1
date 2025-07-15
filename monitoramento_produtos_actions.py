@@ -1128,18 +1128,8 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
         print(f"❌ Erro ao fazer upload para o GitHub: {str(e)}")
         return False
 
-    def enviar_alerta_telegram(
-        mensagem,
-        produtos_off=None,
-        produtos_desaparecidos=None,
-        total_produtos_ativos=0,
-        todos_produtos=None,
-        link_planilha=None
-    ):
-        """Envia alerta para um grupo no Telegram"""
-        mensagem += f"\n\n📊 Acesse a planilha no Google Sheets: {link_planilha}"
-        bot.send_message(chat_id=chat_id, text=mensagem)
-
+def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=None, total_produtos_ativos=0, todos_produtos=None, google_sheet_link=None):
+    """Envia alerta para um grupo no Telegram"""
     try:
         # URL do dashboard
         url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
