@@ -1824,3 +1824,4 @@
 [2025-07-15 18:17:54] ALERTA: 114 produtos com problemas
 [2025-07-15 18:17:55] ❌ Erro inesperado: name 'enviar_alerta_telegram' is not defined
 [2025-07-15 19:18:15] Iniciando monitoramento de produtos
+[2025-07-15 19:18:38] ALERTA: 114 produtos desapareceram
