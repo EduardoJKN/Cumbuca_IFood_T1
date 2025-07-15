@@ -1823,3 +1823,4 @@
 [2025-07-15 18:17:53] Monitoramento concluído. Total: 114, OFF: 114, Desaparecidos: 114
 [2025-07-15 18:17:54] ALERTA: 114 produtos com problemas
 [2025-07-15 18:17:55] ❌ Erro inesperado: name 'enviar_alerta_telegram' is not defined
+[2025-07-15 19:18:15] Iniciando monitoramento de produtos
