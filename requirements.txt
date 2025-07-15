@@ -1,7 +1,11 @@
-selenium
-openpyxl
-pandas
-requests
-gspread
-google-api-python-client
-oauth2client
+selenium==4.19.0
+webdriver-manager==4.0.1
+openpyxl==3.1.2
+pandas==2.2.1
+requests==2.31.0
+
+# Google Sheets / Auth
+gspread==6.0.2
+gspread_dataframe==3.3.1
+google-auth==2.30.0
+google-api-python-client==2.123.0
