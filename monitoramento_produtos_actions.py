@@ -17,7 +17,7 @@ from openpyxl.styles import Font, Border, Side, Alignment, PatternFill
 from openpyxl.utils import get_column_letter
 
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
@@ -1292,8 +1292,8 @@ def exportar_para_google_sheets(arquivo_excel):
             f.write(GOOGLE_CREDENTIALS_JSON)
             
         # Autenticar com Google API
-        scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-        credentials = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+        scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+        credentials = Credentials.from_service_account_file("credentials.json", scopes=scope)
         client = gspread.authorize(credentials)
         drive_service = build("drive", "v3", credentials=credentials)
         
