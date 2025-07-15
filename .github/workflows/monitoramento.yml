@@ -13,42 +13,43 @@ jobs:
     timeout-minutes: 10  # Limita o tempo de execução para evitar consumo excessivo
     
     steps:
-    - name: Checkout do repositório
-      uses: actions/checkout@v4  # Versão mais recente
+      - name: Checkout do repositório
+        uses: actions/checkout@v4  # Versão mais recente
       
-    - name: Configurar Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'  # Versão mais recente estável
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'  # Versão mais recente estável
         
-    - name: Cache de dependências
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
+      - name: Cache de dependências
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
           
-- name: Instalar dependências
-  run: |
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
         
-    - name: Configurar Chrome (otimizado para GitHub Actions)
-      uses: browser-actions/setup-chrome@latest
+      - name: Configurar Chrome (otimizado para GitHub Actions)
+        uses: browser-actions/setup-chrome@latest
       
-    - name: Executar monitoramento
-      env:
-        TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: python monitoramento_produtos_actions.py
+      - name: Executar monitoramento
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+        run: python monitoramento_produtos_actions.py
         
-    - name: Publicar no GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      if: success()  # Só publica se o monitoramento for bem-sucedido
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: .
-        publish_branch: gh-pages
-        keep_files: true  # Mantém arquivos existentes
+      - name: Publicar no GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: success()  # Só publica se o monitoramento for bem-sucedido
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          publish_branch: gh-pages
+          keep_files: true  # Mantém arquivos existentes
