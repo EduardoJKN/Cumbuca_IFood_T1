@@ -1629,3 +1629,20 @@ if __name__ == "__main__":
         print(f"- Produtos desaparecidos: {len(resultado['produtos_desaparecidos'])}")
         print(f"- Produtos ativos: {resultado['total_produtos_ativos']}")
         print(f"- Timestamp: {resultado['timestamp']}")
+
+
+def carregar_produtos_on_anterior():
+    try:
+        with open("produtos_on_ultima_execucao.json", "r", encoding="utf-8") as f:
+            return set(json.load(f))
+    except FileNotFoundError:
+        return set()
+
+def salvar_produtos_on_atual(produtos):
+    produtos_on = [
+        f"{p['Seção']}|{p['Produto']}"
+        for p in produtos
+        if p.get("Status") == "ON"
+    ]
+    with open("produtos_on_ultima_execucao.json", "w", encoding="utf-8") as f:
+        json.dump(produtos_on, f, ensure_ascii=False, indent=2)
