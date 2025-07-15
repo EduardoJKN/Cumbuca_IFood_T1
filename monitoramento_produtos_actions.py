@@ -1130,13 +1130,16 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
 
     def enviar_alerta_telegram(
         mensagem,
-        produtos_off=produtos_off,
-        produtos_desaparecidos=produtos_desaparecidos,
-        total_produtos_ativos=total_produtos,
-        todos_produtos=todos_produtos,
-        link_planilha=link_planilha
+        produtos_off=None,
+        produtos_desaparecidos=None,
+        total_produtos_ativos=0,
+        todos_produtos=None,
+        link_planilha=None
     ):
-    """Envia alerta para um grupo no Telegram"""
+        """Envia alerta para um grupo no Telegram"""
+        mensagem += f"\n\n📊 Acesse a planilha no Google Sheets: {link_planilha}"
+        bot.send_message(chat_id=chat_id, text=mensagem)
+
     try:
         # URL do dashboard
         url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
