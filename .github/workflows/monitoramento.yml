@@ -2,48 +2,53 @@ name: Monitoramento de Produtos iFood
 
 on:
   schedule:
-    - cron: '0 14-23,0-2 * * *'  # Executa de hora em hora entre 14h e 2h
+    # Executa a cada hora das 11h às 23h no horário de Brasília (UTC-3)
+    - cron: '0 14-23 * * *'  # 11h-20h BRT (14h-23h UTC)
+    - cron: '0 0-2 * * *'     # 21h-23h BRT (0h-2h UTC do dia seguinte)
   workflow_dispatch:
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-
+    timeout-minutes: 10  # Limita o tempo de execução para evitar consumo excessivo
+    
     steps:
-      - name: ⬇️ Checkout do repositório
-        uses: actions/checkout@v4
-
-      - name: 🐍 Configurar Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-          cache: 'pip'
-
-      - name: 📦 Instalar dependências
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
-          pip check  # Verifica conflitos
-
-      - name: ✅ Executar monitoramento
-        env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
-        run: |
-          echo "⏱ Início da execução em $(date)"
-          python monitoramento_produtos_actions.py
-          echo "🏁 Execução finalizada em $(date)"
-
-      - name: ❌ Se falhar, notificar no Telegram
-        if: failure()
-        env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: |
-          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
-          -d chat_id="${TELEGRAM_CHAT_ID}" \
-          -d text="🚨 *Erro na execução do monitoramento do iFood!* Verifique o GitHub Actions para mais detalhes." \
-          -d parse_mode=Markdown
+    - name: Checkout do repositório
+      uses: actions/checkout@v4  # Versão mais recente
+      
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'  # Versão mais recente estável
+        
+    - name: Cache de dependências
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          
+    - name: Instalar dependências
+      run: |
+        python -m pip install --upgrade pip
+        pip install selenium pandas openpyxl requests webdriver-manager
+        
+    - name: Configurar Chrome (otimizado para GitHub Actions)
+      uses: browser-actions/setup-chrome@latest
+      
+    - name: Executar monitoramento
+      env:
+        TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: python monitoramento_produtos_actions.py
+        
+    - name: Publicar no GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: success()  # Só publica se o monitoramento for bem-sucedido
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: .
+        publish_branch: gh-pages
+        keep_files: true  # Mantém arquivos existentes
