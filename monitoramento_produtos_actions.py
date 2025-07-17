@@ -1128,7 +1128,52 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
         print(f"❌ Erro ao fazer upload para o GitHub: {str(e)}")
         return False
 
-def mensagem, =None, =None, total_produtos_ativos=0, todos_produtos=None, google_sheet_link=None):
+def enviar_alerta_telegram(mensagem, total_produtos_ativos=0, todos_produtos=None, google_sheet_link=None):
+    """Envia alerta para um grupo no Telegram"""
+    try:
+        url_dashboard = f"https://{GITHUB_ACTOR}.github.io/{GITHUB_REPOSITORY.split('/')[1]}" if GITHUB_ACTOR and GITHUB_REPOSITORY else None
+
+        texto = f"🚨 ALERTA: Monitoramento de Produtos iFood 🚨\n\n"
+        texto += f"Data/Hora: {horario_brasil().strftime('%d/%m/%Y %H:%M:%S')}\n\n"
+        texto += f"✅ Produtos ativos no site: {total_produtos_ativos}\n\n"
+
+        if todos_produtos:
+            produtos_por_secao = {}
+            for produto in todos_produtos:
+                secao = produto["Seção"]
+                if secao not in produtos_por_secao:
+                    produtos_por_secao[secao] = 0
+                produtos_por_secao[secao] += 1
+
+            texto += "📊 Produtos por Seção:\n"
+            for secao, quantidade in sorted(produtos_por_secao.items()):
+                texto += f"- {secao}: 🟢 {quantidade} ativos\n"
+
+            texto += "\n"
+
+        texto += f"{mensagem}\n\n"
+
+        if url_dashboard:
+            texto += f"🔗 Dashboard completo disponível em: {url_dashboard}\n"
+        else:
+            texto += "🔗 Dashboard completo disponível em HTML.\n"
+
+        if google_sheet_link:
+            texto += f"📊 Planilha Google Sheets: {google_sheet_link}\n"
+
+        url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
+        payload = {
+            "chat_id": TELEGRAM_CHAT_ID,
+            "text": texto
+        }
+
+        response = requests.post(url, data=payload)
+        if response.status_code == 200:
+            print(f"✅ Alerta enviado com sucesso para o Telegram")
+            return True
+        else:
+            print(f"❌ Erro ao enviar alerta para o Telegram: {respons
+
     """Envia alerta para um grupo no Telegram"""
     try:
         # URL do dashboard
