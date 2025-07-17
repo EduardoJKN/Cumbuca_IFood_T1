@@ -1141,23 +1141,9 @@ def mensagem, =None, =None, total_produtos_ativos=0, todos_produtos=None, google
         # Adicionar contagem de produtos ativos
         texto += f"✅ Produtos ativos no site: {total_produtos_ativos}\n\n"
         
-        # Produtos que ficaram OFF (antigos "desaparecidos")
-        if :
-            texto += f"⚠️ {len()} produtos ficaram OFF (não encontrados):\n"
-            for p in [:10]:
-                texto += f"- {p['Seção']} - {p['Produto']} - Preço: {p['Preço']}\n"
-            if len() > 10:
-                texto += f"... e mais {len() - 10} produtos\n"
-            texto += "\n"
+        
             
-        # Produtos marcados como OFF no site
-        if :
-            texto += f"⚠️ {len()} produtos marcados como OFF no site:\n"
-            for p in [:5]:
-                texto += f"- {p['Seção']} - {p['Produto']} - Preço: {p['Preço']}\n"
-            if len() > 5:
-                texto += f"... e mais {len() - 5} produtos\n"
-            texto += "\n"
+        
         
         # Adicionar tabela resumida de status por seção
         if todos_produtos:
