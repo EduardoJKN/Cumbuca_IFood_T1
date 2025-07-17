@@ -1339,7 +1339,6 @@ def monitorar_produtos():
     
     dados_produtos = []
     contagem_por_secao = {}
-     = []
     
     google_sheet_link = None # Inicializa o link do Google Sheet
 
