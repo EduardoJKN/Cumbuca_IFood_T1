@@ -155,9 +155,9 @@ def carregar_estado_anterior():
         print(f"❌ Erro ao carregar estado anterior: {str(e)}")
         return {}
 
-def carregar_historico_status():
+def ():
     """Carrega o histórico de status dos produtos"""
-    arquivo_historico = "historico_status.json"
+    arquivo_historico = ""
     
     # Tentar baixar o arquivo do GitHub primeiro
     baixar_arquivo_github(arquivo_historico)
@@ -175,10 +175,10 @@ def carregar_historico_status():
         print(f"❌ Erro ao carregar histórico: {str(e)}")
         return {}
 
-def atualizar_historico_status(dados_produtos, produtos_desaparecidos):
+def (dados_produtos, ):
     """Atualiza o histórico de status dos produtos"""
-    arquivo_historico = "historico_status.json"
-    historico = carregar_historico_status()
+    arquivo_historico = ""
+    historico = ()
     
     timestamp = horario_brasil().strftime("%Y-%m-%d %H:%M:%S")
     
@@ -209,20 +209,20 @@ def atualizar_historico_status(dados_produtos, produtos_desaparecidos):
             historico[chave]["ultima_verificacao"] = timestamp
     
     # Atualizar produtos desaparecidos
-    for produto in produtos_desaparecidos:
+    for produto in :
         chave = f"{produto['Seção']}|{produto['Produto']}"
         if chave not in historico:
             historico[chave] = {
                 "nome": produto["Produto"],
                 "secao": produto["Seção"],
-                "status_atual": "OFF (Desapareceu)",
+                "status_atual": "",
                 "preco_atual": produto["Preço"],
                 "ultima_verificacao": timestamp,
                 "historico": []
             }
         else:
             # Se o status mudou, adicionar ao histórico
-            if historico[chave]["status_atual"] != "OFF (Desapareceu)":
+            if historico[chave]["status_atual"] != "":
                 historico[chave]["historico"].append({
                     "status": historico[chave]["status_atual"],
                     "preco": historico[chave]["preco_atual"],
@@ -230,7 +230,7 @@ def atualizar_historico_status(dados_produtos, produtos_desaparecidos):
                 })
             
             # Atualizar status atual
-            historico[chave]["status_atual"] = "OFF (Desapareceu)"
+            historico[chave]["status_atual"] = ""
             historico[chave]["ultima_verificacao"] = timestamp
     
     # Salvar histórico atualizado
@@ -250,7 +250,7 @@ def calcular_estatisticas_produto(historico_produto):
         return {
             "total_mudancas": 0,
             "tempo_medio_on": "N/A",
-            "tempo_medio_off": "N/A",
+            "": "N/A",
             "porcentagem_on": 100 if historico_produto["status_atual"] == "ON" else 0,
             "ultima_mudanca": "Nunca"
         }
@@ -289,7 +289,7 @@ def calcular_estatisticas_produto(historico_produto):
     
     # Calcular médias
     tempo_medio_on = tempo_total_on / contagem_on if contagem_on > 0 else 0
-    tempo_medio_off = tempo_total_off / contagem_off if contagem_off > 0 else 0
+     = tempo_total_off / contagem_off if contagem_off > 0 else 0
     
     # Calcular porcentagem de tempo ON
     tempo_total = tempo_total_on + tempo_total_off
@@ -304,7 +304,7 @@ def calcular_estatisticas_produto(historico_produto):
     return {
         "total_mudancas": total_mudancas,
         "tempo_medio_on": f"{tempo_medio_on:.2f} horas" if contagem_on > 0 else "N/A",
-        "tempo_medio_off": f"{tempo_medio_off:.2f} horas" if contagem_off > 0 else "N/A",
+        "": f"{:.2f} horas" if contagem_off > 0 else "N/A",
         "porcentagem_on": round(porcentagem_on, 2),
         "ultima_mudanca": ultima_mudanca
     }
@@ -328,11 +328,11 @@ def gerar_dashboard_html(historico):
     
     # Contar produtos ON e OFF
     total_produtos = len(historico)
-    produtos_off = sum(1 for info in historico.values() if info["status_atual"] != "ON")
+     = sum(1 for info in historico.values() if info["status_atual"] != "ON")
     produtos_on = total_produtos
     
     # Contar produtos desaparecidos
-    produtos_desaparecidos = sum(1 for info in historico.values() if "Desapareceu" in info["status_atual"])
+     = sum(1 for info in historico.values() if "" in info["status_atual"])
     
     # Gerar HTML
     html = f"""
@@ -436,7 +436,7 @@ def gerar_dashboard_html(historico):
                 background-color: #e8f5e9;
                 color: #2e7d32;
             }}
-            .status-off {{
+            . {{
                 background-color: #ffebee;
                 color: #c62828;
             }}
@@ -705,8 +705,8 @@ def gerar_dashboard_html(historico):
                 </div>
                 <div class="stat-card off">
                     <h3>Produtos OFF</h3>
-                    <div class="stat-value">{produtos_off}</div>
-                    <div style="font-size: 0.9em; color: #666;">Inclui {produtos_desaparecidos} desaparecidos</div>
+                    <div class="stat-value">{}</div>
+                    <div style="font-size: 0.9em; color: #666;">Inclui {} desaparecidos</div>
                 </div>
             </div>
             
@@ -722,7 +722,7 @@ def gerar_dashboard_html(historico):
                 </div>
                 <div class="legenda-item">
                     <div class="legenda-cor desapareceu"></div>
-                    <div><strong>OFF (Desapareceu)</strong> - Produto que estava disponível anteriormente mas não aparece mais no cardápio</div>
+                    <div><strong></strong> - Produto que estava disponível anteriormente mas não aparece mais no cardápio</div>
                 </div>
             </div>
             
@@ -741,14 +741,14 @@ def gerar_dashboard_html(historico):
     
     # Adicionar seções com produtos
     for secao, produtos in sorted(produtos_por_secao.items()):
-        produtos_off_secao = sum(1 for p in produtos if p["status_atual"] != "ON")
-        produtos_desaparecidos_secao = sum(1 for p in produtos if "Desapareceu" in p["status_atual"])
+        _secao = sum(1 for p in produtos if p["status_atual"] != "ON")
+        _secao = sum(1 for p in produtos if "" in p["status_atual"])
         
         html += f"""
             <div class="section">
                 <button class="accordion">
                     <span>{secao}</span>
-                    <span class="section-count">{len(produtos)} produtos ({produtos_off_secao} OFF, {produtos_desaparecidos_secao} desaparecidos)</span>
+                    <span class="section-count">{len(produtos)} produtos ({_secao} OFF, {_secao} desaparecidos)</span>
                 </button>
                 <div class="panel">
                     <table>
@@ -766,15 +766,15 @@ def gerar_dashboard_html(historico):
         
         for produto in sorted(produtos, key=lambda x: x["nome"]):
             # Determinar classe de status
-            if "Desapareceu" in produto["status_atual"]:
+            if "" in produto["status_atual"]:
                 status_class = "status-desapareceu"
-                filtro_class = "produto-row filter-off filter-desapareceu"
+                filtro_class = "produto-row  filter-desapareceu"
             elif produto["status_atual"] == "ON":
                 status_class = "status-on"
                 filtro_class = "produto-row filter-on"
             else:
-                status_class = "status-off"
-                filtro_class = "produto-row filter-off"
+                status_class = ""
+                filtro_class = "produto-row "
             
             # Determinar se o produto mudou recentemente (nas últimas 24 horas)
             mudou_recentemente = False
@@ -823,7 +823,7 @@ def gerar_dashboard_html(historico):
                                             </div>
                                             <div class="stat-item">
                                                 <div class="stat-item-label">Tempo Médio OFF</div>
-                                                <div class="stat-item-value">{produto["estatisticas"]["tempo_medio_off"]}</div>
+                                                <div class="stat-item-value">{produto["estatisticas"][""]}</div>
                                             </div>
                                         </div>
                                         
@@ -833,7 +833,7 @@ def gerar_dashboard_html(historico):
             # Adicionar itens do histórico
             if produto["historico"]:
                 for item in reversed(produto["historico"]):
-                    if "Desapareceu" in item["status"]:
+                    if "" in item["status"]:
                         status_class_hist = "desapareceu"
                     elif item["status"] == "ON":
                         status_class_hist = "on"
@@ -1128,7 +1128,7 @@ def fazer_upload_github(arquivo_local, nome_arquivo_github):
         print(f"❌ Erro ao fazer upload para o GitHub: {str(e)}")
         return False
 
-def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=None, total_produtos_ativos=0, todos_produtos=None, google_sheet_link=None):
+def mensagem, =None, =None, total_produtos_ativos=0, todos_produtos=None, google_sheet_link=None):
     """Envia alerta para um grupo no Telegram"""
     try:
         # URL do dashboard
@@ -1142,21 +1142,21 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
         texto += f"✅ Produtos ativos no site: {total_produtos_ativos}\n\n"
         
         # Produtos que ficaram OFF (antigos "desaparecidos")
-        if produtos_desaparecidos:
-            texto += f"⚠️ {len(produtos_desaparecidos)} produtos ficaram OFF (não encontrados):\n"
-            for p in produtos_desaparecidos[:10]:
+        if :
+            texto += f"⚠️ {len()} produtos ficaram OFF (não encontrados):\n"
+            for p in [:10]:
                 texto += f"- {p['Seção']} - {p['Produto']} - Preço: {p['Preço']}\n"
-            if len(produtos_desaparecidos) > 10:
-                texto += f"... e mais {len(produtos_desaparecidos) - 10} produtos\n"
+            if len() > 10:
+                texto += f"... e mais {len() - 10} produtos\n"
             texto += "\n"
             
         # Produtos marcados como OFF no site
-        if produtos_off:
-            texto += f"⚠️ {len(produtos_off)} produtos marcados como OFF no site:\n"
-            for p in produtos_off[:5]:
+        if :
+            texto += f"⚠️ {len()} produtos marcados como OFF no site:\n"
+            for p in [:5]:
                 texto += f"- {p['Seção']} - {p['Produto']} - Preço: {p['Preço']}\n"
-            if len(produtos_off) > 5:
-                texto += f"... e mais {len(produtos_off) - 5} produtos\n"
+            if len() > 5:
+                texto += f"... e mais {len() - 5} produtos\n"
             texto += "\n"
         
         # Adicionar tabela resumida de status por seção
@@ -1171,7 +1171,7 @@ def enviar_alerta_telegram(mensagem, produtos_off=None, produtos_desaparecidos=N
                 produtos_por_secao[secao]["total"] += 1
                 
                 # Contar produtos OFF e não encontrados separadamente
-                if "Status" in produto and "Desapareceu" in produto.get("Status", ""):
+                if "Status" in produto and "" in produto.get("Status", ""):
                     produtos_por_secao[secao]["nao_encontrados"] += 1
                     produtos_por_secao[secao]["off"] += 1  # Não encontrados também são OFF
                 elif "Status" in produto and produto["Status"] != "ON":
@@ -1353,7 +1353,7 @@ def monitorar_produtos():
     
     dados_produtos = []
     contagem_por_secao = {}
-    produtos_off = []
+     = []
     
     google_sheet_link = None # Inicializa o link do Google Sheet
 
@@ -1369,7 +1369,7 @@ def monitorar_produtos():
         print("🛒 Produtos por Seção:\n")
         
         total_produtos = 0
-        total_produtos_off = 0
+        total_ = 0
         
         for section in sections:
             title_element = section.find_element(By.CLASS_NAME, "restaurant-menu-group__title")
@@ -1386,7 +1386,7 @@ def monitorar_produtos():
                 print("  ⚠️ Nenhum produto encontrado nessa seção.\n")
                 continue
             
-            produtos_off_secao = 0
+            _secao = 0
             
             for idx, product in enumerate(products, start=1):
                 name = product.find_element(By.CLASS_NAME, "dish-card__description").text.strip()
@@ -1414,15 +1414,15 @@ def monitorar_produtos():
                 
                 dados_produtos.append(produto_info)
                 
-                if status == "OFF":
-                    produtos_off.append(produto_info)
-                    produtos_off_secao += 1
-                    total_produtos_off += 1
+                if :
+                    .append(produto_info)
+                    _secao += 1
+                    total_ += 1
             
-            print(f"  ℹ️ Produtos OFF nesta seção: {produtos_off_secao}\n")
+            print(f"  ℹ️ Produtos OFF nesta seção: {_secao}\n")
         
         print(f"✅ Total de produtos: {total_produtos}")
-        print(f"❌ Total de produtos marcados como OFF: {total_produtos_off}")
+        print(f"❌ Total de produtos marcados como OFF: {total_}")
         
         # Comparar com estado anterior para encontrar produtos que desapareceram
         produtos_atuais = {}
@@ -1431,25 +1431,25 @@ def monitorar_produtos():
             produtos_atuais[chave] = produto
         
         # Encontrar produtos que existiam antes mas não existem mais (desapareceram)
-        produtos_desaparecidos = []
+         = []
         for chave, info in estado_anterior.items():
             if chave not in produtos_atuais:
                 secao, nome = chave.split("|", 1)
-                produtos_desaparecidos.append({
+                .append({
                     "Seção": secao,
                     "Produto": nome,
                     "Preço": info.get("Preço", "N/A"),
-                    "Status": "OFF (Desapareceu)",
+                    "Status": "",
                     "Última verificação": info.get("Última verificação", "Desconhecido"),
                     "Descrição": info.get("Descrição", "")
                 })
         
         # Adicionar produtos desaparecidos à lista de produtos com problemas
-        if produtos_desaparecidos:
-            print(f"\n⚠️ ALERTA: {len(produtos_desaparecidos)} produtos desapareceram desde a última verificação!")
-            salvar_log(f"ALERTA: {len(produtos_desaparecidos)} produtos desapareceram")
+        if :
+            print(f"\n⚠️ ALERTA: {len()} produtos desapareceram desde a última verificação!")
+            salvar_log(f"ALERTA: {len()} produtos desapareceram")
             
-            for p in produtos_desaparecidos:
+            for p in :
                 print(f"  ❌ {p['Seção']} - {p['Produto']} - Última verificação: {p['Última verificação']}")
         else:
             print("\n✅ Nenhum produto desapareceu desde a última verificação.")
@@ -1458,16 +1458,16 @@ def monitorar_produtos():
         salvar_estado_produtos(dados_produtos)
         
         # Atualizar histórico de status e gerar dashboard
-        historico = atualizar_historico_status(dados_produtos, produtos_desaparecidos)
+        historico = (dados_produtos, )
         arquivo_dashboard = gerar_dashboard_html(historico)
         
         # Salvar dados em Excel
         arquivo_excel = "produtos_cumbuca.xlsx"
         
         # Adicionar produtos desaparecidos ao DataFrame para o relatório
-        for produto in produtos_desaparecidos:
+        for produto in :
             dados_produtos.append(produto)
-            total_produtos_off += 1
+            total_ += 1
         
         df = pd.DataFrame(dados_produtos)
         
@@ -1488,7 +1488,7 @@ def monitorar_produtos():
         linha_total = pd.DataFrame([{
             "Seção": "TOTAL DE PRODUTOS", 
             "Produto": total_produtos, 
-            "Status": f"OFF: {total_produtos_off} ({len(produtos_desaparecidos)} desaparecidos)"
+            "Status": f"OFF: {total_} ({len()} desaparecidos)"
         }])
         
         with pd.ExcelWriter(arquivo_excel, engine="openpyxl", mode="w") as writer:
@@ -1535,7 +1535,7 @@ def monitorar_produtos():
                         cell.fill = fill_off
                     elif cell.value == "ON":
                         cell.fill = fill_on
-                    elif cell.value and "Desapareceu" in str(cell.value):
+                    elif cell.value and "" in str(cell.value):
                         cell.fill = fill_desaparecido
                         # Destacar toda a linha para produtos desaparecidos
                         for c in row:
@@ -1559,14 +1559,14 @@ def monitorar_produtos():
         google_sheet_link = exportar_para_google_sheets(arquivo_excel)
 
         print(f"\n✅ Dados formatados e salvos com sucesso em: {arquivo_excel}")
-        salvar_log(f"Monitoramento concluído. Total: {total_produtos}, OFF: {total_produtos_off}, Desaparecidos: {len(produtos_desaparecidos)}")
+        salvar_log(f"Monitoramento concluído. Total: {total_produtos}, OFF: {total_}, Desaparecidos: {len()}")
         
         # Calcular produtos ativos
         total_produtos_ativos = total_produtos
         
         # Enviar alerta se houver produtos OFF ou desaparecidos
-        if produtos_off or produtos_desaparecidos:
-            total_problemas = len(produtos_off) + len(produtos_desaparecidos)
+        if  or :
+            total_problemas = len() + len()
             print(f"\n⚠️ ALERTA: {total_problemas} produtos com problemas!")
             salvar_log(f"ALERTA: {total_problemas} produtos com problemas")
             
@@ -1574,10 +1574,10 @@ def monitorar_produtos():
             mensagem = f"Total de {total_problemas} produtos com problemas. Verifique o relatório completo."
             
             # Enviar alerta para o Telegram
-            enviar_alerta_telegram(
+            
                 mensagem, 
-                produtos_off, 
-                produtos_desaparecidos, 
+                , 
+                , 
                 total_produtos_ativos,
                 dados_produtos,
                 google_sheet_link
@@ -1589,7 +1589,7 @@ def monitorar_produtos():
             
             # Enviar mensagem de status normal para o Telegram
             mensagem = "✅ Todos os produtos estão ON e nenhum ficou OFF!"
-            enviar_alerta_telegram(
+            
                 mensagem,
                 None,
                 None,
@@ -1600,8 +1600,8 @@ def monitorar_produtos():
         
         return {
             "total_produtos": total_produtos,
-            "produtos_off": produtos_off,
-            "produtos_desaparecidos": produtos_desaparecidos,
+            "": ,
+            "": ,
             "total_produtos_ativos": total_produtos_ativos,
             "timestamp": timestamp
         }
@@ -1625,8 +1625,8 @@ if __name__ == "__main__":
     if resultado:
         print("\n📋 Resumo do monitoramento:")
         print(f"- Total de produtos: {resultado['total_produtos']}")
-        print(f"- Produtos OFF: {len(resultado['produtos_off'])}")
-        print(f"- Produtos desaparecidos: {len(resultado['produtos_desaparecidos'])}")
+        print(f"- Produtos OFF: {len(resultado[''])}")
+        print(f"- Produtos desaparecidos: {len(resultado[''])}")
         print(f"- Produtos ativos: {resultado['total_produtos_ativos']}")
         print(f"- Timestamp: {resultado['timestamp']}")
 
