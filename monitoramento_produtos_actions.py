@@ -1172,7 +1172,12 @@ def enviar_alerta_telegram(mensagem, total_produtos_ativos=0, todos_produtos=Non
             print(f"✅ Alerta enviado com sucesso para o Telegram")
             return True
         else:
-            print(f"❌ Erro ao enviar alerta para o Telegram: {respons
+             print(f"❌ Erro ao enviar alerta para o Telegram: {response.text}")
+            return False
+
+    except Exception as e:
+        print(f"❌ Erro ao enviar alerta para o Telegram: {str(e)}")
+        return False
 
     """Envia alerta para um grupo no Telegram"""
     try:
