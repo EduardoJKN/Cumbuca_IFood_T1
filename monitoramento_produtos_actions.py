@@ -155,7 +155,6 @@ def carregar_estado_anterior():
         print(f"❌ Erro ao carregar estado anterior: {str(e)}")
         return {}
 
-def ():
     """Carrega o histórico de status dos produtos"""
     arquivo_historico = ""
     
