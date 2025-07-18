@@ -174,7 +174,7 @@ def carregar_estado_anterior():
         print(f"❌ Erro ao carregar histórico: {str(e)}")
         return {}
 
-def (dados_produtos, ):
+def salvar_produtos_on(dados_produtos):
     """Atualiza o histórico de status dos produtos"""
     arquivo_historico = ""
     historico = ()
