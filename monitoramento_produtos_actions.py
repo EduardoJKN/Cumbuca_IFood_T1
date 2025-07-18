@@ -217,3 +217,11 @@ def salvar_produtos_on_atual(produtos):
     ]
     with open("produtos_on_ultima_execucao.json", "w", encoding="utf-8") as f:
         json.dump(produtos_on, f, ensure_ascii=False, indent=2)
+
+    mensagem = "Monitoramento concluído com sucesso."
+    enviar_alerta_telegram(
+        mensagem=mensagem,
+        total_produtos_ativos=len(dados_produtos),
+        todos_produtos=dados_produtos,
+        google_sheet_link=google_sheet_link if 'google_sheet_link' in locals() else None
+    )
