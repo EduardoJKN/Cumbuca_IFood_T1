@@ -208,40 +208,6 @@ def salvar_produtos_on(dados_produtos):
             historico[chave]["ultima_verificacao"] = timestamp
     
     # Atualizar produtos desaparecidos
-    for produto in :
-        chave = f"{produto['Seção']}|{produto['Produto']}"
-        if chave not in historico:
-            historico[chave] = {
-                "nome": produto["Produto"],
-                "secao": produto["Seção"],
-                "status_atual": "",
-                "preco_atual": produto["Preço"],
-                "ultima_verificacao": timestamp,
-                "historico": []
-            }
-        else:
-            # Se o status mudou, adicionar ao histórico
-            if historico[chave]["status_atual"] != "":
-                historico[chave]["historico"].append({
-                    "status": historico[chave]["status_atual"],
-                    "preco": historico[chave]["preco_atual"],
-                    "timestamp": historico[chave]["ultima_verificacao"]
-                })
-            
-            # Atualizar status atual
-            historico[chave]["status_atual"] = ""
-            historico[chave]["ultima_verificacao"] = timestamp
-    
-    # Salvar histórico atualizado
-    with open(arquivo_historico, "w", encoding="utf-8") as f:
-        json.dump(historico, f, ensure_ascii=False, indent=2)
-    
-    print(f"✅ Histórico atualizado com {len(historico)} produtos")
-    
-    # Fazer upload do arquivo para o GitHub
-    fazer_upload_github(arquivo_historico, arquivo_historico)
-    
-    return historico
 
 def salvar_produtos_on_atual(produtos):
     produtos_on = [
